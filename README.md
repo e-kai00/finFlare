@@ -2,10 +2,7 @@
 
 ## Overview
 
-
-
 View the live project -- here --
-
 
 ## Table of Contents
 
@@ -23,11 +20,12 @@ View the live project -- here --
   - [Content](#content)
   - [Members of Santa Dev's Team](#members-of-santa-devs-team)
 
-
 ## Planing Stage
 
 ### Target Audience
+
 ### User Stories
+
 ### Site Aims
 
 <br>
@@ -35,7 +33,6 @@ View the live project -- here --
 ## Design
 
 ### Typography
-
 
 ### Color Scheme
 
@@ -45,8 +42,8 @@ View the live project -- here --
 
 The key technologies employed in the project include:
 
-- HTML 
-- CSS 
+- HTML
+- CSS
 - JavaScript
 - Bootstrap 5
 - Python
@@ -56,7 +53,6 @@ The key technologies employed in the project include:
 ## Features
 
 ### Existing Features
-
 
 ### Future Features
 
@@ -85,16 +81,11 @@ This project is published on the GitHub Pages, thus deploying it is a straightfo
 
 ### Content
 
+### Members of finFlare Team
 
-
-### Members of finFlare Team 
-
-- Sandra
+- [Sandra](https://github.com/SandraBergstrom)
 - [Kim](https://github.com/KimBergstroem)
 - Emmanuel
 - Vernell
 - Darren
 - [Katerina](https://github.com/e-kai00)
-
-
-
