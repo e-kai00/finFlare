@@ -1,91 +1,61 @@
-# Project name
+<h1 align="center"><strong>💲💲💲 Budget Busters: New Year, New Numbers 💲💲💲</strong>
 
-## Overview
+</h1>
 
-View the live project -- here --
+<img src="https://res.cloudinary.com/djdefbnij/image/upload/v1705314715/Hackathons/Screenshot_2024-01-15_at_10.27.38_rc7lor.png" alt="BudgetBustersBanner" width="1200"/>
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Design](#design)
-  - [Typography](#typography)
-  - [Color Scheme](#color-scheme)
-- [Technologies Used](#technologies-used)
-- [Features](#features)
-  - [Existing Features](#existing-features)
-  - [Future Features](#future-features)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Credits](#credits)
-  - [Content](#content)
-  - [Members of Santa Dev's Team](#members-of-santa-devs-team)
-
-## Planing Stage
-
-### Target Audience
-
-### User Stories
-
-### Site Aims
-
-<br>
-
-## Design
-
-### Typography
-
-### Color Scheme
-
-<br>
-
-## Technologies Used
-
-The key technologies employed in the project include:
-
-- HTML
-- CSS
-- JavaScript
-- Bootstrap 5
-- Python
-
-<br>
-
-## Features
-
-### Existing Features
-
-### Future Features
-
-<br>
-
-## Testing
-
-<br>
+# SUBMISSION
 
 ## Deployment
 
-This project is published on the GitHub Pages, thus deploying it is a straightforward process. Follow these steps to make your project live:
+The project is deployed and can be accessed at [http://your-deployed-link.com](http://your-deployed-link.com).
 
-1. Begin by forking the Expressive E-Cards repository. Click the "Fork" button at the top right of the repository page. This creates a copy of the project under your GitHub account.
-2. Navigate to your forked repository on GitHub.
-3. In your forked repository, click on the "Settings" tab.
-4. From the left-hand menu, select the "Pages" tab.
-5. Under the "Source" section, choose the "Main" branch from the drop-down menu.
-6. Click the "Save" button to apply the selected branch as the source for GitHub Pages.
-7. Once saved, a confirmation message will indicate a successful deployment to GitHub Pages.
-8. Visit the provided live link to explore the deployed project in action.
+## Criteria
 
-<br>
+In this section, we will briefly discuss how our team addressed the applicable criteria:
+
+- 💲 The project has a creative design that enhances user-experience
+- 💲 The project is finance related and has a real world use case
+- 💲 The project is Responsive and accessible on different screen sizes
+- 💲 The project is well-planned using GitHub Projects or other issue board
+- 💲 The project has a well documented README based on the provided template.
+
+# ABOUT SUBMISSION
+
+## Intro
+
+One or two paragraphs providing an overview of our project
+
+## Goal
+
+The goal section provides a concise summary of the main objective or purpose of the project or software described in this README. It addresses the following aspects:
+
+- ➡️ Problem Statement
+- ➡️ Objective(s)
+- ➡️ Target Audience
+- ➡️ Benefits
+
+## Tech
+
+In the tech section, we provide information about the technology stack, dependencies, and any technical details related to the project.
+
+### The key technologies employed in the project include:
+
+HTML <br>
+CSS <br>
+JavaScript <br>
+Bootstrap 5 <br>
+Python <br>
 
 ## Credits
 
-### Content
+In the credits section, we provide information about the sources used
 
-### Members of finFlare Team
+## Members of finFlare Team
 
-- [Sandra](https://github.com/SandraBergstrom)
-- [Kim](https://github.com/KimBergstroem)
-- Emmanuel
-- Vernell
-- Darren
-- [Katerina](https://github.com/e-kai00)
+[Sandra](https://github.com/SandraBergstrom) <br>
+[Kim](https://github.com/KimBergstroem)<br>
+[Emmanuel](https://github.com/Emmy-Dare274)<br>
+[Vernell](https://github.com/VCOnlineEducation)<br>
+[Darren]()<br>
+[Katerina](https://github.com/e-kai00)<br>
