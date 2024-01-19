@@ -1,12 +1,20 @@
-<article>
-  <div class="container-wallet">
-    <div class="row">
-      <div class="col-12">
-        <!-- add wallet icon from fontawesome--> 
-        <i class="fas fa-wallet"></i>        
-        <h2>My Wallet</h2>
-      </div>
-    </div>
-    
-  </div>
-</article>
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+
+{% block content %}
+    <article>
+        <div class="container-wallet">
+            <div class="row">
+                <div class="mx-auto text-center">
+                    <h2 class="logo-font mb-4">My Wallet</h2>
+                </div>
+            </div>
+    </article>
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'accounts/js/accounts.js' %}"></script>
+{% endblock %}
