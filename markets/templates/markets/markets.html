@@ -7,7 +7,7 @@ page_header %}
     <div class="col"></div>
   </div>
 </div>
-{% endblock %} {% block content %}
+{% block content %}
 <div class="overlay"></div>
 <div class="container main-content-container h-100">
   <article>
@@ -18,7 +18,7 @@ page_header %}
             <div class="row">
               <div class="col-md-4">
                 <!-- My Wallet content goes here -->
-                <h1>My Wallet</h1>
+                {% include 'accounts/my_wallet.html' %}
               </div>
               <div class="col-md-8">
                 <h1>Market</h1>
