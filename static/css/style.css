@@ -88,3 +88,43 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+/* Footer Styles */
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 5em;
+}
+
+.footer-wrapper .left-content {
+    text-align: left;    
+    flex: 1;
+}
+
+.footer-wrapper .center-content {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-wrapper .right-content {
+    text-align: right;   
+    flex: 1; 
+}
+
+.footer-wrapper ul {
+    list-style: none; 
+    padding: 0; 
+}
+
+.footer-wrapper ul li a {
+    text-decoration: none;
+}
+
+.footer-wrapper .center-content a {
+    margin-inline: .8em;
+}

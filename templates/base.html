@@ -109,12 +109,36 @@
     <!-- Footer -->
     <footer class="footer mt-auto py-3">
         <div class="m-0 text-center text-white">
-            <div>
+            <!-- about section -->
+            <div class="footer-wrapper">
+            <div class="left-content">
+                <ul class="ms-auto mb-2 mb-lg-0">
+                    <li class="">
+                        <a class="text-white" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="">
+                        <a class="text-white"  href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="">
+                        <a class="text-white" href="#">Contact us</a>
+                    </li>                  
+                </ul>
+            </div>
+            <!-- social media section -->
+            <div class="center-content">
                 <a href=""><i class="fa-brands fa-facebook text-white"></i></a>
                 </a><a href=""><i class="fa-brands fa-instagram text-white"></i></a>
                 <a href=""><i class="fa-brands fa-twitter text-white"></i></a>
                 <a href=""><i class="fa-brands fa-linkedin text-white"></i></a>
             </div>
+            <!-- terms of services section -->
+            <div class="right-content">
+                <ul>
+                    <li><a href="#" class="text-white">Terms of Service</a></li>        
+                    <li><a href="#" class="text-white">Privacy Policy</a></li>                     
+                </ul>
+            </div>
+        </div>
             {% block copyright %}
                 FinFlare 2024
             {% endblock copyright %}

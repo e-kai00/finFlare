@@ -8,3 +8,5 @@ node_modules/
 blog/fixtures/
 .github/
 cloudinary_python.txt
+fin_flare/
+env.py
