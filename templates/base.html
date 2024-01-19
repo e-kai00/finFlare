@@ -70,6 +70,7 @@
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                             href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> <strong>About</strong></a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                             href="{% url 'markets' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Market</strong></a>
@@ -78,7 +79,6 @@
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                             href="{% url 'home' %}"><i class="fa-solid fa-wallet"></i> <strong>My Wallet</strong></a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                             href="{% url 'account_logout' %}">Logout</a>
