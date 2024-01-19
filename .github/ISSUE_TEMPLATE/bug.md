@@ -1,7 +1,7 @@
 ---
 name: BUG
 about: 'BUG:'
-title: ''
+title: BUG
 labels: ''
 assignees: ''
 
