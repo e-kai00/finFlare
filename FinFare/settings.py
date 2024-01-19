@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [(os.environ.get('LOCALHOST')), (os.environ.get('HEROKU_HOSTNAME')), '8000-kimbergstroem-finflare-1iavh4fpv1b.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = [(os.environ.get('LOCALHOST')), (os.environ.get('HEROKU_HOSTNAME')), '8000-kimbergstroem-finflare-1iavh4fpv1b.ws-eu107.gitpod.io', '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io']
 
 
 # Application definition
@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     # Other
     'django_summernote',
     'cloudinary',
-    'crispy_forms',
-    'crispy_bootstrap5',
 
     # Project apps
     'accounts',
@@ -56,9 +54,6 @@ INSTALLED_APPS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
