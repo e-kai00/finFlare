@@ -1,7 +1,4 @@
 from django.shortcuts import render
 
-def markets(request):
-    """
-    Render markets.html view
-    """
+def stockPicker(request):
     return render(request, "markets/markets.html")
