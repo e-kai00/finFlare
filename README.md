@@ -56,6 +56,6 @@ In the credits section, we provide information about the sources used
 [Sandra](https://github.com/SandraBergstrom) <br>
 [Kim](https://github.com/KimBergstroem)<br>
 [Emmanuel](https://github.com/Emmy-Dare274)<br>
-[Vernell](https://github.com/VCOnlineEducation)<br>
+[Vernell](https://github.com/VCGithubCode)<br>
 [Darren](https://github.com/ProfessorJames)<br>
 [Katerina](https://github.com/e-kai00)<br>
