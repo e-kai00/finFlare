@@ -83,12 +83,8 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == markets_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'markets' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Market</strong></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'home' %}"><i class="fa-solid fa-wallet"></i> <strong>My Wallet</strong></a>
+                            href="{% url 'home' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Dashboard</strong></a>
                     </li>
                         <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
                             <!-- Default dropleft button -->
