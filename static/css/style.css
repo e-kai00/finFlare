@@ -129,6 +129,10 @@ nav .nav-link {
     overflow: hidden;
 }
 
+.toast-header {
+    justify-content: space-between;
+}
+
 .toast-capper {
     height: 2px;
 }

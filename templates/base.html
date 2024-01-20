@@ -202,7 +202,13 @@
         </script>
 
     <script>
-        $('.toast').toast('show');
+        var toastEl = document.querySelector('.toast');
+        var myToast = new bootstrap.Toast(toastEl);
+
+        myToast.show();
+        toastEl.addEventListener('hidden.bs.toast', function () {
+    });
+ 
     </script>
 
     {% block postloadjs %}
