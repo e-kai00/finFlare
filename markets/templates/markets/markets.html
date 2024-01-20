@@ -32,43 +32,38 @@
             <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
           </div>
           
-            <table class="table mb-5">
-              <thead>
-                <tr>
-                  <th scope="col">Nr.</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Movement</th>
-                  <th scope="col">Precentage</th>
-                  <th scope="col">Buy/Sell</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for stock_info in stock_data %}
-                <tr>
-                    <th scope="row">{{forloop.counter}}</th>
-                    <td>{{ stock_info.name }}</td>
-                    <td>{{ stock_info.price }}</td>
-                    <td class="{% if stock_info.price_movement.movement == 'Up' %}text-success{% else %}text-danger{% endif %}">
-                      {% if stock_info.price_movement and stock_info.price_movement.movement != '' %}
-                        {{ stock_info.price_movement.movement }}
-                      {% else %}
-                        N/A
-                      {% endif %}
-                    </td>
-                    <td>{{ stock_info.price_movement.percentage|floatformat:4 }} %</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example"
-                        name="stockSelector">
-                        <button type="button"  id="btn-buy" class="btn btn-success me-2">Buy</button>
-                        <button type="button" id="btn-sell" class="btn btn-danger">Sell</button>
-                      </div>
-                    </td>
-                </tr>
-            {% endfor %}
-              </tbody>
-            </table>
+          <table class="table mb-5">
+            <thead>
+              <tr>
+                <th scope="col">Nr.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col" class="d-none d-lg-table-cell">Percentage</th>
+                <th scope="col">Buy/Sell</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for stock_info in stock_data %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{ stock_info.name }}</td>
+                <td>{{ stock_info.price }}</td>
+                <td class="d-none d-lg-table-cell" style="color: {% if stock_info.price_movement.movement == 'Up' %}#008068{% else %}#db143c{% endif %};">
+                  {{ stock_info.price_movement.percentage|floatformat:2 }} %
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example"
+                    name="stockSelector">
+                    <button type="button" id="btn-sell" class="btn me-2">Sell</button>
+                    <button type="button"  id="btn-buy" class="btn">Buy</button>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
             <form action="" method="post">
               {% csrf_token %}
               <label for="stockSelector">Select Stocks:</label>
@@ -80,9 +75,10 @@
               </select>
               <br>
               <div class="d-grid gap-2 mt-2">
-                  <input class="btn btn-primary" type="submit" value="Submit">
+                  <input class="btn btn-signup" type="submit" value="Submit">
               </div>
             </form>
+          
         </div>
       </div>
   </div>
