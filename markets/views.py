@@ -22,7 +22,7 @@ def stock_data(request):
     base_url = "https://serpapi.com/search.json"
 
     stocks = ['DJI:INDEXDJX', 'SPX:INDEXSP', 'COMP:INDEXNASDAQ', 'RUT:INDEXRUS', 'VIX:INDEXCBOE']
-    max_items = 10  # Max rending items
+    max_items = 5  # Max rending items
 
     stock_data_list = []
 
@@ -39,13 +39,17 @@ def stock_data(request):
         stock_info_list = data.get('markets', {}).get('us', [])
 
         for stock_info in stock_info_list:
+            print(data)
             stock_data_list.append({
                 'symbol': stock.split(':')[0],
                 'name': stock_info.get('name', ''),
                 'price': stock_info.get('price', ''),
-                'price_movement': stock_info.get('price_movement', {}).get('movement', ''),
+                'price_movement': {
+                    'movement': stock_info.get('price_movement', {}).get('movement', ''),
+                    'percentage': stock_info.get('price_movement', {}).get('percentage', 0),
+                },
             })
-
+            
             # Check if we have reached the maximum number of items
             if len(stock_data_list) >= max_items:
                 break
