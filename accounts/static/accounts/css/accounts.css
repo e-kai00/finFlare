@@ -1,0 +1,57 @@
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 0 !important;
+    text-align: end;
+}
+
+p {
+    font-size: 16px;
+    margin: 0 !important;
+    text-align: end;
+}
+
+hr {
+    width: 80% !important;
+    margin: 5px auto 25px !important;
+    background-color: var(--primary-color);
+    opacity: 1.0;
+}
+
+.container-wallet {
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.wallet-header {
+    display: flex;
+    justify-content: center;
+}
+
+.wallet-header i {
+    margin-right: 15px;
+}
+
+.wallet-row {
+    padding: 0 20px;
+}
+
+.wallet-row i {
+    font-size: 40px;
+}
+
+.balance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 0 20px;
+}
+
+.balance-row {
+    --bs-gutter-x: 0;
+}

@@ -1,34 +1,44 @@
-{% extends "base.html" %}
 {% load static %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 {% endblock %}
 
-{% block extra_title %} - My wallets {% endblock %}
-
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container main-content-container h-100">
-        <article>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6 mx-auto text-center">
-                        <hr>
-                        <h2 class="logo-font mb-4">My Wallets</h2>
-                    </div>
+    <article>
+        <div class="container-wallet sky-blue-bg">
+            <div class="row">
+                <div class="mx-auto text-center wallet-header">
+                    <i class="fas fa-wallet"></i>
+                    <h2 class="logo-font mb-3">My Wallet</h2>
                 </div>
+                <hr>
             </div>
-        </article>
-    </div>
+            <div class="row wallet-row">
+              <div class="mx-auto text-center balance">
+                <div>
+                  <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+                <div>
+                  <h3 class="logo-font">Account Balance</h2>
+                    <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
+                    <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ account.balance }}</p>
+                </div>
+              </div>
+              <div class="row balance-row">
+                <div class="mx-auto text-center balance">
+                  <div>
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                  </div>
+                  <div>
+                    <h3 class="logo-font">Stock Balance</h2>
+                      <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
+                      <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ stock.balance }}</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+    </article>
 {% endblock %}
 
 {% block postloadjs %}
