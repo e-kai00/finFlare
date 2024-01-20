@@ -139,7 +139,7 @@ form.signup p input {
     border-radius: 6px;
     border: 1px solid var(--primary-color);
     padding-inline: .2em;
-    min-width: 90%;
+    min-width: 100%;
 }
 /* End of register, login/ -out pages */
 
