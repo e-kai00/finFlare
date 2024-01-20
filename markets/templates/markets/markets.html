@@ -39,6 +39,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Price</th>
                   <th scope="col">Movement</th>
+                  <th scope="col">Precentage</th>
                   <th scope="col">Buy/Sell</th>
                 </tr>
               </thead>
@@ -48,7 +49,14 @@
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{ stock_info.name }}</td>
                     <td>{{ stock_info.price }}</td>
-                    <td>{{ stock_info.price_movement.movement }}</td>
+                    <td class="{% if stock_info.price_movement.movement == 'Up' %}text-success{% else %}text-danger{% endif %}">
+                      {% if stock_info.price_movement and stock_info.price_movement.movement != '' %}
+                        {{ stock_info.price_movement.movement }}
+                      {% else %}
+                        N/A
+                      {% endif %}
+                    </td>
+                    <td>{{ stock_info.price_movement.percentage|floatformat:4 }} %</td>
                     <td>
                         <div class="input-group input-group-sm mb-3">
                             <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
