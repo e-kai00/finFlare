@@ -21,11 +21,9 @@
             </div>
             <div>
               <h4 class="logo-font">Account Balance</h4>
-              $ <span class="balance-numbers" id="accountBalance">-30.00</span>
-            </p>
-            <label for="depositAmount">Deposit amount</label><br><br>
-            <input type="number" id="depositAmount"><br><br>
-            <button id="depositButton">Deposit Funds</button>
+              <p class="logo-font">
+                $ <span class="balance-numbers" id="account-balance">10,000.00</span>
+              </p>
             </div>
           </div>
       
@@ -36,7 +34,7 @@
             <div>
               <h4 class="logo-font">Stock Balance</h4>
               <p class="logo-font">
-                $ <span class="balance-numbers">130.00</span>
+                $ <span class="balance-numbers" id="stock-balance">0.00</span>
               </p>
             </div>
           </div>
@@ -50,25 +48,47 @@
           <div class="col-10 d-flex justify-content-between">
             <h4>Today</h4>
             <p class="logo-font">
-              $ <span class="balance-numbers">-30.00</span>
+              $ <span class="balance-numbers" id="cap-dev-today">0.00</span>
             </p>
           </div>
           <div class="col-10 d-flex justify-content-between">
             <h4>This month</h4>
             <p class="logo-font">
-              $ <span class="balance-numbers">230.00</span>
+              $ <span class="balance-numbers" id="cap-dev-this-month">0.00</span>
             </p>
           </div>
           <div class="col-10 d-flex justify-content-between">
             <h4>This year</h4>
             <p class="logo-font">
-              $ <span class="balance-numbers">1,230.00</span>
+              $ <span class="balance-numbers" id="cap-dev-this-year">0.00</span>
+            </p>
+          </div>
+          <div class="col-10 d-flex justify-content-between">
+            <h4>Since start</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers" id="cap-dev-since-start">0.00</span>
             </p>
           </div>
         </div>
         <div class="row justify-content-center">
           <div class="text-center">
             <h3 class="logo-font mb-3">My Stock List</h3>
+          </div>
+        </div>
+        <div class="row stock-row">
+          <!-- If user has stocks show stock list, else show message "Buy some stocks" -->
+          <div class="row">
+            {% if stocks %}
+              <!-- Display the list of stocks -->
+              {% for stock in stocks %}
+                <!-- Display each stock -->
+              {% endfor %}
+            {% else %}
+            <div class="col-12">
+              <!-- Display a message if the list is empty -->
+              <p id="stock-message">Zero stocks, all potential.<br> - Let's kickstart your portfolio adventure!</p>
+            </div>     
+            {% endif %}
           </div>
         </div>
       </div>
