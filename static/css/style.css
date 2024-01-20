@@ -160,15 +160,14 @@ form.signup p input {
 
 .footer-wrapper .center-content {
     text-align: center;
-    flex: 1;
 }
 
 .footer-wrapper .center-content a {
-    margin-inline: .8em;
+    margin-inline: .6em;
 }
 
 .footer-wrapper .center-content i {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 .footer-wrapper .right-content {

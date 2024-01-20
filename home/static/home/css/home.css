@@ -10,10 +10,12 @@
   }
 
   .bg-image {
-    background-image: url("home/static/home/css/bg-image.jpg");
-    height: 100%;
+    background-image: url("..images/bg-image.jpg");
+    height: 200px;
     width: 400%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+ 
