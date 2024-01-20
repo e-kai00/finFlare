@@ -113,6 +113,7 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+
 /* Register, login/ -out pages */
 .btn-signup {
     background-color: var(--primary-color);
@@ -125,18 +126,20 @@ nav .nav-link {
     transform: scale(0.95);
 }
 
-form.login p label,
+form.login p label:not([for="id_remember"]),
 form.signup p label {
-    margin-right: .5em;
+    display: none;
 }
 
-form.login p input,
+form.login p input:not(#id_remember),
 form.signup p input {
     border-radius: 6px;
     border: 1px solid var(--primary-color);
     padding-inline: .2em;
+    min-width: 90%;
 }
 /* End of register, login/ -out pages */
+
 
 /* Footer Styles */
 .footer-wrapper {
