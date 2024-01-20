@@ -20,7 +20,7 @@
                   <i class="fa-solid fa-piggy-bank"></i>
                 </div>
                 <div>
-                  <h3 class="logo-font">Account Balance</h2>
+                  <h4 class="logo-font">Account Balance</h2>
                     <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
                     <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ account.balance }}</p>
                 </div>
@@ -31,13 +31,26 @@
                     <i class="fa-solid fa-money-bill-trend-up"></i>
                   </div>
                   <div>
-                    <h3 class="logo-font">Stock Balance</h2>
+                    <h4 class="logo-font">Stock Balance</h2>
                       <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
                       <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ stock.balance }}</p>
                   </div>
                 </div>
               </div>
           </div>
+          <div class="row">
+            <div class="mx-auto text-center">
+                <h3 class="logo-font mb-3">Capital Development</h3>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="mx-auto text-center">
+                <h3 class="logo-font mb-3">My Stock List</h3>
+            </div>
+          </div>
+        </div>
     </article>
 {% endblock %}
 
