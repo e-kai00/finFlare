@@ -6,51 +6,70 @@
 
 {% block content %}
     <article>
-        <div class="container-wallet sky-blue-bg">
-            <div class="row">
-                <div class="mx-auto text-center wallet-header">
-                    <i class="fas fa-wallet"></i>
-                    <h2 class="logo-font mb-3">My Wallet</h2>
-                </div>
-                <hr>
-            </div>
-            <div class="row wallet-row">
-              <div class="mx-auto text-center balance">
-                <div>
-                  <i class="fa-solid fa-piggy-bank"></i>
-                </div>
-                <div>
-                  <h4 class="logo-font">Account Balance</h2>
-                    <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
-                    <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ account.balance }}</p>
-                </div>
-              </div>
-              <div class="row balance-row">
-                <div class="mx-auto text-center balance">
-                  <div>
-                    <i class="fa-solid fa-money-bill-trend-up"></i>
-                  </div>
-                  <div>
-                    <h4 class="logo-font">Stock Balance</h2>
-                      <!-- if account balance is equal to or more than zero the text will be .green, othwerise it will be .red -->
-                      <p class="logo-font {% if account.balance >= 0 %}green{% else %}red{% endif %}">${{ stock.balance }}</p>
-                  </div>
-                </div>
-              </div>
+      <div class="container-wallet sky-blue-bg">
+        <div class="row justify-content-center">
+          <div class="text-center wallet-header">
+            <i class="fas fa-wallet"></i>
+            <h2 class="logo-font mb-3">My Wallet</h2>
           </div>
-          <div class="row">
-            <div class="mx-auto text-center">
-                <h3 class="logo-font mb-3">Capital Development</h3>
+        </div>
+        <hr>
+        <div class="row justify-content-around wallet-row">
+          <div class="text-center balance">
+            <div>
+              <i class="fa-solid fa-piggy-bank"></i>
+            </div>
+            <div>
+              <h4 class="logo-font">Account Balance</h4>
+              <p class="logo-font">
+                $ <span class="balance-numbers">-30.00</span>
+              </p>
             </div>
           </div>
-
-
-          <div class="row">
-            <div class="mx-auto text-center">
-                <h3 class="logo-font mb-3">My Stock List</h3>
+      
+          <div class="text-center balance">
+            <div>
+              <i class="fa-solid fa-money-bill-trend-up"></i>
+            </div>
+            <div>
+              <h4 class="logo-font">Stock Balance</h4>
+              <p class="logo-font">
+                $ <span class="balance-numbers">130.00</span>
+              </p>
             </div>
           </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="text-center col-12">
+            <h3 class="logo-font mb-3">Capital Development</h3>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col-10 d-flex justify-content-between">
+            <h4>Today</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">-30.00</span>
+            </p>
+          </div>
+          <div class="col-10 d-flex justify-content-between">
+            <h4>This month</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">230.00</span>
+            </p>
+          </div>
+          <div class="col-10 d-flex justify-content-between">
+            <h4>This year</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">1,230.00</span>
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="text-center">
+            <h3 class="logo-font mb-3">My Stock List</h3>
+          </div>
+        </div>
+      </div>
     </article>
 {% endblock %}
 
