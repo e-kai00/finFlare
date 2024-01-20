@@ -2,6 +2,10 @@
     padding: 0!important;
 }
 
+.stock-row {
+    align-items: center;
+}
+
 #btn-buy {
     background-color: var(--accent-color-1);
     color: var(--background-color);
@@ -34,6 +38,11 @@
 
 .right-align {
     text-align: right;
+}
+
+#percentage i {
+    font-size: 14px!important;
+    margin-right: 5px!important;
 }
 
 /* Media queries */
