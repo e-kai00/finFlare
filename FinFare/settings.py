@@ -16,10 +16,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 API_KEY = os.environ.get("API_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [(os.environ.get('LOCALHOST')), (os.environ.get('HEROKU_HOSTNAME')), '8000-kimbergstroem-finflare-1iavh4fpv1b.ws-eu107.gitpod.io', '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io', '127.0.0.1']
+ALLOWED_HOSTS = [(os.environ.get('LOCALHOST')), (os.environ.get('HEROKU_HOSTNAME')), '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io', '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io', '127.0.0.1']
 
 
 # Application definition
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'cloudinary_storage',
     'django.contrib.sites',
 
