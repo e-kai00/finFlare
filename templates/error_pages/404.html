@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="404 Page Not Found - The requested page could not be found but here's a way back to home."
-    />
-    <link rel="stylesheet" href="assets/404style.css" />
-    <title>404 Page Not Found | FinFlare</title>
-  </head>
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+
+{% block content %}
   <body>
     <main role="main">
       <!-- Photo by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ -->
 
       <div class="background-image">
+        <picture>
+          <source type="image/webp" srcset="images/oops_pexels_alphatradezone.webp 1x, images/oops_pexels_alphatradezone@2x.webp 2x" sizes="100vw">
+          <source type="image/jpeg" srcset="images/oops_pexels_alphatradezone.jpg 1x, images/oops_pexels_alphatradezone@2x.jpg 2x" sizes="100vw">
+        </picture>
       <div class="container">
         <div class="animated-text-container">
       <!-- Photo by Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
@@ -130,6 +128,6 @@
       </div>
       </div>
     </main>
-    <script src="assets/404script.js"></script>
+    {% endblock %}
   </body>
 </html>

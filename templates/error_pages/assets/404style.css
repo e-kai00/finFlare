@@ -26,10 +26,10 @@
     --button-bg-color: var(--heading-color); /* Darker background color for button */
     --button-border-color: var(--heading-color); /* Darker border color for button */
   }
-  
+
   /* Photo by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ */
   
-  .background-image{
+  .background-image {
     width: 100%;
     height: 100%;
     display: flex;
@@ -40,8 +40,10 @@
     border-radius: 1rem;
     opacity: 0.9;
     background-image:
-          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 51, 102, 0.6)), 
-          url('https://i.imgur.com/hhcxfFl.jpg');
+      /* WebP image layer */
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 51, 102, 0.6)),
+      /* Fallback JPG image layer */
+      url('images/oops_pexels_alphatradezone.jpg');
   }
   
   /* Global Styles */
@@ -127,31 +129,38 @@
     text-transform: uppercase;
     text-align: center;
     line-height: 1;
-      text-shadow: 2px 2px 4px rgba(185, 185, 185, 0.3); /* Add a text shadow */
+    text-shadow: 2px 2px 4px rgba(185, 185, 185, 0.3);
     margin: 0.5rem auto;
   
-  /*  Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
+    /* Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
   
-  Text and animation for OOPS! inspired by Nils Binder https://codepen.io/enbee81/pen/WNdKLBY
-  and
-  Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO */
+      Text and animation for OOPS! inspired by Nils Binder https://codepen.io/enbee81/pen/WNdKLBY
+      and
+      Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO */
   
+    background-size: 30% auto;
+    background-position: 0%;
+    color: transparent;
+    -webkit-background-clip: text;
+            background-clip: text;
+    animation: money-moving infinite 220s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-timing-function: linear;
+  }
   
-    @supports (background-clip: text) or (-webkit-background-clip: text) {
-      background-image: 
-        url("https://i.imgur.com/byqOjza.jpg");
-      background-size: 30% auto;
-      background-position: 0%;
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: money-moving infinite 220s;
-      animation-fill-mode: forwards;
-      animation-play-state: running;
-      animation-timing-function: linear;
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .money {
+      background-image: url('images/money_pexels_ibrahim_boran.webp'), none;
     }
   }
   
+  @supports not (background-clip: text) {
+    .money {
+      background-image: url('images/money_pexels_ibrahim_boran.jpg'), none;
+    }
+  }
+
   @keyframes money-moving {
       0% {
           background-position: 0%;	
