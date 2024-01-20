@@ -113,6 +113,29 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+/* Register, login/ -out pages */
+.btn-signup {
+    background-color: var(--primary-color);
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: var(--secondary-color);    
+    transform: scale(0.95);
+}
+
+form.login p label {
+    margin-right: .5em;
+}
+
+form.login p input {
+    border-radius: 6px;
+    border: 1px solid var(--primary-color);
+    padding-inline: .2em;
+}
+/* End of register, login/ -out pages */
+
 /* Footer Styles */
 .footer-wrapper {
     display: flex;
