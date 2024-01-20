@@ -1,3 +1,4 @@
+<!-- BEGIN: ed8c6549bwf9 -->
 {% extends "base.html" %}
 {% load static %}
 
@@ -16,10 +17,12 @@
 {% endblock %}
 
 {% block content %}
-<section>
 <div class="container">
+<!-- END: ed8c6549bwf9 -->
+<!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
+
             <h1 class="display-2 text-bold text-center heading-color">Broker Buddy - Who Are We</h1>
             <p class=" lead text-center fs-2 text-secondary">Welcome to Broker Buddy, where we are dedicated to empowering individuals to
                 excel in the intricate realm of stock investing. We are driven by passion for financial growth and a
@@ -32,7 +35,7 @@
             to implement in practice. The endless hours spent scouring websites and financial filings, manually
             compiling data into spreadsheets, led to frustration. The internet was a labyrinth of information, offering
             more confusion than clarity. Driven by a lifelong passion for technology and programming, our founders knew
-            that the solution lay in their hands. Thus, Broker Buddy was born. </p>
+            that the solution lay in their hands. Thus, Finflare was born. </p>
     </div>
     <div>
         <h2 class="display-4 text-center text-bold heading-color">The Idea</h2>
@@ -40,7 +43,7 @@
             to implement in practice. The endless hours spent scouring websites and financial filings, manually
             compiling data into spreadsheets, led to frustration. The internet was a labyrinth of information, offering
             more confusion than clarity. Driven by a lifelong passion for technology and programming, our founders knew
-            that the solution lay in their hands. Thus, Broker Buddy was born. </p>
+            that the solution lay in their hands. Thus, Finflare was born. </p>
     </div>
     <div>
         <h2 class="display-4 text-center text-bold heading-color">The Vision</h2>
@@ -84,7 +87,6 @@
                         </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
             <div class="container">
@@ -116,13 +118,71 @@
                         </div>
                         </div>
                     </div>
-                   
                 </div>
-            </div>
             </div>
         </div>
     </div>
 </div>
-</section> 
-{% endblock %} {% block postloadjs %}
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-start">
+                    <h1>Example headline.</h1>
+                    <p>Some representative placeholder content for the first slide of the carousel.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+            </svg>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Another example headline.</h1>
+                    <p>Some representative placeholder content for the second slide of the carousel.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777" />
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <h1>One more for good measure.</h1>
+                    <p>Some representative placeholder content for the third slide of this carousel.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+</div>
+</section> </div>
+</div>
+</div>
+</div> {% endblock %} {% block postloadjs %}
 <script src="{% static 'about/js/about.js' %}"></script> {% endblock %}
