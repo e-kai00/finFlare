@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% load static %} 
+{% load humanize %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'markets/css/markets.css' %}" />
@@ -23,17 +24,22 @@
           {% include 'accounts/my_wallet.html' %}
         </div>
         <div class="col-md-8">
-          <div class="top-section">
-            <h1>Stock Data</h1>
-            <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
-            <a href="#" class="m-2 text-decoration-none text-dark">5 Days</a>
-            <a href="#" class="m-2 text-decoration-none text-dark">10 Days</a>
-            <a href="#" class="m-2 text-decoration-none text-dark">15 Days</a>
-            <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
+          <div class="row top-section">
+              <div class="col-md-4">
+                <h1>Market</h1>
+              </div>
+              <div class="col-md-8">
+                <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
+                <a href="#" class="m-2 text-decoration-none text-dark">5 Days</a>
+                <a href="#" class="m-2 text-decoration-none text-dark">10 Days</a>
+                <a href="#" class="m-2 text-decoration-none text-dark">15 Days</a>
+                <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
+              </div>
           </div>
+          <hr id="market-hr">
           
           <table class="table mb-5">
-            <thead>
+            {% comment %} <thead>
               <tr>
                 <th scope="col">Nr.</th>
                 <th scope="col">Name</th>
@@ -41,44 +47,52 @@
                 <th scope="col" class="d-none d-lg-table-cell">Percentage</th>
                 <th scope="col">Buy/Sell</th>
               </tr>
-            </thead>
+            </thead> {% endcomment %}
             <tbody>
-              {% for stock_info in stock_data %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{ stock_info.name }}</td>
-                <td>{{ stock_info.price }}</td>
-                <td class="d-none d-lg-table-cell" style="color: {% if stock_info.price_movement.movement == 'Up' %}#008068{% else %}#db143c{% endif %};">
-                  {{ stock_info.price_movement.percentage|floatformat:2 }} %
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example"
-                    name="stockSelector">
-                    <button type="button" id="btn-sell" class="btn me-2">Sell</button>
-                    <button type="button"  id="btn-buy" class="btn">Buy</button>
+              <div class="container market-container">
+                {% for stock_info in stock_data %}
+                  <div class="row border-bottom pb-3 mb-3">
+                    <div class="col-1">
+                      <div>{{forloop.counter}}.</div>
+                    </div>
+                    <div class="col-6 col-md-2 pr-0">
+                      <div>{{ stock_info.name }}</div>
+                    </div>
+                    <div class="col-5 col-md-3">
+                      <div class="right-align">$ {{ stock_info.price|floatformat:2|intcomma }}</div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                      <div id="percentage" style="color: {% if stock_info.price_movement.movement == 'Up' %}#008068{% else %}#db143c{% endif %};">
+                        {{ stock_info.price_movement.percentage|floatformat:2 }} %
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="d-flex align-items-center">
+                        <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">
+                        <button type="button" id="btn-sell" class="btn me-2">Sell</button>
+                        <button type="button"  id="btn-buy" class="btn">Buy</button>
+                      </div>
+                    </div>
                   </div>
-                </td>
-              </tr>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </tbody>
           </table>
 
-            <form action="" method="post">
-              {% csrf_token %}
-              <label for="stockSelector">Select Stocks:</label>
-              <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
-                      name="stockSelector">
-                  {% for data in stock_data %}
-                      <option value="{{ data.symbol }}">{{ data.symbol }}</option>
-                  {% endfor %}
-              </select>
-              <br>
-              <div class="d-grid gap-2 mt-2">
-                  <input class="btn btn-signup" type="submit" value="Submit">
-              </div>
-            </form>
-          
+          <form action="" method="post">
+            {% csrf_token %}
+            <label for="stockSelector">Select Stocks:</label>
+            <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
+                    name="stockSelector">
+                {% for data in stock_data %}
+                    <option value="{{ data.symbol }}">{{ data.symbol }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <div class="d-grid gap-2 mt-2">
+                <input class="btn btn-signup" type="submit" value="Submit">
+            </div>
+          </form>
         </div>
       </div>
   </div>
