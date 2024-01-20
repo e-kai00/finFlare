@@ -57,6 +57,14 @@ nav .nav-link {
     font-size: 14px;
 }
 
+.navbar-text .dropdown-toggle::after {
+    content: none;  /* This removes the arrow */
+}
+
+.navbar-text .dropdown-toggle .fa-user-circle {
+    margin-right: 0;  /* Adjust as needed */
+}
+
 .main-container {
     padding-right: 0.75rem;
     padding-left: 0.75rem;
