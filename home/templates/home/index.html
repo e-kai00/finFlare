@@ -16,7 +16,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
+<!-- Background Image content section here-->
+<body>
+    <div class="overlay">
+    <div class="bg-image">
     <div class="container main-content-container h-100">
         <article>
             <div class="container">
@@ -25,12 +28,6 @@
                         <hr>
                         <h2 class="logo-font mb-4">Landing Page</h2>
                     </div>
-
-                <!-- Background Image content section here-->
-
-                    <section>
-                        <div class="bg-image"></div>
-                    </section>
 
                 <!-- Login form content section here-->
 
@@ -48,11 +45,12 @@
                       <button type="submit">Login</button>
                     </form>
                   </div>
-
+                </div>
                 </div>
             </div>
         </article>
     </div>
+</body>
 {% endblock %}
 
 {% block postloadjs %}

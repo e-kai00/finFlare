@@ -35,6 +35,10 @@ h6 {
     font-weight: 500;
 }
 
+p {
+    color: var(--primary-color);
+}
+
 i {
     font-size: 30px !important;
     margin-right: 20px;
