@@ -36,11 +36,10 @@
           </div>
           <hr id="market-hr">
           
-          <table class="table mb-5">
-            <tbody>
+          <div class="table mb-4">
               <div class="container market-container">
                 {% for stock_info in stock_data %}
-                  <div class="row border-bottom pb-3 mb-3">
+                  <div class="row border-bottom pb-3 mb-3 stock-row">
                     <div class="col-1">
                       <div>{{forloop.counter}}.</div>
                     </div>
@@ -51,7 +50,12 @@
                       <div class="right-align">$ {{ stock_info.price|floatformat:2|intcomma }}</div>
                     </div>
                     <div class="col-12 col-md-2">
-                      <div id="percentage" style="color: {% if stock_info.price_movement.movement == 'Up' %}#008068{% else %}#db143c{% endif %};">
+                      <div id="percentage">
+                        {% if stock_info.price_movement.percentage >= 0 %}
+                          <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
+                        {% else %}
+                          <i class="fa-solid fa-arrow-trend-down" style="color: #db143c;"></i>
+                        {% endif %}
                         {{ stock_info.price_movement.percentage|floatformat:2 }} %
                       </div>
                     </div>
@@ -65,8 +69,7 @@
                   </div>
                 {% endfor %}
               </div>
-            </tbody>
-          </table>
+          </div>
 
           <form action="" method="post">
             {% csrf_token %}
