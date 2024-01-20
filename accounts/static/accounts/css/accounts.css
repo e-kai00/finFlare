@@ -63,4 +63,5 @@ hr {
 
 .balance-numbers {
     color: var(--accent-color-1);
+    font-weight: bolder;
 }
