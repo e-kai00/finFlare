@@ -1,0 +1,55 @@
+.market-container {
+    padding: 0!important;
+}
+
+.stock-row {
+    align-items: center;
+}
+
+#btn-buy {
+    background-color: var(--accent-color-1);
+    color: var(--background-color);
+    transition: transform 0.3s ease;
+}
+
+#btn-sell {
+    background-color: var(--accent-color-2);
+    color: var(--background-color);
+    transition: transform 0.3s ease;
+}
+
+.top-section {
+    display: flex;
+    align-items: baseline;
+}
+
+#market-hr {
+    width: 100%!important;
+}
+
+.company-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+#percentage {
+    text-align: right;
+}
+
+.right-align {
+    text-align: right;
+}
+
+#percentage i {
+    font-size: 14px!important;
+    margin-right: 5px!important;
+}
+
+/* Media queries */
+
+@media (min-width: 768px) {
+    .company-info {
+        justify-content: unset;
+    }
+
+}
