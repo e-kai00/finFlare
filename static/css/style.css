@@ -116,6 +116,30 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+/* Toast messages */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: hidden;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.notification-wrapper {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* End Toast messages */
+
 
 /* Register, login/ -out pages */
 .btn-signup {
