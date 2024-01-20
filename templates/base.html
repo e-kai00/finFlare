@@ -74,6 +74,10 @@
                         <a class="nav-link {% if request.path == about_url %}active" aria-current="page{% endif %}"
                             href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> <strong>About</strong></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == contact_url %}active" aria-current="page{% endif %}"
+                            href="{% url 'contact' %}"><i class="fa-solid fa-envelope"></i> <strong>Contact</strong></a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == markets_url %}active" aria-current="page{% endif %}"
