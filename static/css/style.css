@@ -125,11 +125,13 @@ nav .nav-link {
     transform: scale(0.95);
 }
 
-form.login p label {
+form.login p label,
+form.signup p label {
     margin-right: .5em;
 }
 
-form.login p input {
+form.login p input,
+form.signup p input {
     border-radius: 6px;
     border: 1px solid var(--primary-color);
     padding-inline: .2em;
