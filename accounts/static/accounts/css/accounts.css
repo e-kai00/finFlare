@@ -60,3 +60,7 @@ hr {
 .balance-row {
     --bs-gutter-x: 0;
 }
+
+.balance-numbers {
+    color: var(--accent-color-1);
+}

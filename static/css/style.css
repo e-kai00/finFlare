@@ -36,7 +36,8 @@ h6 {
 }
 
 i {
-    font-size: 35px;
+    font-size: 30px !important;
+    margin-right: 20px;
 }
 /* Global Styles Ends */
 
@@ -55,6 +56,8 @@ nav .nav-link {
     color:  var(--background-color) !important;
     margin: 18px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-text .dropdown-toggle::after {
