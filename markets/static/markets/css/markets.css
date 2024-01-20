@@ -1,0 +1,11 @@
+#btn-buy {
+    background-color: var(--accent-color-1);
+    color: var(--background-color);
+    transition: transform 0.3s ease;
+}
+
+#btn-sell {
+    background-color: var(--accent-color-2);
+    color: var(--background-color);
+    transition: transform 0.3s ease;
+}
