@@ -1,36 +1,87 @@
-{% extends "base.html" %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="{% static 'markets/css/markets.css' %}" />
-{% endblock %} {% block extra_title %} - Market {% endblock %} {% block
-page_header %}
-<div class="container header-container">
-  <div class="row">
-    <div class="col"></div>
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'markets/css/markets.css' %}" />
+{% endblock %} 
+
+{% block extra_title %} - Market {% endblock %} 
+
+{% block page_header %}
+  <div class="container header-container">
+    <div class="row">
+      <div class="col"></div>
+    </div>
   </div>
-</div>
-{% endblock %} {% block content %}
-<div class="overlay"></div>
-<div class="container main-content-container h-100">
-  <article>
-    <div class="container">
+{% endblock %}
+
+{% block content %}
+  <div class="container main-content-container h-100">
       <div class="row">
-        <div class="col-12 col-md-6 mx-auto text-center">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">
-                <!-- My Wallet content goes here -->
-                <h1>My Wallet</h1>
-              </div>
-              <div class="col-md-8">
-                <h1>Market</h1>
-                <!-- Market content goes here -->
-              </div>
-            </div>
+        <div class="col-md-4">
+          <!-- My Wallet content goes here -->
+          {% include 'accounts/my_wallet.html' %}
+        </div>
+        <div class="col-md-8">
+          <div class="top-section">
+            <h1>Stock Data</h1>
+            <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
+            <a href="#" class="m-2 text-decoration-none text-dark">5 Days</a>
+            <a href="#" class="m-2 text-decoration-none text-dark">10 Days</a>
+            <a href="#" class="m-2 text-decoration-none text-dark">15 Days</a>
+            <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
           </div>
+          
+            <table class="table mb-5">
+              <thead>
+                <tr>
+                  <th scope="col">Nr.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Movement</th>
+                  <th scope="col">Buy/Sell</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for stock_info in stock_data %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ stock_info.name }}</td>
+                    <td>{{ stock_info.price }}</td>
+                    <td>{{ stock_info.price_movement.movement }}</td>
+                    <td>
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                            <div class="input-group-append">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <button type="button" class="btn btn-success">Buy</button>
+                            <button type="button" class="btn btn-danger">Sell</button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+              </tbody>
+            </table>
+            <form action="" method="post">
+              {% csrf_token %}
+              <label for="stockSelector">Select Stocks:</label>
+              <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
+                      name="stockSelector">
+                  {% for data in stock_data %}
+                      <option value="{{ data.symbol }}">{{ data.symbol }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+              <div class="d-grid gap-2 mt-2">
+                  <input class="btn btn-primary" type="submit" value="Submit">
+              </div>
+            </form>
         </div>
       </div>
-    </div>
-  </article>
-</div>
-{% endblock %} {% block postloadjs %}
-<script src="{% static 'markets/js/markets.js' %}"></script>
+  </div>
+{% endblock %} 
+
+{% block postloadjs %}
+  <script src="{% static 'markets/js/markets.js' %}"></script>
 {% endblock %}

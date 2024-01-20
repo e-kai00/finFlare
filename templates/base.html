@@ -22,7 +22,11 @@
 
     {% block corecss %}
         <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
         <!-- Font Awesome CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -48,14 +52,14 @@
             crossorigin="anonymous"></script>
     {% endblock %}
 
-    <title>FinFlare {% block extra_title %} {% endblock %}</title>
+    <title>Broker Buddy {% block extra_title %} {% endblock %}</title>
 
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand text-white m-4">FinFlare Market</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand text-white m-4">Broker Buddy </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,31 +71,47 @@
                             href="{% url 'home' %}"><i class="fa-solid fa-house"></i> <strong>Home</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
+                        <a class="nav-link {% if request.path == about_url %}active" aria-current="page{% endif %}"
                             href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> <strong>About</strong></a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
+                        <a class="nav-link {% if request.path == markets_url %}active" aria-current="page{% endif %}"
                             href="{% url 'markets' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Market</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                             href="{% url 'home' %}"><i class="fa-solid fa-wallet"></i> <strong>My Wallet</strong></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_logout' %}">Logout</a>
-                    </li>
+                        <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
+                            <!-- Default dropleft button -->
+                            <div class="dropdown mx-5">
+                                <a class="dropdown-toggle" href="#" role="button" id="navbarDropdownMenuAvatar"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user-circle rounded-circle text-white" aria-hidden="true"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                    <li><a class="dropdown-item text-center" href="#">My Profile</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-center" href="{% url 'account_logout' %}">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
-                            href="{% url 'account_login' %}">Login</a>
-                    </li>
+                        <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
+                            <!-- Default dropleft button -->
+                            <div class="dropdown mx-5">
+                                <a class="dropdown-toggle" href="#" role="button" id="navbarDropdownMenuAvatar"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user-circle fa-3x rounded-circle text-white" aria-hidden="true"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                    <li><a class="dropdown-item text-center" href="{% url 'account_signup' %}">Register</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-center" href="{% url 'account_login' %}">Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     {% endif %}
                 </ul>
             </div>
@@ -139,9 +159,11 @@
                 </ul>
             </div>
         </div>
+        <div class="copyright-wrapper">
             {% block copyright %}
-                FinFlare 2024
+                Broker Buddy 2024
             {% endblock copyright %}
+        </div>
         </div>
     </footer>
 
