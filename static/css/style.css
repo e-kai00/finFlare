@@ -119,6 +119,7 @@ nav .nav-link {
     justify-content: space-between;
     align-items: center;
     margin-inline: 5em;
+    font-size: .95rem;    
 }
 
 .footer-wrapper .left-content {
@@ -155,6 +156,10 @@ nav .nav-link {
 
 .footer-wrapper ul li a {
     text-decoration: none;
+}
+
+.copyright-wrapper {
+    font-size: .9rem;
 }
 
 /* Media Queries */
