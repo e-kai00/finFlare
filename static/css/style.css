@@ -20,6 +20,11 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    min-height: 100vh;
+}
+
 h1,
 h2,
 h3,
@@ -27,24 +32,40 @@ h4,
 h5,
 h6 {
     font-family: var(--secondary-font);
+    font-weight: 500;
+}
+
+i {
+    font-size: 30px !important;
+    margin-right: 20px;
 }
 /* Global Styles Ends */
 
 body {
     background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     font-family: var(--primary-font);
 }
 
 nav, 
 footer {
     background-color: var(--primary-color);
-    height: 125px;
+    height: 130px;
 }
 nav .nav-link {
-    color: white !important;
+    color:  var(--background-color) !important;
     margin: 18px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-text .dropdown-toggle::after {
+    content: none;  /* This removes the arrow */
+}
+
+.navbar-text .dropdown-toggle .fa-user-circle {
+    margin-right: 0;  /* Adjust as needed */
 }
 
 .main-container {
@@ -58,7 +79,7 @@ nav .nav-link {
     font-family: Lato, sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: var(--background-color);
 }
 
 .thin {
@@ -66,15 +87,22 @@ nav .nav-link {
 }
 
 .light-bg {
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+.sky-blue-bg {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: var(--primary-color);
+    color: var(--background-color);
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: var(--background-color);
 }
 
 .scale {
@@ -88,3 +116,111 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+
+/* Register, login/ -out pages */
+.btn-signup {
+    background-color: var(--primary-color);
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: var(--secondary-color);    
+    transform: scale(0.95);
+}
+
+form.login p label:not([for="id_remember"]),
+form.signup p label {
+    display: none;
+}
+
+form.login p input:not(#id_remember),
+form.signup p input {
+    border-radius: 6px;
+    border: 1px solid var(--primary-color);
+    padding-inline: .2em;
+    min-width: 90%;
+}
+/* End of register, login/ -out pages */
+
+
+/* Footer Styles */
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 5em;
+    font-size: .95rem;    
+}
+
+.footer-wrapper .left-content {
+    text-align: left;    
+    flex: 1;
+}
+
+.footer-wrapper .center-content {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-wrapper .center-content a {
+    margin-inline: .8em;
+}
+
+.footer-wrapper .center-content i {
+    font-size: 1.5rem;
+}
+
+.footer-wrapper .right-content {
+    text-align: right;   
+    flex: 1; 
+}
+
+.footer-wrapper ul {
+    list-style: none; 
+    padding: 0; 
+}
+
+.footer-wrapper ul li {
+    padding-bottom: .2em;
+}
+
+.footer-wrapper ul li a {
+    text-decoration: none;
+}
+
+.copyright-wrapper {
+    font-size: .9rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .footer-wrapper .center-content i {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        height: 16em;
+    }
+
+    .footer-wrapper {
+        flex-direction: column;
+        padding-block: .5em;
+    }
+
+    .copyright-wrapper {
+        display: none;
+    }
+
+    .footer-wrapper .left-content,
+    .footer-wrapper .center-content,
+    .footer-wrapper .right-content {
+        text-align: center;
+    }
+
+    .footer-wrapper .center-content {
+        padding-block: .5em;
+    }
+}

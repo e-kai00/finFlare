@@ -1,34 +1,78 @@
-{% extends "base.html" %}
 {% load static %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 {% endblock %}
 
-{% block extra_title %} - My wallets {% endblock %}
-
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container main-content-container h-100">
-        <article>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6 mx-auto text-center">
-                        <hr>
-                        <h2 class="logo-font mb-4">My Wallets</h2>
-                    </div>
-                </div>
+    <article>
+      <div class="container-wallet sky-blue-bg">
+        <div class="row justify-content-center">
+          <div class="text-center wallet-header">
+            <i class="fas fa-wallet"></i>
+            <h2 class="logo-font mb-3">My Wallet</h2>
+          </div>
+        </div>
+        <hr>
+        <div class="row justify-content-around wallet-row">
+          <div class="text-center balance">
+            <div>
+              <i class="fa-solid fa-piggy-bank"></i>
             </div>
-        </article>
-    </div>
+            <div>
+              <h4 class="logo-font">Account Balance</h4>
+              $ <span class="balance-numbers" id="accountBalance">-30.00</span>
+            </p>
+            <label for="depositAmount">Deposit amount</label><br><br>
+            <input type="number" id="depositAmount"><br><br>
+            <button id="depositButton">Deposit Funds</button>
+            </div>
+          </div>
+      
+          <div class="text-center balance">
+            <div>
+              <i class="fa-solid fa-money-bill-trend-up"></i>
+            </div>
+            <div>
+              <h4 class="logo-font">Stock Balance</h4>
+              <p class="logo-font">
+                $ <span class="balance-numbers">130.00</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="text-center col-12">
+            <h3 class="logo-font mb-3">Capital Development</h3>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col-10 d-flex justify-content-between">
+            <h4>Today</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">-30.00</span>
+            </p>
+          </div>
+          <div class="col-10 d-flex justify-content-between">
+            <h4>This month</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">230.00</span>
+            </p>
+          </div>
+          <div class="col-10 d-flex justify-content-between">
+            <h4>This year</h4>
+            <p class="logo-font">
+              $ <span class="balance-numbers">1,230.00</span>
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="text-center">
+            <h3 class="logo-font mb-3">My Stock List</h3>
+          </div>
+        </div>
+      </div>
+    </article>
 {% endblock %}
 
 {% block postloadjs %}
