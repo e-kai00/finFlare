@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import requests
 from django.contrib import messages
 from .models import UserAccountPortfolio, StockBalance, Transaction
-from django.contrib.auth.models import User
 from decimal import Decimal
+
 
 ####################################################
 #### API serpapi view functions - Fetching Data ####
@@ -78,8 +78,6 @@ def stock_data(request):
 
 # View for stock,user
 
-
-
 def trade_stock(request):
    
     if request.method == 'POST':
@@ -109,57 +107,3 @@ def trade_stock(request):
 
 
 
-def trade_stock(request):
-   
-    if request.method == 'POST':
-
-        user_profile = UserAccountPortfolio.objects.get(user=request.user)
-        name = request.POST.get('name')
-        quantity = int(request.POST.get('stockSelector'))
-        price = Decimal(request.POST.get('price'))
-        transaction_type = request.POST.get('transaction_type')
-
-        transaction = Transaction.objects.create(
-            user_profile=user_profile,
-            name=name,
-            quantity=quantity,
-            price=price,
-            transaction_type=transaction_type
-        )
-        messages.success(request, 'Saved!')
-
-    transactions = Transaction.objects.all()
-
-    template = 'markets/markets.html'
-    context = {
-        'transactions': transactions,
-    }
-    return render(request, template, context)
-
-
-
-def trade_stock(request):
-   
-    if request.method == 'POST':
-        user_profile = UserAccountPortfolio.objects.get(user=request.user)
-        name = request.POST.get('name')
-        quantity = int(request.POST.get('stockSelector'))
-        price = Decimal(request.POST.get('price'))
-        transaction_type = request.POST.get('transaction_type')
-
-        transaction = Transaction.objects.create(
-            user_profile=user_profile,
-            name=name,
-            quantity=quantity,
-            price=price,
-            transaction_type=transaction_type
-        )
-        messages.success(request, 'Saved!')
-
-    transactions = Transaction.objects.all()
-
-    template = 'markets/markets.html'
-    context = {
-        'transactions': transactions,
-    }
-    return render(request, template, context)

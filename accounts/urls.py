@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import accounts_view
+from . import views
 
 urlpatterns = [
-    path('accounts/', views.user_profile, name='user_profile'),
+    path('accounts/', views.user_profile, name='user_profile'),    
 ]
