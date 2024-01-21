@@ -111,6 +111,28 @@
   - To ensure that users experience high-performance interactivity while investing and trading.
 
 
+#### First Time Visitor Goal
+
+  - I want to find out about the Broker Buddy if I can access the stock market.
+  - I want to easily navigate the site and access different parts of the platform.
+  - I would like to know about the trading capital of investment.
+
+
+#### Returning Visitor Goal
+
+  - I want to know what improvements have been made in the stock market.
+  - I want to invest in different stocks.
+
+#### Frequent Visitor Goal
+
+  - I want to recommend the Broker Buddy to friends.
+
+
+## Design
+
+### Color Scheme
+
+
 ## Deployment
 
 
