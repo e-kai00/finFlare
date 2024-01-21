@@ -133,6 +133,61 @@
 ### Color Scheme
 
 
+
+
+***
+
+
+## Features
+
+### Composition of the Website
+
+  The website is organized into three distinct web pages such as the Landing page, the About Page, Contact page and the Login page. The website has a landing page where users can log in and access the market stocks. It also has an About page that provides users with insight into Brokers Buddy and its team. There is a Contact page that users can use to get in touch with the company representative for further services. Additionally, there is a Login page for user access.
+
+
+***
+
+
+
+## Technologies Used
+
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | was used to build the structure of the website.
+
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/css) | was used to add style the website.
+
+- [JavaScript](https://pythontutor.com/javascript.html#mode=edit) | was used to add dynamism and interactivity to the website.
+
+- [BootStrap](https://getbootstrap.com/) | was used to add positioning and responsiveness to the website.
+
+- [VS Code](https://code.visualstudio.com/) | was used as the IDE to write, edit, merge, and push codes.
+
+- [Git](https://git-scm.com/) | was used for the version control of the website.
+
+- [GitHub](https://github.com/) | was used to host the code of the website and for deployment.
+
+
+## Tools
+
+  - [Pixabay](https://pixabay.com/) | was used to get favicon for website.
+
+  - [Canva](https://www.canva.com/) | was used to edit images for website.
+
+  - [Font Awesome](https://fontawesome.com/) | was used to select icons for website.
+
+  - [I Am Responsive](https://ui.dev/amiresponsive) | was used to check website responsiveness on all devices.
+
+  - [Tiny](https://tinypng.com/) | was used to optimise images for website.
+
+  - [Color Name](https://www.color-name.com/) | was used to detect color names.
+
+  - [MS Word](https://en.wikipedia.org/wiki/Microsoft_Word) | used to correct the grammar.
+
+***
+
+
+## Testing
+
+
 ## Deployment
 
 
