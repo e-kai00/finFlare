@@ -6,13 +6,13 @@
     align-items: center;
 }
 
-#btn-buy {
+#btn-btn-buy {
     background-color: var(--accent-color-1);
     color: var(--background-color);
     transition: transform 0.3s ease;
 }
 
-#btn-sell {
+#btn-btn-sell {
     background-color: var(--accent-color-2);
     color: var(--background-color);
     transition: transform 0.3s ease;
@@ -47,6 +47,10 @@
 
 p {
     font-size: 12px!important;
+}
+
+#tradeForm {
+    display: flex;
 }
 
 /* Media queries */

@@ -148,11 +148,9 @@
     {% endif %}
 
     <main class="flex-shrink-0 main-bg- mt-5 mb-2">
-        <div class="container">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
-        </div>
     </main>
 
     <!-- Footer -->
@@ -169,7 +167,11 @@
                         <a class="text-white"  href="{% url 'about' %}">About</a>
                     </li>
                     <li class="">
+<<<<<<< HEAD
                         <a class="text-white" href="#">Contact us</a>
+=======
+                        <a class="text-white" href="{% url 'contact' %}">Contact us</a>
+>>>>>>> db1326c5fbc5e4ebb6021364edffea1134aac78d
                     </li>                  
                 </ul>
             </div>
@@ -183,8 +185,8 @@
             <!-- terms of services section -->
             <div class="right-content">
                 <ul>
-                    <li><a href="#" class="text-white">Terms of Service</a></li>        
-                    <li><a href="#" class="text-white">Privacy Policy</a></li>                     
+                    <li><a href="{% url 'terms_of_service' %}" class="text-white">Terms of Service</a></li>        
+                    <li><a href="{% url 'privacy' %}" class="text-white">Privacy Policy</a></li>                     
                 </ul>
 <<<<<<< HEAD
             </div>
