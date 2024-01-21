@@ -1,375 +1,518 @@
 /* Defining Global CSS Variables*/
 :root {
-    --primary-color: #003366; /* Navy Blue */
-    --secondary-color: #8cbfd3; /* Sky Blue */
-    --accent-color-1: #008068; /* Teal */
-    --accent-color-2: #db143c; /* Crimson */
-    --background-color: #f8f8f8; /* Off-White */
-    --text-color: #333333; /* Dark Grey */
-    --heading-color: #000000; /* Black */
-    --primary-font: "Roboto", sans-serif;
-    --secondary-font: "Montserrat", sans-serif;
-  }
-  
-  [data-theme="light"] {
-    --color-bg: var(--background-color);
-    --color-fg: var(--text-color);
-    --button-text-color: var(--background-color); /* Light color for text on dark background */
-    --button-bg-color: var(--accent-color-1); /* Darker background color for button */
-    --button-border-color: var(--text-color); /* Darker border color for button */
-  }
-  
-  [data-theme="dark"] {
-    --color-bg: var(--heading-color);
-    --color-fg: var(--background-color);
-    --button-text-color: var(--background-color); /* Light color for text on dark background */
-    --button-bg-color: var(--heading-color); /* Darker background color for button */
-    --button-border-color: var(--heading-color); /* Darker border color for button */
-  }
+  --primary-color: #003366; /* Navy Blue */
+  --secondary-color: #8cbfd3; /* Sky Blue */
+  --accent-color-1: #008068; /* Teal */
+  --accent-color-2: #db143c; /* Crimson */
+  --background-color: #f8f8f8; /* Off-White */
+  --text-color: #333333; /* Dark Grey */
+  --heading-color: #000000; /* Black */
+  --primary-font: "Roboto", sans-serif;
+  --secondary-font: "Montserrat", sans-serif;
+}
 
-  /* Photo by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ */
-  
-  .background-image {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-position: center;
-    background-size: cover;
-    border-radius: 1rem;
-    opacity: 0.9;
-    background-image:
-      /* WebP image layer */
-      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 51, 102, 0.6)),
-      /* Fallback JPG image layer */
-      url('images/oops_pexels_alphatradezone.jpg');
-  }
-  
-  /* Global Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  
-  body {
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-bg);
-    color: var(--color-fg);
-  }
-  
-  
-  .container {
-    text-align: center;
-    max-width: 80%;
-  }
-  
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1em;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--secondary-font);
-  }
-  
-  main h1 {
-    margin-bottom: 0;
-  }
-  
-  .description {
-    margin: 2rem auto;
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-    color: var(--background-color);
-  }
-  
-  main p {
-    font-size: 1.5rem;
-    margin: 1rem;
-    color: var(--background-color);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.75);
-  }
-  
-  
-  main a {
-    margin-bottom: 2rem;
-  }
-  
-  
-  main a:last-child {
-    margin-bottom: 1.5rem; 
-  }
-  
-  .main-container {
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .money {
-    font-size: 20vh;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1;
-    text-shadow: 2px 2px 4px rgba(185, 185, 185, 0.3);
-    margin: 0.5rem auto;
-  
-    /* Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
-  
-      Text and animation for OOPS! inspired by Nils Binder https://codepen.io/enbee81/pen/WNdKLBY
-      and
-      Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO */
-  
+[data-theme="light"] {
+  --color-bg: var(--background-color);
+  --color-fg: var(--text-color);
+  --button-text-color: var(--background-color); /* Light color for text on dark background */
+  --button-bg-color: var(--accent-color-1); /* Darker background color for button */
+  --button-border-color: var(--text-color); /* Darker border color for button */
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--heading-color);
+  --color-fg: var(--background-color);
+  --button-text-color: var(--background-color); /* Light color for text on dark background */
+  --button-bg-color: var(--heading-color); /* Darker background color for button */
+  --button-border-color: var(--heading-color); /* Darker border color for button */
+}
+
+/* Background-image photo by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ */
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1rem;
+  opacity: 0.9;
+  background-image:
+        url('images/oops_pexels_alphatradezone.webp'),
+        url('images/oops_pexels_alphatradezone.jpg');
+  background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 51, 102, 0.6)),
+        url('images/oops_pexels_alphatradezone.webp');
+  background-image:
+        -webkit-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 51, 102, 0.6)),
+        url('images/oops_pexels_alphatradezone.webp');
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.main-container {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  text-align: center;
+  max-width: 80%;
+}
+
+.animated-text-container {
+  max-width: 100%;
+  text-align: center;
+}
+
+
+
+main h1 {
+  margin-bottom: 0;
+}
+
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--secondary-font);
+}
+
+h1.oops {
+  font-size: 23vw;
+  font-family: var(--secondary-font);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  text-shadow: 0.075rem 0.075rem 0.25rem rgba(168, 168, 168, 0.7);
+  margin: 7% auto;
+  max-width: 100%;
+
+
+/*  Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
+
+Text and animation for "OOPS!" inspired by Nils Binder https://codepen.io/enbee81/pen/WNdKLBY
+and
+Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO 
+a few changes were made regarding the font-family, background-image background size, transparency, width, margin font-size, animation name keyframes name */ 
+
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image: 
+      url("images/money_pexels_ibrahim_boran.webp"), url("images/money_pexels_ibrahim_boran.webp");;
     background-size: 30% auto;
     background-position: 0%;
     color: transparent;
     -webkit-background-clip: text;
-            background-clip: text;
-    animation: money-moving infinite 220s;
+    background-clip: text;
+    animation: oops-moving infinite 220s;
     animation-fill-mode: forwards;
     animation-play-state: running;
     animation-timing-function: linear;
   }
-  
-  @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .money {
-      background-image: url('images/money_pexels_ibrahim_boran.webp'), none;
+}
+
+@keyframes oops-moving {
+	0% {
+		background-position: 0%;	
+	}
+	50% {
+		background-position: 100%;	
+	}
+	100% {
+		background-position: 0%;
+	}
+}
+
+/* SVG text code for "404" money styled theme came from Code School https://codepen.io/team/codeschool/pen/BKrRwg/ 
+changes were made include the background being made transparent, a container being added, the font-size font-weight and fill color being adjusted to be more harmonious with the rest of the app */
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
+.svg-container {
+  text-align: center;
     }
+
+.svg-container svg {
+  width: 100%;
+  min-height: 6rem;
+  height: auto;
+}
+
+svg {
+  background: transparent;
+}
+
+text {
+  fill: var(--heading-color);
+  filter: url('#money');
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.description {
+  margin: 1rem auto;
+  font-size: 2rem;
+  text-shadow: 0.075rem 0.075rem 0.175rem rgba(0, 0, 0, 0.9);
+  color: var(--background-color);
+}
+
+main p {
+  font-size: 1rem;
+  margin: 1.125rem;
+  color: var(--background-color);
+  text-shadow: 0.075rem 0.075rem 0.0175rem rgba(0, 0, 0, 0.9);
+}
+
+
+main a {
+  margin-bottom: 2rem;
+}
+
+
+main a:last-child {
+  margin-bottom: 1.5rem; 
+}
+
+/* Styles for the CTA "Go To Homepage" button adjusted to blend more harmoniously with the rest of the app */
+
+.homelink {
+	font-size: 1rem;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--button-text-color);
+	border: var(--button-border-color) 1rem;
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+	background: var(--button-bg-color);
+
+	box-shadow: inset 0 0 0.1rem 0 var(--accent-color-1), 0 0 0.5em 0 var(--accent-color-1);
+
+	position: relative;
+}
+
+.homelink::before {
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	background: var(--accent-color-1);
+	top: 120%;
+	left: 0;
+}
+
+.homelink::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 2rem 0.3rem var(--accent-color-1), 0 0 0.5rem 0.1rem var(--background-color);
+	opacity: 0;
+}
+
+.homelink:hover,
+.homelink:focus {
+	color: var(--button-text-color);
+  border: var(--heading-color) .125rem solid;
+	text-shadow: 0 0 0.025rem rgba(255, 255, 255, 0.55), 0 0 0.2rem currentColor;
+}
+
+.homelink:hover::before,
+.homelink:focus::before {
+	opacity: 1;
+}
+
+.button:hover::after,
+.button:focus::after {
+	opacity: 1;
+}
+
+/*Media queries written by me and then were refactored with the help of Blackbox AI, then further adjusted after the refactoring */
+
+/* Common styles for landscape mode */
+@media (orientation: landscape) {
+  h1.oops {
+    font-size: 16vw;
+    margin-left: 0;
   }
-  
-  @supports not (background-clip: text) {
-    .money {
-      background-image: url('images/money_pexels_ibrahim_boran.jpg'), none;
+
+  text {
+    font-size: 4rem;
+    font-weight: 900;
+  }
+
+  .svg-container svg {
+    min-height: 5rem;
+    height: 5rem;
+    margin: 0;
+  }
+
+  .description {
+    margin: 0.5rem auto;
+    font-size: 2rem;
+  }
+
+  main p {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+}
+
+@media (orientation: landscape) {
+  h1.oops {
+    font-size: 16vw;
+    margin-left: 0;
+  }
+
+  text {
+    font-size: 4rem;
+    font-weight: 900;
+  }
+
+  .svg-container svg {
+    min-height: 5rem;
+    height: 5rem;
+    margin: 0;
+  }
+
+  .description {
+    margin: 0.5rem auto;
+    font-size: 2rem;
+  }
+
+  main p {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+
+  @media (max-width: 280px) {
+    h1.oops {
+      font-size: 20vw;
     }
   }
 
-  @keyframes money-moving {
-      0% {
-          background-position: 0%;	
-      }
-      50% {
-          background-position: 100%;	
-      }
-      100% {
-          background-position: 0%;
-      }
-  }
-  
-  /* SVG text for "404" money styled theme came from Code School https://codepen.io/team/codeschool/pen/BKrRwg/ */
-  
-  @import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
-  .svg-container {
-    text-align: center;
-      }
-  
-  .svg-container svg {
-    width: 100%;
-    min-height: 6rem;
-    height: auto;
-  }
-  
-  svg {
-    background: transparent;
-  }
-  
-  text {
-    fill: #000000;
-    filter: url('#money');
-    font-family: 'Playfair Display', 'Georgia', serif;
-    font-size: 3rem;
-    font-weight: 900;
-  }
-  
-  
-  .homelink {
-      font-size: 1.5em;
-      display: inline-block;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--button-text-color);
-      border: var(--button-border-color) 6px;
-      padding: 0.25em 1em;
-      border-radius: 3em;
-      background: var(--button-bg-color);
-  
-      box-shadow: inset 0 0 0.5em 0 var(--accent-color-1), 0 0 0.5em 0 var(--accent-color-1);
-  
-      position: relative;
-  }
-  
-  .homelink::before {
-      pointer-events: none;
-      content: "";
-      position: absolute;
-      background: var(--accent-color-1);
-      top: 120%;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    text-shadow: none;
-      transform: perspective(1.2em) rotateX(40deg) scale(1.5, 0.5);
-      filter: blur(1.15em);
-      opacity: 0.7;
-  
-      transition: transform 0.5s linear;
-  }
-  
-  .homelink::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 0 4em 0.6em var(--accent-color-1), 0 0 1em 0.2em var(--background-color);
-      opacity: 0;
-      background: var(--accent-color-1);
-      z-index: -1;
-      transition: opacity 0.5s linear;
-  }
-  
-  .homelink:hover,
-  .homelink:focus {
-      color: var(--button-text-color);
-    border: var(--heading-color) 4px solid;
-      text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.55), 0 0 0.5em currentColor;
-  }
-  
-  .homelink:hover::before,
-  .homelink:focus::before {
-      opacity: 1;
-      transform: perspective(1em) rotateX(40deg) scale(1.5, 0.6);
-      transition: transform 0.5s linear;
-  }
-  
-  .button:hover::after,
-  .button:focus::after {
-      opacity: 1;
-  }
-  
-  @media (max-width: 280px) {
-    .money {
-      font-size: 4vh;
-      margin-left: -25px;
-    }
-  }
-  
   @media (max-width: 345px) {
-    .money {
-      font-size: 9vh; 
+    h1.oops {
+      font-size: 12vw;
     }
   }
-  .description {
-    margin: 2rem auto;
-    font-size: 2rem;
-  }
-  
-  main p {
-    font-size: 1rem;
-    margin: 2rem;
-  }
-  
-  .homelink {
-      font-size: 1rem;
-      border: var(--button-border-color) 6px;
-      padding: 0.25em 1em;
-  }
-  
-  text {
-    font-size: 80px;
-    font-weight: 900;
-  }
-  
+
   @media (max-width: 375px) {
-    .money {
-      font-size: 11vh; 
+    h1.oops {
+      font-size: 11vw;
     }
   }
-  
-  @media (max-width: 425px) {
-    .money {
-      font-size: 11vh; 
-    }
-  }
-  
+
   @media (max-width: 768px) {
-    .money {
-      font-size: 13vh; 
+    h1.oops {
+      font-size: 11vw;
     }
   }
-  
-  /* Styles for landscape mode with a minimum width of 280px and a maximum width of 653px */
-  @media (orientation: landscape) and (min-width: 280px) and (max-width: 653px) {
-    .money {
-    font-size: 16vh;
-    margin-left: 0;
+    @media (max-width: 768px) and (max-height: 1024px) {
+    h1.oops {
+      font-size: 20vw;
+      margin-bottom: 1rem;
     }
-  
     text {
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 1rem;
+    }
+    .description {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    main p {
+      font-size: 1.5rem;
+      margin: 1rem;
+}
+  }
+}
+
+  /*Media queries written by me and then were refactored with the help of Blackbox AI, then further adjusted after the refactoring */
+
+/* Common styles for landscape mode */
+@media (orientation: landscape) {
+  h1.oops {
+    font-size: 16vw;
+    margin-left: 0;
+  }
+
+  text {
     font-size: 4rem;
     font-weight: 900;
   }
-  
+
   .svg-container svg {
     min-height: 5rem;
     height: 5rem;
     margin: 0;
   }
-  
+
   .description {
     margin: 0.5rem auto;
     font-size: 2rem;
   }
-  
+
   main p {
     font-size: 1rem;
     margin: 1rem;
   }
-  }
-  
-  /* Styles for landscape mode with a minimum width of 280px and a maximum width of 653px */
-  @media (orientation: landscape) and (min-width: 375px) and (max-width: 667px) {
-    .money {
-    font-size: 16vh;
+}
+
+@media (orientation: landscape) {
+  h1.oops {
+    font-size: 16vw;
     margin-left: 0;
-    }
-  
-    text {
+  }
+
+  text {
     font-size: 4rem;
     font-weight: 900;
   }
-  
+
   .svg-container svg {
     min-height: 5rem;
     height: 5rem;
     margin: 0;
   }
-  
+
   .description {
     margin: 0.5rem auto;
     font-size: 2rem;
   }
-  
+
   main p {
     font-size: 1rem;
     margin: 1rem;
   }
+
+  @media (max-width: 280px) {
+    h1.oops {
+      font-size: 20vw;
+    }
+  }
+
+  @media (max-width: 345px) {
+    h1.oops {
+      font-size: 12vw;
+    }
+  }
+
+  @media (max-width: 375px) {
+    h1.oops {
+      font-size: 11vw;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1.oops {
+      font-size: 11vw;
+    }
+  }
+    @media (max-width: 768px) and (max-height: 1024px) {
+    h1.oops {
+      font-size: 20vw;
+      margin-bottom: 1rem;
+    }
+    text {
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 1rem;
+    }
+    .description {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    main p {
+      font-size: 1.5rem;
+      margin: 1rem;
+}
+  }
+}
+
+  @media (min-width: 820px) and (max-width: 1180px) {
+    h1.oops {
+      font-size: 18vw;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    h1.oops {
+      font-size: 20vw;
+      margin-bottom: 0;
+    }
+    text {
+      font-size: 5rem;
+      font-weight: 900;
+      margin: 0;
+    }
+    .description {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    main p {
+      font-size: 1.5rem;
+      margin: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1.oops {
+      font-size: 16vw;
+    }
+  }
+
+  @media (min-width: 853px) and (max-width: 1280px) {
+    h1.oops {
+      font-size: 24vw;
+    }
+  }
+
+  @media (min-width: 866px) and (max-width: 1440px) {
+    h1.oops {
+      font-size: 12vw;
+    }
+  }
+
+  @media (min-width: 1733px) and (max-width: 2560px) {
+    h1.oops {
+      font-size: 7vw;
+    }
   }
