@@ -160,6 +160,7 @@ nav .nav-link {
 .btn-signup:hover {
     background-color: var(--secondary-color);    
     transform: scale(0.95);
+    color: var(--primary-color);
 }
 
 form.login p label:not([for="id_remember"]),
