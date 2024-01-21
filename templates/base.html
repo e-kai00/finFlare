@@ -6,53 +6,55 @@
 <html class="h-100" lang="en">
 
 <head>
-    
+
     {% block meta %}
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="author" content="FinFlare Hackathon Team3">
-        <meta name="description" content="FinFlare is the ultimate finance stock invester for training purposes">
-        <meta name="keywords" content="FinFlare, Market, Stock, Finance, Money">
-        <meta property="og:title" content="FinFlare 2024 | Market">
-        <meta property="og:description" content="Finance Stock Market Planner Invester">
-        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="FinFlare Hackathon Team3">
+    <meta name="description" content="FinFlare is the ultimate finance stock invester for training purposes">
+    <meta name="keywords" content="FinFlare, Market, Stock, Finance, Money">
+    <meta property="og:title" content="FinFlare 2024 | Market">
+    <meta property="og:description" content="Finance Stock Market Planner Invester">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
     {% endblock %}
 
 
     {% block corecss %}
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
-        <!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        <!-- Font Awesome Icons -->
-        <script src="https://kit.fontawesome.com/66c113ad0a.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/66c113ad0a.js" crossorigin="anonymous"></script>
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
-        <script src="https://kit.fontawesome.com/66c113ad0a.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
-            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/66c113ad0a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
     {% endblock %}
 
     <title>Broker Buddy {% block extra_title %} {% endblock %}</title>
@@ -86,6 +88,7 @@
                         <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}"
                             href="{% url 'home' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Dashboard</strong></a>
                     </li>
+
                         <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
                             <!-- Default dropleft button -->
                             <div class="dropdown mx-5">
@@ -99,8 +102,11 @@
                                     <li><a class="dropdown-item text-center" href="{% url 'account_logout' %}">Logout</a></li>
                                 </ul>
                             </div>
+
                         </div>
+                    </div>
                     {% else %}
+
                         <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
                             <!-- Default dropleft button -->
                             <div class="dropdown mx-5">
@@ -114,12 +120,33 @@
                                     <li><a class="dropdown-item text-center" href="{% url 'account_login' %}">Login</a></li>
                                 </ul>
                             </div>
+
                         </div>
+                    </div>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- toast messages -->
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <main class="flex-shrink-0 main-bg- mt-5 mb-2">
         <div class="container">
@@ -134,6 +161,7 @@
         <div class="m-0 text-center text-white">
             <!-- about section -->
             <div class="footer-wrapper">
+
             <div class="left-content">
                 <ul class="ms-auto mb-2 mb-lg-0">
                     <li class="">
@@ -160,30 +188,36 @@
                     <li><a href="#" class="text-white">Terms of Service</a></li>        
                     <li><a href="#" class="text-white">Privacy Policy</a></li>                     
                 </ul>
+
             </div>
-        </div>
-        <div class="copyright-wrapper">
-            {% block copyright %}
+            <div class="copyright-wrapper">
+                {% block copyright %}
                 Broker Buddy 2024
-            {% endblock copyright %}
-        </div>
+                {% endblock copyright %}
+            </div>
         </div>
     </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
 
-        <script>
-            $('.toast').toast('show');
-        </script>
+    <script>
+        var toastEl = document.querySelector('.toast');
+        var myToast = new bootstrap.Toast(toastEl);
 
-        {% block postloadjs %}
-            <script src="{% static 'js/script.js' %}"></script>
-        {% endblock %}
+        myToast.show();
+        toastEl.addEventListener('hidden.bs.toast', function () {
+    });
+ 
+    </script>
 
-        {% block extras %}
-        {% endblock %}
+    {% block postloadjs %}
+    <script src="{% static 'js/script.js' %}"></script>
+    {% endblock %}
+
+    {% block extras %}
+    {% endblock %}
 </body>
 
 </html>

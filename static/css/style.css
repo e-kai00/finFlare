@@ -120,6 +120,34 @@ nav .nav-link {
     text-transform: uppercase;
 }
 
+/* Toast messages */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: hidden;
+}
+
+.toast-header {
+    justify-content: space-between;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.notification-wrapper {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* End Toast messages */
+
 
 /* Register, login/ -out pages */
 .btn-signup {
@@ -143,7 +171,7 @@ form.signup p input {
     border-radius: 6px;
     border: 1px solid var(--primary-color);
     padding-inline: .2em;
-    min-width: 90%;
+    min-width: 100%;
 }
 /* End of register, login/ -out pages */
 
@@ -164,15 +192,14 @@ form.signup p input {
 
 .footer-wrapper .center-content {
     text-align: center;
-    flex: 1;
 }
 
 .footer-wrapper .center-content a {
-    margin-inline: .8em;
+    margin-inline: .6em;
 }
 
 .footer-wrapper .center-content i {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 .footer-wrapper .right-content {
