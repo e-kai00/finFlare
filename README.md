@@ -6,7 +6,7 @@
 
 <!-- The website picture here -->
 
-<img src="https://res.cloudinary.com/djdefbnij/image/upload/v1705314715/Hackathons/Screenshot_2024-01-15_at_10.27.38_rc7lor.png" alt="BudgetBustersBanner" width="1200"/>
+<img src="readme.docs/Broker-Buddy.jpg" alt="Broker Buddy Markets photo" width="1200"/>
 
 ## Table of Contents
 <details><summary>Click to go to Contents here </summary>
@@ -66,6 +66,19 @@
 
 
 ## Objectives
+
+
+- The main goal of financial stock investing is to achieve capital growth over time.
+    
+    It is for users and investors who aim to increase the value of their investment portfolio by purchasing stocks with the potential for appreciation. Capital growth can be realized through the increase in the market value of individual stocks or the overall performance of the stock market. This objective aligns with the long-term strategy of building wealth and achieving financial goals, such as funding education, retirement, or major life events.
+
+ 
+- To generate a steady stream of income through dividends and other income-generating  stocks.
+
+
+ - The website has a landing page where users can log in and access the market stocks. It also has an About page that provides users with insight into Brokers Buddy and its team. There is a Contact page that users can use to get in touch with the company representative for further services. Additionally, there is a Login page for user access. Each page is designed with aesthetics in mind to provide users with a visually stimulating and easy-to-use interface. Users will also experience a unique end animation.
+
+
 
 ## Target audience
 
