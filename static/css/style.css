@@ -76,12 +76,24 @@ nav .nav-link {
     align-items: center;
 }
 
+.navbar-toggler, .navbar-toggler:active {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) grayscale(1) brightness(20);
+}
+
 .navbar-text .dropdown-toggle::after {
     content: none;  /* This removes the arrow */
 }
 
 .navbar-text .dropdown-toggle .fa-user-circle {
     margin-right: 0;  /* Adjust as needed */
+}
+
+.navbar .dropdown-menu {
+    background-color: var(--primary-color) !important; 
 }
 
 .main-container {
@@ -267,6 +279,14 @@ form.signup p input {
     .footer-wrapper .center-content {
         padding-block: .5em;
     }
+
+    .brand {
+        font-size: 1.5rem;
+    }
+
+    #container-drop-down {
+        background-color: var(--primary-color) !important;
+    }
 }
 
 /* ------------------- LOGIN PAGE ------------------- */
@@ -297,7 +317,7 @@ form.signup p input {
     opacity: 0.9;
     position: relative;
     max-width: 600px;
-    top: 125px;
+    top: 50px;
     width: 90%;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -307,7 +327,7 @@ form.signup p input {
     top: 35px;
 }
 
-#login-btn {
+.login-btn {
     width: 100%;
 }
 
@@ -320,5 +340,5 @@ form.signup p input {
 input, textarea, select {
     background-color: var(--background-color)!important;
     padding: 10px;
-    border: none !important;
+    border-color: var(--secondary-color) !important;
 }
