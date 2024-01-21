@@ -93,7 +93,7 @@
                             <!-- Default dropleft button -->
                             <div class="dropdown mx-5">
                                 <a class="dropdown-toggle" href="#" role="button" id="navbarDropdownMenuAvatar"
-                                    data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user-circle rounded-circle text-white" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -105,14 +105,15 @@
 
                         </div>
                     </div>
+                            </div>
+                        </div>
                     {% else %}
-
                         <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
                             <!-- Default dropleft button -->
                             <div class="dropdown mx-5">
                                 <a class="dropdown-toggle" href="#" role="button" id="navbarDropdownMenuAvatar"
-                                    data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
-                                    <i class="fa fa-user-circle fa-3x rounded-circle text-white " aria-hidden="true" ></i>
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user-circle fa-3x rounded-circle text-white" aria-hidden="true"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                                     <li><a class="dropdown-item text-center" href="{% url 'account_signup' %}">Register</a>
@@ -120,9 +121,7 @@
                                     <li><a class="dropdown-item text-center" href="{% url 'account_login' %}">Login</a></li>
                                 </ul>
                             </div>
-
                         </div>
-                    </div>
                     {% endif %}
                 </ul>
             </div>
@@ -149,11 +148,9 @@
     {% endif %}
 
     <main class="flex-shrink-0 main-bg- mt-5 mb-2">
-        <div class="container">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
-        </div>
     </main>
 
     <!-- Footer -->
@@ -161,39 +158,37 @@
         <div class="m-0 text-center text-white">
             <!-- about section -->
             <div class="footer-wrapper">
-
             <div class="left-content">
                 <ul class="ms-auto mb-2 mb-lg-0">
                     <li class="">
-                        <a class="text-white" href="{% url 'home' %}" aria-label="Home">Home</a>
+                        <a class="text-white" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="">
-                        <a class="text-white"  href="{% url 'about' %}" aria-label="About">About</a>
+                        <a class="text-white"  href="{% url 'about' %}">About</a>
                     </li>
                     <li class="">
-                        <a class="text-white" href="{% url 'contact' %}" aria-label="Contact Us">Contact us</a>
+                        <a class="text-white" href="#">Contact us</a>
                     </li>                  
                 </ul>
             </div>
             <!-- social media section -->
             <div class="center-content">
-                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook text-white"></i></a>
-                </a><a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram text-white"></i></a>
-                <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter text-white"></i></a>
-                <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-white"></i></a>
+                <a href=""><i class="fa-brands fa-facebook text-white"></i></a>
+                </a><a href=""><i class="fa-brands fa-instagram text-white"></i></a>
+                <a href=""><i class="fa-brands fa-twitter text-white"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin text-white"></i></a>
             </div>
             <!-- terms of services section -->
             <div class="right-content">
                 <ul>
-                    <li><a href="#" class="text-white">Terms of Service</a></li>        
-                    <li><a href="#" class="text-white">Privacy Policy</a></li>                     
+                    <li><a href="{% url 'terms_of_service' %}" class="text-white">Terms of Service</a></li>        
+                    <li><a href="{% url 'privacy' %}" class="text-white">Privacy Policy</a></li>                     
                 </ul>
-
-            </div>
-            <div class="copyright-wrapper">
-                {% block copyright %}
-                Broker Buddy 2024
-                {% endblock copyright %}
+                <div class="copyright-wrapper">
+                    {% block copyright %}
+                    Broker Buddy 2024
+                    {% endblock copyright %}
+                </div>
             </div>
         </div>
     </footer>

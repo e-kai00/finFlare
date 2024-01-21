@@ -82,6 +82,17 @@
 
 ## Target audience
 
+  - The website is tailored for individuals who aspire to delve into stock market investments with a focus on achieving financial growth. It is meticulously designed to cater to the needs and preferences of users seeking a visually captivating and user-friendly platform for their investment journey.
+
+  - Individuals who are eager to initiate their journey into stock market investing, looking for a platform that provides comprehensive resources, guidance, and a user-friendly interface.
+
+
+  - Investors who prioritize long-term financial growth and wealth accumulation through strategic stock market investments.
+
+  - Users who appreciate and engage more effectively with visually striking and well-designed interfaces.
+
+  - Users comfortable with technology and keen on utilizing a modern and well-designed platform for their stock market investments.
+
 
 ### Wireframes
 
@@ -94,6 +105,32 @@
 ## User Experience (UX)
 
 ### User stories
+
+  - To be able to view the site on a range of device sizes.
+  - To facilitate simultaneous navigation for users while trading.
+  - To ensure that users experience high-performance interactivity while investing and trading.
+
+
+#### First Time Visitor Goal
+
+  - I want to find out about the Broker Buddy if I can access the stock market.
+  - I want to easily navigate the site and access different parts of the platform.
+  - I would like to know about the trading capital of investment.
+
+
+#### Returning Visitor Goal
+
+  - I want to know what improvements have been made in the stock market.
+  - I want to invest in different stocks.
+
+#### Frequent Visitor Goal
+
+  - I want to recommend the Broker Buddy to friends.
+
+
+## Design
+
+### Color Scheme
 
 
 ## Deployment
