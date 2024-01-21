@@ -83,6 +83,7 @@ def stock_data(request):
 def trade_stock(request):
    
     if request.method == 'POST':
+
         user_profile = UserAccountPortfolio.objects.get(user=request.user)
         name = request.POST.get('name')
         quantity = int(request.POST.get('stockSelector'))
@@ -105,3 +106,4 @@ def trade_stock(request):
         'transactions': transactions,
     }
     return render(request, template, context)
+
