@@ -52,6 +52,7 @@ def stock_data(request):
     if request.method == 'POST':
         selected_category = request.POST.get('stockSelector')
         if selected_category in categories:
+            
             combined_data = {
                 selected_category: get_market_data(api_key, selected_category),
             }
