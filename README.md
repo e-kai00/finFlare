@@ -61,6 +61,8 @@
 
 ## About the project
 
+<strong>Broker Buddy</strong> is a website designed to assist users and individuals who are skilled in the complex field of stock investing. It is a platform that is motivated by financial growth and aims to streamline the path to long-term investment success. Whether the user is a seasoned investor or a novice, the platform is committed to helping users achieve financial growth by streamlining the path to long-term investment success. With a user-friendly interface and a vast array of powerful tools, Broker Buddy is a one-stop shop for all things related to stock investing.
+
 
 
 ## Objectives
