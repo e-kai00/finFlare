@@ -30,7 +30,7 @@ class Transaction(models.Model):
     """
     user_profile = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=4, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
-    symbol = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
