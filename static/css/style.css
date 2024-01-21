@@ -294,10 +294,17 @@ form.signup p input {
 
 #login-container {
     background-color: var(--secondary-color);
+    /* add transparency to background color */
+    opacity: 0.9;
     position: relative;
     top: 125px;
     width: 80%;
     max-width: 600px;
+    /* round the edges */
+    border-radius: 10px;
+    /* add a drop shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    /* make the background slighty transparent */
 }
 
 #login-btn {
@@ -306,4 +313,12 @@ form.signup p input {
 
 #login-h3 {
     margin-top: 30px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+input, textarea, select {
+    background-color: var(--background-color)!important;
+    padding: 10px;
+    border: none !important;
 }
