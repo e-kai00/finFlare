@@ -66,7 +66,7 @@
                     <div class="col-12 col-md-4">
                       <div class="d-flex align-items-center">
 
-                        <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
+                        <!-- <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
                           {% csrf_token %}
 
                           <input type="hidden" name="name" value="{{ data.name }}">
@@ -75,7 +75,7 @@
                           <button type="submit" name="transaction_type" value="SELL" id="btn-btn-sell" class="btn me-2 btn-sell">Sell</button>
                           <button type="submit" name="transaction_type" value="BUY" id="btn-btn-buy" class="btn btn-buy">Buy</button>
 
-                        </form>
+                        </form> -->
                       </div>
                     </div>
 
@@ -86,30 +86,17 @@
           </div>
 
           <!-- test -->
-          <!-- <h1>FORM TEST</h1>
-          <div class="col-12 col-md-4">
-            <div class="d-flex align-items-center">
-
-              <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
-                {% csrf_token %}
-
-                <input type="hidden" name="name" value="DOW JOW">
-                <input type="hidden" name="price" value="89">
-                <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">                    
-                <button type="submit" name="transaction_type" value="SELL" class="btn me-2">Sell</button>
-                <button type="submit" name="transaction_type" value="BUY" class="btn">Buy</button>
-
-              </form>
-            </div>
-          </div>
+          <!-- <h1>FORM TEST</h1>         
 
           <h1>All Transactions</h1>
             <ul>
                 {% for transaction in transactions %}
                     <li>{{ transaction.name }} - {{ transaction.quantity }} at ${{ transaction.price }} ({{ transaction.transaction_type }})</li>
                 {% endfor %}
-            </ul> -->
+            </ul> -->          
           <!-- end test -->
+
+          
 
           <form action="" method="post">
             {% csrf_token %}

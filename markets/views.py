@@ -3,8 +3,8 @@ from django.conf import settings
 import requests
 from django.contrib import messages
 from .models import UserAccountPortfolio, StockBalance, Transaction
-from django.contrib.auth.models import User
 from decimal import Decimal
+
 
 ####################################################
 #### API serpapi view functions - Fetching Data ####
@@ -78,8 +78,6 @@ def stock_data(request):
 
 # View for stock,user
 
-
-
 def trade_stock(request):
    
     if request.method == 'POST':
@@ -106,4 +104,6 @@ def trade_stock(request):
         'transactions': transactions,
     }
     return render(request, template, context)
+
+
 

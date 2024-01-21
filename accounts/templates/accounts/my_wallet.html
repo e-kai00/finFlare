@@ -22,7 +22,7 @@
             <div>
               <h4 class="logo-font">Account Balance</h4>
               <p class="logo-font">
-                $ <span class="balance-numbers" id="account-balance">10,000.00</span>
+                $ <span class="balance-numbers" id="account-balance">{{ balance }}</span>
               </p>
             </div>
           </div>
@@ -87,10 +87,12 @@
         <div class="row stock-row">
           <!-- If user has stocks show stock list, else show message "Buy some stocks" -->
           <div class="row">
-            {% if stocks %}
+            {% if stock_names %}
+
               <!-- Display the list of stocks -->
-              {% for stock in stocks %}
-                <!-- Display each stock -->
+              {% for stock in stock_names %}
+              <p>Name: {{ stock }}</p>
+              
               {% endfor %}
             {% else %}
             <div class="col-12">
