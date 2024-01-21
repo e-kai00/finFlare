@@ -49,6 +49,10 @@ p {
     font-size: 12px!important;
 }
 
+#tradeForm {
+    display: flex;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {
