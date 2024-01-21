@@ -6,126 +6,121 @@
 
 {% block content %}
   <body>
-    <main role="main">
-      <!-- Photo by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ -->
-
+    <main>
+      <!-- Background by AlphaTradeZone https://www.pexels.com/photo/stressed-man-monitoring-charts-5831256/ -->
       <div class="background-image">
-        <picture>
-          <source type="image/webp" srcset="images/oops_pexels_alphatradezone.webp 1x, images/oops_pexels_alphatradezone@2x.webp 2x" sizes="100vw">
-          <source type="image/jpeg" srcset="images/oops_pexels_alphatradezone.jpg 1x, images/oops_pexels_alphatradezone@2x.jpg 2x" sizes="100vw">
-        </picture>
-      <div class="container">
-        <div class="animated-text-container">
+        <div class="container">
+          <div class="animated-text-container">
       <!-- Photo by Ibrahim Boran: https://www.pexels.com/photo/close-up-photo-of-cash-money-8199870/
       Text and animation for OOPS! inspired by Nils Binder https://codepen.io/enbee81/pen/WNdKLBY
-      and Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO -->
-          <h1 class="money">Oops!</h1>
+      and Cameron Fitzwilliam https://codepen.io/CameronFitzwilliam/pen/pamobO 
+      A few notable changes are text responsiveness, font family and size, text shadowing and background image used to fill the text-->
+            <h1 class="oops">OOPS!</h1>
+          </div>
+      <!-- Money animated "OOPS!" text code extrapolated and slightly changed from Code School https://codepen.io/team/codeschool/pen/BKrRwg/ specifically changes were made to the background and size of the text as well as its responsiveness-->
+          <div class="svg-container">
+            <figure>
+              <svg width="600" height="200">
+                <filter id="money">
+                  <femorphology
+                  in="SourceGraphic"
+                  operator="dilate"
+                  radius="2"
+                  result="expand"/>
+                  
+                  <feoffset in="expand" dx="1" dy="1" result="shadow_1" />
+                  <feoffset in="expand" dx="2" dy="2" result="shadow_2" />
+                  <feoffset in="expand" dx="3" dy="3" result="shadow_3" />
+                  <feoffset in="expand" dx="4" dy="4" result="shadow_4" />
+                  <feoffset in="expand" dx="5" dy="5" result="shadow_5" />
+                  <feoffset in="expand" dx="6" dy="6" result="shadow_6" />
+                  <feoffset in="expand" dx="7" dy="7" result="shadow_7" />
+                  
+                  <femerge result="shadow">
+                    <femergenode in="expand" />
+                    <femergenode in="shadow_1" />
+                    <femergenode in="shadow_2" />
+                    <femergenode in="shadow_3" />
+                    <femergenode in="shadow_4" />
+                    <femergenode in="shadow_5" />
+                    <femergenode in="shadow_6" />
+                    <femergenode in="shadow_7" />
+                  </femerge>
+                  
+                  <feflood flood-color="#ebe7e0" />
+                  <fecomposite in2="shadow" operator="in" result="shadow" />
+                  
+                  <femorphology
+                  in="shadow"
+                  operator="dilate"
+                  radius="1"
+                  result="border"/>
+                  
+                  <feflood flood-color="#35322a" result="border_color" />
+                  <fecomposite in2="border" operator="in" result="border" />
+                  <feoffset in="border" dx="1" dy="1" result="secondShadow_1" />
+                  <feoffset in="border" dx="2" dy="2" result="secondShadow_2" />
+                  <feoffset in="border" dx="3" dy="3" result="secondShadow_3" />
+                  <feoffset in="border" dx="4" dy="4" result="secondShadow_4" />
+                  <feoffset in="border" dx="5" dy="5" result="secondShadow_5" />
+                  <feoffset in="border" dx="6" dy="6" result="secondShadow_6" />
+                  <feoffset in="border" dx="7" dy="7" result="secondShadow_7" />
+                  <feoffset in="border" dx="8" dy="8" result="secondShadow_8" />
+                  <feoffset in="border" dx="9" dy="9" result="secondShadow_9" />
+                  <feoffset in="border" dx="10" dy="10" result="secondShadow_10" />
+                  <feoffset in="border" dx="11" dy="11" result="secondShadow_11" />
+                  
+                  <femerge result="secondShadow">
+                    <femergenode in="border" />
+                    <femergenode in="secondShadow_1" />
+                    <femergenode in="secondShadow_2" />
+                    <femergenode in="secondShadow_3" />
+                    <femergenode in="secondShadow_4" />
+                    <femergenode in="secondShadow_5" />
+                    <femergenode in="secondShadow_6" />
+                    <femergenode in="secondShadow_7" />
+                    <femergenode in="secondShadow_8" />
+                    <femergenode in="secondShadow_9" />
+                    <femergenode in="secondShadow_10" />
+                    <femergenode in="secondShadow_11" />
+                  </femerge>
+                  
+                  <feimage
+                  x="0"
+                  y="0"
+                  width="600"
+                  height="200"
+                  xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/78779/stripes.svg"/>
+                  
+                  <fecomposite
+                  in2="secondShadow"
+                  operator="in"
+                  result="secondShadow"
+                  />
+                  
+                  <femerge>
+                    <femergenode in="secondShadow" />
+                    <femergenode in="border" />
+                    <femergenode in="shadow" />
+                    <femergenode in="SourceGraphic" />
+                  </femerge>
+                </filter>
+                <text dominant-baseline="middle" text-anchor="middle" x="50%" y="50%">
+                  404
+                </text>
+              </svg>
+              <figcaption class="description">Page not found</figcaption>
+            </figure>
+          </div>
+          
+          <p>
+            The page you are looking for may have been removed, had its name 
+            changed, or is temporarily unavailable.
+          </p>
+          
+          <a href="index.html" class="homelink" aria-label="Go back to the homepage"
+          >Go To Homepage</a>
         </div>
-      <!-- Money styled text extrapolated from Code School https://codepen.io/team/codeschool/pen/BKrRwg/ -->
-      <div class="svg-container">
-      <figure>
-        <svg width="600" height="200">
-          <filter id="money">
-            <femorphology
-              in="SourceGraphic"
-              operator="dilate"
-              radius="2"
-              result="expand"
-            />
-
-            <feoffset in="expand" dx="1" dy="1" result="shadow_1" />
-            <feoffset in="expand" dx="2" dy="2" result="shadow_2" />
-            <feoffset in="expand" dx="3" dy="3" result="shadow_3" />
-            <feoffset in="expand" dx="4" dy="4" result="shadow_4" />
-            <feoffset in="expand" dx="5" dy="5" result="shadow_5" />
-            <feoffset in="expand" dx="6" dy="6" result="shadow_6" />
-            <feoffset in="expand" dx="7" dy="7" result="shadow_7" />
-
-            <femerge result="shadow">
-              <femergenode in="expand" />
-              <femergenode in="shadow_1" />
-              <femergenode in="shadow_2" />
-              <femergenode in="shadow_3" />
-              <femergenode in="shadow_4" />
-              <femergenode in="shadow_5" />
-              <femergenode in="shadow_6" />
-              <femergenode in="shadow_7" />
-            </femerge>
-
-            <feflood flood-color="#ebe7e0" />
-            <fecomposite in2="shadow" operator="in" result="shadow" />
-
-            <femorphology
-              in="shadow"
-              operator="dilate"
-              radius="1"
-              result="border"
-            />
-            <feflood flood-color="#35322a" result="border_color" />
-            <fecomposite in2="border" operator="in" result="border" />
-
-            <feoffset in="border" dx="1" dy="1" result="secondShadow_1" />
-            <feoffset in="border" dx="2" dy="2" result="secondShadow_2" />
-            <feoffset in="border" dx="3" dy="3" result="secondShadow_3" />
-            <feoffset in="border" dx="4" dy="4" result="secondShadow_4" />
-            <feoffset in="border" dx="5" dy="5" result="secondShadow_5" />
-            <feoffset in="border" dx="6" dy="6" result="secondShadow_6" />
-            <feoffset in="border" dx="7" dy="7" result="secondShadow_7" />
-            <feoffset in="border" dx="8" dy="8" result="secondShadow_8" />
-            <feoffset in="border" dx="9" dy="9" result="secondShadow_9" />
-            <feoffset in="border" dx="10" dy="10" result="secondShadow_10" />
-            <feoffset in="border" dx="11" dy="11" result="secondShadow_11" />
-
-            <femerge result="secondShadow">
-              <femergenode in="border" />
-              <femergenode in="secondShadow_1" />
-              <femergenode in="secondShadow_2" />
-              <femergenode in="secondShadow_3" />
-              <femergenode in="secondShadow_4" />
-              <femergenode in="secondShadow_5" />
-              <femergenode in="secondShadow_6" />
-              <femergenode in="secondShadow_7" />
-              <femergenode in="secondShadow_8" />
-              <femergenode in="secondShadow_9" />
-              <femergenode in="secondShadow_10" />
-              <femergenode in="secondShadow_11" />
-            </femerge>
-
-            <feimage
-              x="0"
-              y="0"
-              width="600"
-              height="200"
-              xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/78779/stripes.svg"
-            />
-            <fecomposite
-              in2="secondShadow"
-              operator="in"
-              result="secondShadow"
-            />
-
-            <femerge>
-              <femergenode in="secondShadow" />
-              <femergenode in="border" />
-              <femergenode in="shadow" />
-              <femergenode in="SourceGraphic" />
-            </femerge>
-          </filter>
-          <text dominant-baseline="middle" text-anchor="middle" x="50%" y="50%">
-            404
-          </text>
-        </svg>
-        <figcaption class="description">Page not found</figcaption>
-      </figure>
-      </div>
-      <p>
-        The page you are looking for may have been removed, had its name
-        changed, or is temporarily unavailable.
-      </p>
-      <a href="index.html" class="homelink" aria-label="Go back to the homepage"
-        >Go To Homepage</a
-      >
-      </div>
       </div>
     </main>
     {% block postloadjs %}
