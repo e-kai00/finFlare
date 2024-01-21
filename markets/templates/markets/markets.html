@@ -44,14 +44,18 @@
                     <div class="col-1">
                       <div>{{forloop.counter}}.</div>
                     </div>
-                    <div class="col-6 col-md-2 pr-0">
+                    <div class="col-6 col-lg-2 pr-0">
                       <div>{{ data.name }}</div>
                     </div>
-                    <div class="col-5 col-md-3">
+                    
+                    <div class="col-5 col-lg-2">
                       <div class="right-align">$ {{ data.price|floatformat:2|intcomma }}</div>
                     </div>
-                    <div class="col-12 col-md-2">
-                      <div id="percentage">
+                    <div class="col-6 col-lg-1 pr-0 sm-icons">
+                      <div><i class="fas fa-wallet"></i>{% if stockBalance.quantity > 0 %}{{ stockBalance.quantity }}{% else %}0{% endif %}</div>
+                    </div>
+                    <div class="col-6 col-lg-2">
+                      <div id="percentage" class="sm-icons">
                         {% if data.price_movement.movement == "Up" %}
                             <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
                         {% elif data.price_movement.movement == "Down" %}
@@ -60,7 +64,7 @@
                         {{ data.price_movement.percentage|floatformat:2 }} %
                       </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-lg-4">
                       <div class="d-flex align-items-center">
                         <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">
                         <button type="button" id="btn-sell" class="btn me-2">Sell</button>
