@@ -45,6 +45,10 @@
     margin-right: 5px!important;
 }
 
+p {
+    font-size: 12px!important;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {
