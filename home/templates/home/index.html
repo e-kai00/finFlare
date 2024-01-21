@@ -1,56 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% load i18n %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
 {% block extra_title %} - Landing page {% endblock %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block content %}
 <!-- Background Image content section here-->
-<body>
-    <div class="overlay">
-    <div class="bg-image">
-    <div class="container main-content-container h-100">
-        <article>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6 mx-auto text-center">
-                        <hr>
-                        <h2 class="logo-font mb-4">Landing Page</h2>
-                    </div>
-
-                <!-- Login form content section here-->
-
-                <div class="login-section">
-                    <h2>Login</h2>
-                    <!-- Login form here -->
-                    <form>
-                        <label for="loginUsername">Username:</label>
-                        <input type="text" id="loginUsername" name="loginUsername" required>
-                        <br>
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-                        <br>
-                        <!-- Login button here-->
-                        <button type="submit">Login</button>
-                    </form>
-                    </div>
-                </div>
-                </div>
+<div class="hero">
+    <section>
+        <div class="container">
+            <div class="row welcome-section d-flex welcome-text">
+                <h1>Welcome to Broker Buddy!</h1>Welcome to Broker Buddy!
+                <p>Other text</p>
+                <a class="col-4" href="{% url 'account_login' %}">
+                    <button class="btn-signup">Login</button>
+                </a>
+                <a class="col-4" href="{% url 'account_signup' %}">
+                    <button class="btn-signup">Signup</button>
+                </a>
             </div>
-        </article>
-    </div>
-</body>
+        </div>
+    </section>
+</div>
 {% endblock %}
 
 {% block postloadjs %}

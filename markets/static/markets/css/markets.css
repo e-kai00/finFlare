@@ -40,9 +40,17 @@
     text-align: right;
 }
 
-#percentage i {
+.sm-icons i {
     font-size: 14px!important;
     margin-right: 5px!important;
+}
+
+p {
+    font-size: 12px!important;
+}
+
+#tradeForm {
+    display: flex;
 }
 
 /* Media queries */

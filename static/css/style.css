@@ -55,6 +55,7 @@ nav,
 footer {
     background-color: var(--primary-color);
     height: 130px;
+    z-index: 2;
 }
 nav .nav-link {
     color:  var(--background-color) !important;

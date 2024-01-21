@@ -10,7 +10,7 @@ class UserAccountPortfolio(models.Model):
     More information can be find in markets app/models.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    balance = models.DecimalField(max_digits=10, decimal_places=4, default=10000.0)
+    balance = models.DecimalField(max_digits=10, decimal_places=4, default=10000.0) 
 
 
 @receiver(post_save, sender=User)

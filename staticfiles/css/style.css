@@ -42,7 +42,7 @@ footer {
     height: 125px;
 }
 nav .nav-link {
-    color: white !important;
+    color: var(--background-color) !important;
     margin: 18px;
     font-size: 14px;
 }
@@ -66,15 +66,17 @@ nav .nav-link {
 }
 
 .light-bg {
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--primary-color);
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: var(--primary-color);
+    color: var(--background-color);
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: var(--background-color);
 }
 
 .scale {
@@ -83,8 +85,7 @@ nav .nav-link {
 }
 
 .author {
-    color: white;
+    color: var(--background-color);
     margin: 4px;
     text-transform: uppercase;
 }
-
