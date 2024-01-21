@@ -43,6 +43,17 @@ i {
     font-size: 30px !important;
     margin-right: 20px;
 }
+
+a {
+    color: var(--accent-color-1);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a:active {
+    color: var(--primary-color);
+}
+
 /* Global Styles Ends */
 
 body {
@@ -160,6 +171,7 @@ nav .nav-link {
 .btn-signup:hover {
     background-color: var(--secondary-color);    
     transform: scale(0.95);
+    color: var(--primary-color);
 }
 
 form.login p label:not([for="id_remember"]),
@@ -255,4 +267,58 @@ form.signup p input {
     .footer-wrapper .center-content {
         padding-block: .5em;
     }
+}
+
+/* ------------------- LOGIN PAGE ------------------- */
+
+.hero-image {
+    background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
+    width: 100%;
+    height: 800px;
+    top: 125px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.hero-image::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#login-container {
+    background-color: var(--secondary-color);
+    /* add transparency to background color */
+    opacity: 0.9;
+    position: relative;
+    top: 125px;
+    width: 80%;
+    max-width: 600px;
+    /* round the edges */
+    border-radius: 10px;
+    /* add a drop shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    /* make the background slighty transparent */
+}
+
+#login-btn {
+    width: 100%;
+}
+
+#login-h3 {
+    margin-top: 30px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+input, textarea, select {
+    background-color: var(--background-color)!important;
+    padding: 10px;
+    border: none !important;
 }
