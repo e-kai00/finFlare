@@ -1,14 +1,88 @@
-<h1 align="center"><strong>💲💲💲 Budget Busters: New Year, New Numbers 💲💲💲</strong>
 
-</h1>
+<h1 align= "center"><strong>💲💲💲 Broker Buddy |  New Year, January Hackathon 2024, 💲💲💲</strong></h1>
+
+[Click for live view](https://finflare-9057c20c8176.herokuapp.com/)
+
+
+<!-- The website picture here -->
 
 <img src="https://res.cloudinary.com/djdefbnij/image/upload/v1705314715/Hackathons/Screenshot_2024-01-15_at_10.27.38_rc7lor.png" alt="BudgetBustersBanner" width="1200"/>
 
-# SUBMISSION
+## Table of Contents
+<details><summary>Click to go to Contents here </summary>
+
+[About the project](#about-the-project) 
+
+- [Wireframes](#Wireframes)
+- [Colour Scheme](#Colour-Scheme)
+- [Imagery](#Imagery)
+
+[Target audience](#target-audience)
+
+[User Experience UX](#user-experience-ux)
+
+ - [User stories](#user-stories)
+ - [Design](#design)
+
+[Typography](#typography)
+- [Background](#background)
+- [Fonts](#fonts)
+
+
+[Features](#features)
+
+ - [Composition of the Website](#composition-of-the-website)
+ - [Navbar](#navbar)
+ - [Animations](#animations)
+ - [Footer](#footer)
+
+[Future feature](#future-feature)
+
+[Technology used](#technology-used)
+
+[Tools](#tools)
+
+[Testing](#testing)
+ - [Lighthouse](#lighthouse-report)
+ - [Manual testing](#manual-testing)
+ - [Test on browsers](#test-on-browsers)
+ 
+[Deployment](#deployment)
+ 
+[Fixed Bugs](#fixed-bugs)
+
+[Credits](#credits)
+ - [Conclusion](#conclusion)
+
+[Acknowledgements](#acknowledgements)
+
+</details>
+
+
+## About the project
+
+
+
+## Objectives
+
+## Target audience
+
+
+### Wireframes
+
+
+
+
+***
+
+
+## User Experience (UX)
+
+### User stories
+
 
 ## Deployment
 
-The project is deployed and can be accessed at [http://your-deployed-link.com](https://finflare-9057c20c8176.herokuapp.com/).
 
 ## Criteria
 
