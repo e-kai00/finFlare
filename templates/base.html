@@ -88,6 +88,7 @@
                         <a class="nav-link {% if request.path == markets_url %}active" aria-current="page{% endif %}"
                             href="{% url 'markets' %}"><i class="fa-solid fa-arrow-trend-up"></i> <strong>Dashboard</strong></a>
                     </li>
+
                         <div class="navbar-text text-muted d-flex justify-content-center align-items-center gap-3">
                             <!-- Default dropleft button -->
                             <div class="dropdown mx-5">
@@ -100,6 +101,10 @@
                                     </li>
                                     <li><a class="dropdown-item text-center" href="{% url 'account_logout' %}">Logout</a></li>
                                 </ul>
+                            </div>
+
+                        </div>
+                    </div>
                             </div>
                         </div>
                     {% else %}
