@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block extra_title %} - Landing page {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container text-white">
+    <p class="text-white">Welcome to Broker Buddy. We respect your privacy and are committed to
+        protecting it through our compliance with this policy.</p>
+
+    <h2>Information We Collect</h2>
+    <p class="text-white">We collect several types of information from and about users of our website, including:</p>
+    <ul>
+        <li>Personal information, such as name, address, email address, and phone number.</li>
+        <li>Financial information, such as account details and transaction history.</li>
+        <li>Technical information, such as IP address, browser type, and device information.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <p class="text-white">We use the information we collect for various purposes, including:</p>
+    <ul>
+        <li>Providing and improving our services.</li>
+        <li>Processing transactions and managing accounts.</li>
+        <li>Communicating with you about our products and services.</li>
+        <li>Ensuring the security of your information and our systems.</li>
+    </ul>
+
+    <h2>Disclosure of Your Information</h2>
+    <p class="text-white">We may disclose your personal information to third parties, including:</p>
+    <ul>
+        <li>Our affiliates and service providers.</li>
+        <li>Regulatory authorities as required by law.</li>
+        <li>Other third parties with your consent.</li>
+    </ul>
+
+    <h2>Your Choices</h2>
+    <p class="text-white">You have the right to:</p>
+    <ul>
+        <li>Access, correct, or delete your personal information.</li>
+        <li>Opt-out of certain data processing activities.</li>
+        <li>Withdraw your consent at any time.</li>
+    </ul>
+
+    <p class="text-white">For more information about your choices, please contact us at brokerbuddy@support.com</p>
+
+    <h2>Changes to Our Privacy Policy</h2>
+    <p class="text-white">We may update our privacy policy from time to time. Any changes will be posted on this page with an
+        updated effective date.</p>
+</div>
+{% endblock %} 
+
+{% block postloadjs %}
+    <script src="{% static 'about/js/about.js' %}"></script> 
+{% endblock %}
