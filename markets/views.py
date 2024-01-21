@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import requests
+from django.contrib import messages
+from .models import UserProfile, StockPosition, Transaction
+from decimal import Decimal
 
 
 def get_market_data(api_key, category, max_items=5):
@@ -62,3 +65,29 @@ def stock_data(request):
         return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories})
 
     return render(request, 'markets/markets.html', {'categories': categories})
+
+
+def trade_stock(request):
+    if request.method == 'POST':
+        user_profile = UserProfile.objects.get(user=request.user)
+        name = request.POST.get('name')
+        quantity = int(request.POST.get('stockSelector'))
+        price = Decimal(request.POST.get('price'))
+        transaction_type = request.POST.get('transaction_type')
+
+        transaction = Transaction.objects.create(
+            user_profile=user_profile,
+            name=name,
+            quantity=quantity,
+            price=price,
+            transaction_type=transaction_type
+        )
+    messages.success('Saved!')
+
+    transactions = Transaction.objects.all()
+
+    template = 'markets/markets.html'
+    context = {
+        transactions
+    }
+    return render(request, template, context)

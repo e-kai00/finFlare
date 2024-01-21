@@ -73,7 +73,7 @@
                           <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">                    
                           <button type="submit" name="transaction_type" value="SELL" class="btn me-2">Sell</button>
                           <button type="submit" name="transaction_type" value="BUY" class="btn">Buy</button>
-                          
+
                         </form>
                       </div>
                     </div>
@@ -83,6 +83,15 @@
                 {% endfor %}
               </div>
           </div>
+
+          <!-- test -->
+          <h1>All Transactions</h1>
+            <ul>
+                {% for transaction in transactions %}
+                    <li>{{ transaction.name }} - {{ transaction.quantity }} at ${{ transaction.price }} ({{ transaction.transaction_type }})</li>
+                {% endfor %}
+            </ul>
+          <!-- end test -->
 
           <form action="" method="post">
             {% csrf_token %}
