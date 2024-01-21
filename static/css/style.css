@@ -195,7 +195,7 @@ form.signup p input {
     justify-content: space-between;
     align-items: center;
     margin-inline: 5em;
-    font-size: .95rem;    
+    font-size: .95rem;
 }
 
 .footer-wrapper .left-content {
@@ -274,7 +274,7 @@ form.signup p input {
 .hero-image {
     background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
     width: 100%;
-    height: 800px;
+    height: 80vh;
     top: 125px;
     background-position: center;
     background-repeat: no-repeat;
@@ -292,26 +292,26 @@ form.signup p input {
     left: 0;
 }
 
-#login-container {
+.account-container {
     background-color: var(--secondary-color);
-    /* add transparency to background color */
     opacity: 0.9;
     position: relative;
-    top: 125px;
-    width: 80%;
     max-width: 600px;
-    /* round the edges */
+    top: 125px;
+    width: 90%;
     border-radius: 10px;
-    /* add a drop shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    /* make the background slighty transparent */
+}
+
+#signup-container{
+    top: 35px;
 }
 
 #login-btn {
     width: 100%;
 }
 
-#login-h3 {
+.account-h3 {
     margin-top: 30px;
     font-weight: bolder;
     margin-bottom: 15px;
