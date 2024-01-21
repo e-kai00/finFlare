@@ -132,10 +132,36 @@
 
 ### Color Scheme
 
+<img src="readme.docs/color.jpg" width="500" alt="image of color palette">
 
+The colors are: Navy Blue, Sky Blue, Teal, Crimson, Dark Grey,  and Off-White.
+These colors are all reflected in the background image.
+
+
+### Typography
+
+- #### Background
+  A background image with stock candles theme was added to the webpage to give a 3D effect and make the heading area look more interactive.
+  As users might expect, they want to feel immersed in the trading market atmosphere, so the team opted for a background that is visually appealing and gives the right impression.
+
+
+
+- #### Fonts
+
+ - <img src="readme.docs/montserrat.jpg" width="500" alt="image of google fonts">
+
+***
+
+
+ - <img src="readme.docs/Roboto.jpg" width="500" alt="image of google fonts">
+
+The chosen fonts for the website were imported using Google Fonts.
+  
+  After careful consideration, the team decided to use the fonts Roboto, Montserrat, and Sans-serif as a fallback font for the text on screens of all sizes. We believe that these fonts offer a great combination of aesthetic appeal and readability, and will help to enhance the overall user experience.
 
 
 ***
+
 
 
 ## Features
@@ -190,47 +216,28 @@
 
 ## Deployment
 
+### Github Pages
 
-## Criteria
+- #### Fork a Repository
+1. Find the repository you want to fork
+2. Find the 'Fork' button to create a new fork
+3. When creating the fork, the name and description can be changed
+4. Click 'Create fork'
 
-In this section, we will briefly discuss how our team addressed the applicable criteria:
+- #### Clone a Repository
+1. Go to the repository you want to clone
+2. Click 'code' and copy the URL
+3. Open a new workspace in your IDE
+4. In a new terminal use the command '$ git clone [your-fork-repository-url]'
+5. Create an Upstream branch to be able to sync with main version of the project
+6. Use command '$ git remote add upstream [main-repository-url]'
+7. To sync, use commands '$ git fetch upstream' and '$ git merge upstream/main'
 
-- 💲 The project has a creative design that enhances user-experience
-- 💲 The project is finance related and has a real world use case
-- 💲 The project is Responsive and accessible on different screen sizes
-- 💲 The project is well-planned using GitHub Projects or other issue board
-- 💲 The project has a well documented README based on the provided template.
-
-# ABOUT SUBMISSION
-
-## Intro
-
-One or two paragraphs providing an overview of our project
-
-## Goal
-
-The goal section provides a concise summary of the main objective or purpose of the project or software described in this README. It addresses the following aspects:
-
-- ➡️ Problem Statement
-- ➡️ Objective(s)
-- ➡️ Target Audience
-- ➡️ Benefits
-
-## Tech
-
-In the tech section, we provide information about the technology stack, dependencies, and any technical details related to the project.
-
-### The key technologies employed in the project include:
-
-HTML <br>
-CSS <br>
-JavaScript <br>
-Bootstrap 5 <br>
-Python <br>
+#### Deploy
 
 ## Credits
 
-In the credits section, we provide information about the sources used
+
 
 ## Members of finFlare Team
 
