@@ -26,12 +26,10 @@
         <div class="col-md-8">
           <div class="row top-section">
               <div class="col-md-4">
-                <h1>Market</h1>
+                <h1>{{ category }} Market</h1>
               </div>
               <div class="col-md-8">
-                <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
-                <a href="{{ window.5D}}" class="m-2 text-decoration-none text-dark">10 Days</a>
-                <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
+                <p>1 Hour update frequence</p>
               </div>
           </div>
           <hr id="market-hr">
@@ -44,17 +42,17 @@
                     <div class="col-1">
                       <div>{{forloop.counter}}.</div>
                     </div>
-                    <div class="col-6 col-lg-2 pr-0">
+                    <div class="col-6 col-xl-2 pr-0">
                       <div>{{ data.name }}</div>
                     </div>
                     
-                    <div class="col-5 col-lg-2">
+                    <div class="col-5 col-xl-2">
                       <div class="right-align">$ {{ data.price|floatformat:2|intcomma }}</div>
                     </div>
-                    <div class="col-6 col-lg-1 pr-0 sm-icons">
+                    <div class="col-6 col-xl-1 pr-0 sm-icons">
                       <div><i class="fas fa-wallet"></i>{% if stockBalance.quantity > 0 %}{{ stockBalance.quantity }}{% else %}0{% endif %}</div>
                     </div>
-                    <div class="col-6 col-lg-2">
+                    <div class="col-6 col-xl-2">
                       <div id="percentage" class="sm-icons">
                         {% if data.price_movement.movement == "Up" %}
                             <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
@@ -64,7 +62,7 @@
                         {{ data.price_movement.percentage|floatformat:2 }} %
                       </div>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-xl-4">
                       <div class="d-flex align-items-center">
                         <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">
                         <button type="button" id="btn-sell" class="btn me-2">Sell</button>
@@ -80,12 +78,11 @@
           <form action="" method="post">
             {% csrf_token %}
             <label for="stockSelector">Select List Category:</label>
-            <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
-                  name="stockSelector">
-                  {% for category in categories %}
-                    <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
-                  {% endfor %}
-          </select>
+            <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example" name="stockSelector">
+              {% for category in categories %}
+                  <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+              {% endfor %}
+            </select>
             <br>
             <div class="d-grid gap-2 mt-2">
                 <input class="btn btn-signup mb-3" type="submit" value="Submit">
