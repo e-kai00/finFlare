@@ -70,10 +70,13 @@ def stock_data(request):
         selected_category: get_market_data(api_key, selected_category),
     }
 
-        return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories})
+    return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories})
+###################################################
+#### API serpapi view functions - ENDS HERE #######
+###################################################
 
-    return render(request, 'markets/markets.html', {'categories': categories})
 
+# View for stock,user
 
 
 
