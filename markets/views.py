@@ -3,59 +3,62 @@ from django.conf import settings
 import requests
 
 
-def stock_data(request):
-    """
-    View function to retrieve stock market data and render it in the template.
-
-    This function queries the SerpApi Google Finance endpoint for stock market data
-    based on a list of stock symbols. It limits the data to a maximum number of items
-    defined by 'max_items' and renders the results in the 'markets/markets.html' template.
-
-    Parameters:
-    - request: Django HttpRequest object
-
-    Returns:
-    - HttpResponse: Rendered HTML response containing stock market data
-    """
-
-    api_key = settings.API_KEY
+def get_market_data(api_key, category, max_items=5):
     base_url = "https://serpapi.com/search.json"
+    category = 'us' if category == 'Stocks US' else category.lower()
+    symbols = {
+        'us': ['DJI:INDEXDJX', 'SPX:INDEXSP', 'COMP:INDEXNASDAQ', 'RUT:INDEXRUS', 'VIX:INDEXCBOE'],
+        'crypto': ['BTC:USD', 'ETH:USD', 'ADA:USD', 'XRP:USD', 'DOGE:USD'],
+        'currencies': ['EUR:USD', 'USD:JPY', 'GBP:USD', 'USD:CAD', 'AUD:USD'],
+        'futures': ['YMW00:CBOT', 'ESW00:CME_EMINIS', 'NQW00:CME_EMINIS', 'GCW00:COMEX', 'CLW00:NYMEX'],
+    }
 
-    stocks = ['DJI:INDEXDJX', 'SPX:INDEXSP', 'COMP:INDEXNASDAQ', 'RUT:INDEXRUS', 'VIX:INDEXCBOE']
-    max_items = 5  # Max rending items
+    symbols_list = symbols.get(category, [])
+    market_data_list = []
 
-    stock_data_list = []
-
-    for stock in stocks:
+    for symbol in symbols_list:
         params = {
             'engine': 'google_finance',
-            'q': stock,
+            'q': symbol,
             'api_key': api_key
         }
 
         response = requests.get(base_url, params=params)
         data = response.json()
+        print(data)
+        market_info_list = data.get('markets', {}).get(category.lower(), [])
 
-        stock_info_list = data.get('markets', {}).get('us', [])
-
-        for stock_info in stock_info_list:
-            print(data)
-            stock_data_list.append({
-                'symbol': stock.split(':')[0],
-                'name': stock_info.get('name', ''),
-                'price': stock_info.get('price', ''),
+        for market_info in market_info_list:
+            market_data_list.append({
+                'symbol': symbol.split(':')[0],
+                'name': market_info.get('name', ''),
+                'price': market_info.get('price', ''),
                 'price_movement': {
-                    'movement': stock_info.get('price_movement', {}).get('movement', ''),
-                    'percentage': stock_info.get('price_movement', {}).get('percentage', 0),
+                    'movement': market_info.get('price_movement', {}).get('movement', ''),
+                    'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
             })
-            
-            # Check if we have reached the maximum number of items
-            if len(stock_data_list) >= max_items:
-                break
 
-        # Check if we have reached the maximum number of items
-        if len(stock_data_list) >= max_items:
+        if len(market_info_list) >= max_items:
             break
 
-    return render(request, 'markets/markets.html', {'stock_data': stock_data_list})
+    return market_data_list
+
+
+def stock_data(request):
+    api_key = settings.API_KEY
+    categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
+
+    if request.method == 'POST':
+        selected_category = request.POST.get('stockSelector')
+        if selected_category in categories:
+            combined_data = {
+                selected_category: get_market_data(api_key, selected_category),
+            }
+            print(combined_data)
+        else:
+            combined_data = {}  # handle invalid category selection
+
+        return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories})
+
+    return render(request, 'markets/markets.html', {'categories': categories})
