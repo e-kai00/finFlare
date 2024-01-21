@@ -30,7 +30,7 @@
               </div>
               <div class="col-md-8">
                 <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
-                <a href="#" class="m-2 text-decoration-none text-dark">10 Days</a>
+                <a href="{{ window.5D}}" class="m-2 text-decoration-none text-dark">10 Days</a>
                 <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
               </div>
           </div>
@@ -38,25 +38,26 @@
           
           <div class="table mb-4">
               <div class="container market-container">
-                {% for stock_info in stock_data %}
+                {% for category, data_list in combined_data.items %}
+                  {% for data in data_list %}
                   <div class="row border-bottom pb-3 mb-3 stock-row">
                     <div class="col-1">
                       <div>{{forloop.counter}}.</div>
                     </div>
                     <div class="col-6 col-md-2 pr-0">
-                      <div>{{ stock_info.name }}</div>
+                      <div>{{ data.name }}</div>
                     </div>
                     <div class="col-5 col-md-3">
-                      <div class="right-align">$ {{ stock_info.price|floatformat:2|intcomma }}</div>
+                      <div class="right-align">$ {{ data.price|floatformat:2|intcomma }}</div>
                     </div>
                     <div class="col-12 col-md-2">
                       <div id="percentage">
-                        {% if stock_info.price_movement.percentage >= 0 %}
-                          <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
-                        {% else %}
-                          <i class="fa-solid fa-arrow-trend-down" style="color: #db143c;"></i>
+                        {% if data.price_movement.movement == "Up" %}
+                            <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
+                        {% elif data.price_movement.movement == "Down" %}
+                            <i class="fa-solid fa-arrow-trend-down" style="color: #db143c;"></i>
                         {% endif %}
-                        {{ stock_info.price_movement.percentage|floatformat:2 }} %
+                        {{ data.price_movement.percentage|floatformat:2 }} %
                       </div>
                     </div>
                     <div class="col-12 col-md-4">
@@ -67,19 +68,20 @@
                       </div>
                     </div>
                   </div>
+                  {% endfor %} 
                 {% endfor %}
               </div>
           </div>
 
           <form action="" method="post">
             {% csrf_token %}
-            <label for="stockSelector">Select Stocks:</label>
+            <label for="stockSelector">Select List Category:</label>
             <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
-                    name="stockSelector">
-                {% for data in stock_data %}
-                    <option value="{{ data.symbol }}">{{ data.symbol }}</option>
-                {% endfor %}
-            </select>
+                  name="stockSelector">
+                  {% for category in categories %}
+                    <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+                  {% endfor %}
+          </select>
             <br>
             <div class="d-grid gap-2 mt-2">
                 <input class="btn btn-signup mb-3" type="submit" value="Submit">
