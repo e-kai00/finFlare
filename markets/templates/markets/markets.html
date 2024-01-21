@@ -26,12 +26,10 @@
         <div class="col-md-8">
           <div class="row top-section">
               <div class="col-md-4">
-                <h1>Market</h1>
+                <h1>{{ category }} Market</h1>
               </div>
               <div class="col-md-8">
-                <a href="#" class="m-2 text-decoration-none text-dark">1 Days</a>
-                <a href="{{ window.5D}}" class="m-2 text-decoration-none text-dark">10 Days</a>
-                <a href="#" class="m-2 text-decoration-none text-dark">30 Days</a>
+                <p>1 Hour update frequence</p>
               </div>
           </div>
           <hr id="market-hr">
@@ -80,12 +78,11 @@
           <form action="" method="post">
             {% csrf_token %}
             <label for="stockSelector">Select List Category:</label>
-            <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example"
-                  name="stockSelector">
-                  {% for category in categories %}
-                    <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
-                  {% endfor %}
-          </select>
+            <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example" name="stockSelector">
+              {% for category in categories %}
+                  <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+              {% endfor %}
+            </select>
             <br>
             <div class="d-grid gap-2 mt-2">
                 <input class="btn btn-signup mb-3" type="submit" value="Submit">
