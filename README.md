@@ -8,7 +8,7 @@
 
 ## Deployment
 
-The project is deployed and can be accessed at [http://your-deployed-link.com](http://your-deployed-link.com).
+The project is deployed and can be accessed at [http://your-deployed-link.com](https://finflare-9057c20c8176.herokuapp.com/).
 
 ## Criteria
 
