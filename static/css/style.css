@@ -43,6 +43,17 @@ i {
     font-size: 30px !important;
     margin-right: 20px;
 }
+
+a {
+    color: var(--accent-color-1);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a:active {
+    color: var(--primary-color);
+}
+
 /* Global Styles Ends */
 
 body {
@@ -291,4 +302,8 @@ form.signup p input {
 
 #login-btn {
     width: 100%;
+}
+
+#login-h3 {
+    margin-top: 30px;
 }

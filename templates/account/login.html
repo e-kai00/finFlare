@@ -17,9 +17,9 @@
     <div class="container" id="login-container">
         <div class="row">
             <div class="col-md-8 mt-3 offset-md-2 text-center">
-                <h3>{% trans "LOG IN" %}</h3>
+                <h3 id="login-h3">{% trans "LOG IN" %}</h3>
                 <p>{% blocktrans %}Welcome back to Broker Buddy.{% endblocktrans %}</p>
-                <p>{% blocktrans %}If you have not created an account yet, then please
+                <p id="signup-url">{% blocktrans %}If you have not created an account yet, then please
                     <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
             </div>
         </div>
