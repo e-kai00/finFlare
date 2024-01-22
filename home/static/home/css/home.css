@@ -25,8 +25,10 @@
 
 .welcome-section {
   position: absolute;
-  top: 40%;
-  left: 70%;
+  top: 323px;
+  width: 90%;
+  left: 50%;
+  margin: auto;
   transform: translate(-50%, -50%);
   background-color: #8cbfd3c7;
   padding: 20px;
@@ -46,4 +48,12 @@ button {
     width: 100%;
     border-radius: 5px;
     letter-spacing: 1.5px;
+}
+
+/* on smaller screens */
+@media screen and (max-width: 1025px) { /* Adjust breakpoint as needed */
+
+  #home-container button {
+      margin-bottom: 10px;
+  }
 }
