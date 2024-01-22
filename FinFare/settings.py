@@ -20,7 +20,11 @@ API_KEY = os.environ.get("API_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('LOCALHOST'), 'finflare-9057c20c8176.herokuapp.com', '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = [
+    'finflare-9057c20c8176.herokuapp.com/'
+    '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io', 
+    '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io', 
+    '127.0.0.1']
 
 
 # Application definition
@@ -144,6 +148,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
