@@ -12,14 +12,17 @@
 <!-- Background Image content section here-->
 <div class="hero">
     <section>
-        <div class="container">
+        <div class="container" id="home-container">
             <div class="row welcome-section d-flex welcome-text">
-                <h1>Welcome to Broker Buddy!</h1>Welcome to Broker Buddy!
-                <p>Other text</p>
-                <a class="col-4" href="{% url 'account_login' %}">
+                <h1>Welcome to Broker Buddy!</h1>
+                <p class="pt-2 pb-1 sm">Step into the world of trading with Broker Buddy. 
+                    Experience the thrill of the stock market through 
+                    our risk-free simulator. Hone your skills and strategies 
+                    – where practice makes profit.</p>
+                <a class="col-md-4" href="{% url 'account_login' %}">
                     <button class="btn-signup">Login</button>
                 </a>
-                <a class="col-4" href="{% url 'account_signup' %}">
+                <a class="col-md-4" href="{% url 'account_signup' %}">
                     <button class="btn-signup">Signup</button>
                 </a>
             </div>
