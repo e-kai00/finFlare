@@ -70,8 +70,40 @@ def stock_data(request):
         selected_category: get_market_data(api_key, selected_category),
     }    
 
+    # wallet display values
+    user = request.user    
+    try: 
+        user_portfolio = UserAccountPortfolio.objects.get(user=user)
+        balance = user_portfolio.balance
+        
+        user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
+        open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
     
-    return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories })
+        stock_names = []
+        stock_quantities = []
+
+        for position in open_positions:
+            stock_names.append(position.stock)
+            stock_quantities.append(position.quantity)   
+
+        context = {
+            'balance': balance,
+            'stock_names': stock_names,
+            'stock_quantities': stock_quantities,
+        } 
+
+    except: 
+        context = {
+            'balance': 10000.0,
+            'stock_names': [],
+            'stock_quantities': [],
+        }
+    
+    return render(request, 'markets/markets.html', {
+        'combined_data': combined_data, 
+        'selected_category': selected_category, 
+        'categories': categories, 
+        **context })
 ###################################################
 #### API serpapi view functions - ENDS HERE #######
 ###################################################
