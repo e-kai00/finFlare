@@ -147,12 +147,7 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
 STATIC_URL = "/static/"
-STATICFILES_STORAGE = (
-    "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
-)
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
