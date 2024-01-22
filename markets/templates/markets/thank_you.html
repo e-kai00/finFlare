@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'markets/css/markets.css' %}">
+{% endblock %}
+
+{% block extra_title %} - Thank you {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <h1>Thank you for buying</h1>
+        </div>
+        <div class="col-12 mt-4">
+            <button class="btn-signup btn"><a class="nav-link {% if request.path == markets_url %}active" aria-current="page{% endif %}"
+                href="{% url 'markets' %}"><strong>Go Back To Dashboard</strong></a></button>
+        </div>
+    </div>
+    
+</div>
+{% endblock %} 
+
+{% block postloadjs %}
+    <script src="{% static 'markets/js/markets.js' %}"></script> 
+{% endblock %}

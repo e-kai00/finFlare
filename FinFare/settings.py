@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 API_KEY = os.environ.get("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [(os.environ.get('LOCALHOST')), (os.environ.get('HEROKU_HOSTNAME')), '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io', '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io', '127.0.0.1']
 
