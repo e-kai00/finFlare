@@ -311,7 +311,7 @@ form.signup p input {
 .hero-image {
     background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
     width: 100%;
-    height: 80vh;
+    height: 110vh;
     top: 125px;
     background-position: center;
     background-repeat: no-repeat;
@@ -342,6 +342,7 @@ form.signup p input {
 
 #signup-container{
     top: 35px;
+    height: 795px !important;
 }
 
 .login-btn {
@@ -358,4 +359,16 @@ input, textarea, select {
     background-color: var(--background-color)!important;
     padding: 10px;
     border-color: var(--secondary-color) !important;
+}
+
+#outer-login {
+    height: 554px;
+    position: relative;
+    top: -173px;
+}
+
+#outer-signup {
+    height: 800px;
+    position: relative;
+    top: -173px;
 }
