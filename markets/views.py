@@ -192,4 +192,5 @@ def trade_stock(request):
 
         return render(request, 'markets/markets.html')
 
-    return render(request, 'markets/markets.html')
+    # return render(request, 'markets/markets.html')
+    return render(request, 'markets/trade_stock.html')
