@@ -81,6 +81,10 @@ nav .nav-link {
     width: auto;
 }
 
+#container-drop-down {
+    background-color: var(--primary-color) !important;
+}
+
 .navbar-toggler-icon {
     filter: invert(1) grayscale(1) brightness(20);
 }
@@ -95,6 +99,10 @@ nav .nav-link {
 
 .navbar .dropdown-menu {
     background-color: var(--primary-color) !important; 
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--background-color) !important; /* Change to your desired color */
 }
 
 .main-container {
@@ -295,10 +303,6 @@ form.signup p input {
 
     .brand {
         font-size: 1.5rem;
-    }
-
-    #container-drop-down {
-        background-color: var(--primary-color) !important;
     }
 }
 
