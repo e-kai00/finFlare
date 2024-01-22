@@ -78,6 +78,7 @@ nav .nav-link {
 
 .navbar-toggler, .navbar-toggler:active {
     border: none;
+    width: auto;
 }
 
 .navbar-toggler-icon {
@@ -181,9 +182,21 @@ nav .nav-link {
 }
 
 .btn-signup:hover {
-    background-color: var(--secondary-color);    
+    background-color: var(--background-color);    
     transform: scale(0.95);
     color: var(--primary-color);
+}
+
+.btn-custom {
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+    transition: transform 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--secondary-color) !important;    
+    transform: scale(0.95);
+    color: var(--primary-color) !important;
 }
 
 form.login p label:not([for="id_remember"]),
