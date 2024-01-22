@@ -70,6 +70,7 @@ def stock_data(request):
         selected_category: get_market_data(api_key, selected_category),
     }    
 
+    
     return render(request, 'markets/markets.html', {'combined_data': combined_data, 'selected_category': selected_category, 'categories': categories })
 ###################################################
 #### API serpapi view functions - ENDS HERE #######
@@ -84,7 +85,13 @@ def trade_stock(request):
 
         user_profile = UserAccountPortfolio.objects.get(user=request.user)
         name = request.POST.get('name')
-        quantity = int(request.POST.get('stockSelector'))
+
+        quantity_str = request.POST.get('stockSelector')
+        if not quantity_str:
+            messages.error(request, "Please provide a valid quantity.")
+            return render(request, 'markets/markets.html')         
+        quantity = int(quantity_str)
+
         price = Decimal(request.POST.get('price'))
         transaction_type = request.POST.get('transaction_type')
 
@@ -111,7 +118,7 @@ def trade_stock(request):
             # Find the matching buy position to update
             buy_position = StockBalance.objects.filter(
                 user=user_profile,
-                stock__symbol=name,
+                stock=name,
                 is_buy_position=True,
             ).first()
 
@@ -119,7 +126,7 @@ def trade_stock(request):
     
                 buy_position = StockBalance.objects.create(
                     user=user_profile,
-                    stock=Stock.objects.get(symbol=name),
+                    stock=name,
                     quantity=quantity,  
                     purchase_price=price,  
                     is_buy_position=True,
@@ -138,42 +145,19 @@ def trade_stock(request):
         elif transaction_type == 'SELL':
             total_cost = quantity * price
             sell_position = StockBalance.objects.get(
-                user_profile=user_profile,
-                stock__symbol=name,
+                user=user_profile,
+                stock=name,
                 is_buy_position=True,
             )
-
-            if sell_position.quantity != quantity:
-                messages.error(request, f"You can only sell the entire position, not a partial quantity.")
-                return render(request, 'markets/markets.html')
-
+            
             # Update user's balance and delete the buy position
             user_profile.balance += quantity * price
             user_profile.save()
 
             sell_position.delete()
 
-            messages.success(request, f"You have successfully sold the entire position of {name}.")
+            messages.success(request, f"You have successfully sold the position of {name}.")
 
         return render(request, 'markets/markets.html')
 
     return render(request, 'markets/markets.html')
-
-
-
-
-def test_trade_stock(request):
-    # Replace the following with realistic data for testing
-    dummy_data = {
-        'user': request.user,
-        'name': 'AAPL',
-        'quantity': 10,
-        'price': 150.0,
-        'transaction_type': 'BUY',
-    }
-
-    return render(request, 'markets/markets.html', dummy_data)
-
-
-
-
