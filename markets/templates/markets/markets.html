@@ -86,14 +86,38 @@
           </div>
 
           <!-- test -->
-          <!-- <h1>FORM TEST</h1>         
-
           <h1>All Transactions</h1>
             <ul>
                 {% for transaction in transactions %}
-                    <li>{{ transaction.name }} - {{ transaction.quantity }} at ${{ transaction.price }} ({{ transaction.transaction_type }})</li>
+                    <li>
+                        Type: {{ transaction.transaction_type }} |
+                        Name: {{ transaction.name }} |
+                        Quantity: {{ transaction.quantity }} |
+                        Price: ${{ transaction.price }} |
+                        Timestamp: {{ transaction.timestamp }}
+                    </li>
                 {% endfor %}
-            </ul> -->          
+
+                <h1>Test Trade Stock</h1>
+
+                  <p>User: {{ user }}</p>
+                  <p>Name: {{ name }}</p>
+                  <p>Quantity: {{ quantity }}</p>
+                  <p>Price: {{ price }}</p>
+                  <p>Transaction Type: {{ transaction_type }}</p>
+                              </ul>    
+          <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
+              {% csrf_token %}
+
+              <input type="hidden" name="name" value="APPL">
+              <input type="hidden" name="price" value="100">
+              <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">                    
+              <button type="submit" name="transaction_type" value="SELL" id="btn-btn-sell" class="btn me-2 btn-sell">Sell</button>
+              <button type="submit" name="transaction_type" value="BUY" id="btn-btn-buy" class="btn btn-buy">Buy</button>
+
+            </form>                      
+                              
+                              
           <!-- end test -->
 
           
