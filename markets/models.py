@@ -18,7 +18,7 @@ class StockBalance(models.Model):
     Current Balance and purschase of User (open positions)
     """
     user = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    stock = models.CharField(max_length=30)
     quantity = models.PositiveIntegerField()
     purchase_price = models.DecimalField(max_digits=10, decimal_places=4) 
     is_buy_position = models.BooleanField(default=True)
