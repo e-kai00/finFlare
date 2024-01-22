@@ -1,3 +1,25 @@
-h1 {
-    font-size: 24px;
+.sky-blue-bg {
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 50px 20px 20px;
+}
+
+.social-btns {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.social-btns a {
+    margin-bottom: 15px;
+}
+
+.social-btns a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-row-about-us {
+    margin-bottom: 15px;
 }
