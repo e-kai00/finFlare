@@ -10,4 +10,4 @@ urlpatterns = [
     path('about/', include('about.urls'), name='about'), 
     path('contact/', include('contact.urls'), name='contact'), 
     path('markets/', include('markets.urls'), name='markets'),  
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
