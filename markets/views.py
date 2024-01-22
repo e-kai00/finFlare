@@ -4,7 +4,8 @@ import requests
 from django.contrib import messages
 from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 ####################################################
 #### API serpapi view functions - Fetching Data ####
@@ -112,9 +113,7 @@ def stock_data(request):
 # View for stock,user
 
 def trade_stock(request):
-   
     if request.method == 'POST':
-
         user_profile = UserAccountPortfolio.objects.get(user=request.user)
         name = request.POST.get('name')
 
@@ -127,13 +126,13 @@ def trade_stock(request):
         price = Decimal(request.POST.get('price'))
         transaction_type = request.POST.get('transaction_type')
 
-       # Check if enough balance 
+        # Check if enough balance 
         if transaction_type == 'BUY':
             total_cost = quantity * price
             if user_profile.balance < total_cost:
                 messages.error(request, "Insufficient funds to complete the purchase.")
                 return render(request, 'markets/markets.html')
-       
+
         transaction = Transaction.objects.create(
             user_profile=user_profile,
             name=name,
@@ -141,6 +140,10 @@ def trade_stock(request):
             price=price,
             transaction_type=transaction_type,
         )
+
+        # Update the fetch URLs to match your Django views for buying and selling stocks
+        fetch_url_buy = '/buy_stock/'
+        fetch_url_sell = '/sell_stock/'
 
         # Update the user's account balance and update the buy position
         if transaction_type == 'BUY':
@@ -155,7 +158,6 @@ def trade_stock(request):
             ).first()
 
             if buy_position is None:
-    
                 buy_position = StockBalance.objects.create(
                     user=user_profile,
                     stock=name,
@@ -193,3 +195,26 @@ def trade_stock(request):
         return render(request, 'markets/markets.html')
 
     return render(request, 'markets/markets.html')
+@csrf_exempt
+def buy_stock(request):
+    if request.method == 'POST':
+        user = request.user
+        stock_name = request.POST.get('stockName', '')
+        quantity = float(request.POST.get('quantity', 0))
+
+        # Perform logic to buy stocks (update UserAccountPortfolio and StockBalance)
+        # Update user balance, add stocks, update transactions, etc.
+
+        return JsonResponse({"message": "Buy request received"})
+
+@csrf_exempt
+def sell_stock(request):
+    if request.method == 'POST':
+        user = request.user
+        stock_name = request.POST.get('stockName', '')
+        quantity_to_sell = float(request.POST.get('quantityToSell', 0))
+
+        # Perform logic to sell stocks (update UserAccountPortfolio and StockBalance)
+        # Update user balance, remove stocks, update transactions, etc.
+
+        return JsonResponse({"message": "Sell request received"})
