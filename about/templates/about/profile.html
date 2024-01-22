@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'about/css/about.css' %}">
+{% endblock %}
+
+{% block extra_title %} - Settings {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <h3>Settings for <span class="text-muted">{{ user }}</span></h3>
+        <hr>
+    </div>
+    <div class="row text-center">
+        <div class="col-12 col-md-4"><a href="{% url 'account_change_password' %}"><button class="btn btn-signup right m-2 fixed-sized">Change Password</button></a></div>
+        <div class="col-12 col-md-4"><a href="{% url 'account_logout' %}"><button class="btn btn-signup right m-2 fixed-sized">Log out</button></a></div>
+        <div class="col-12 col-md-4"><a href="#cancelModal" data-toggle="modal" class="btn btn-signup right m-2 fixed-sized"></i>Delete Account</a></div>
+    </div>
+
+    <!-- Popup Modal for DELETE profile confirmation -->
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelModalLabel"><strong>Account confirmation</strong></h5>
+                    <button type="button" class="close btn btn-signup" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><strong>&times;</strong></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">ARE YOU SURE?</h3>
+                    <p class="text-center mx-auto">This action will permanently delete your account and all associated data!</p>
+                    <p class="text-center">Please be aware that this action is not reversible!</p>
+                    <div class="form-check text-center">
+                        <input class="form-check-input" type="checkbox" id="confirmationCheckbox">
+                        <label class="form-check-label" for="confirmationCheckbox">
+                            I understand and confirm
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-signup right m-2 fixed-sized text-uppercase" data-dismiss="modal">Cancel</button>
+                    <a href="{% url 'profile_delete' user.id %}" class="btn btn-signup rounded-0 text-uppercase disabled" id="closeAccountBtn">Delete Account</a>
+                </div>
+            </div>
+        </div>
+</div> 
+{% endblock %} 
+
+{% block postloadjs %}
+    <script src="{% static 'about/js/about.js' %}"></script> 
+
+    <script>
+        // Checkbox marked before closing button will be available
+        document.getElementById('confirmationCheckbox').addEventListener('change', function () {
+            const closeAccountBtn = document.getElementById('closeAccountBtn');
+            closeAccountBtn.disabled = !this.checked;
+            closeAccountBtn.classList.toggle('disabled', !this.checked);
+        });
+    </script>
+{% endblock %}

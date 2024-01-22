@@ -23,3 +23,20 @@
 #top-row-about-us {
     margin-bottom: 15px;
 }
+
+.fixed-sized{
+    width:  175px;
+}
+
+.form-check-input{
+    width: 20px !important;
+    height: 20px !important;
+    color: black !important;
+    border: 1px solid rgb(32, 32, 32) !important;
+}
+
+.form-check-input:checked {
+    background-color: #00ff00 !important;
+    border-color: #00ff00 !important;
+    color: black !important; 
+}
