@@ -9,6 +9,10 @@ function updateBalances() {
     const accountBalance = parseFloat(localStorage.getItem('accountBalance')) || 0;
     const userStocks = JSON.parse(localStorage.getItem('userStocks')) || {};
 
+    if (accountBalance === 0 && Object.keys(userStocks).length === 0) {
+        handleResetClick();
+    }
+
     document.getElementById('account-balance').textContent = accountBalance.toFixed(2);
     updateStockBalances(userStocks);
 }
@@ -21,7 +25,8 @@ function handleBuyClick(event) {
     const li = event.target.closest('li');
     const stockName = li.childNodes[0].textContent.trim().toLowerCase();
     const input = li.querySelector('input[type="text"]');
-    const quantity = parseFloat(input.value);
+    const quantityString = input.value.replace(/,/g, '');
+    const quantity = parseFloat(quantityString);
     const stockPriceElement = li.querySelector('.stock-price');
     const price = parseFloat(stockPriceElement.textContent.replace('$', '').replace(',', ''));
 
@@ -50,7 +55,6 @@ function handleBuyClick(event) {
     }
 }
 
-// Add this function to your code
 function clearInputField(event) {
     const input = event.target.closest('li').querySelector('input[type="text"]');
     input.value = '';
@@ -64,7 +68,8 @@ function handleSellClick(event) {
     const li = event.target.closest('li');
     const stockName = li.childNodes[0].textContent.trim().toLowerCase();
     const input = li.querySelector('input[type="text"]');
-    const quantityToSell = parseFloat(input.value);
+    const quantityToSellString = input.value.replace(/,/g, '');
+    const quantityToSell = parseFloat(quantityToSellString);
     const stockPriceElement = li.querySelector('.stock-price');
     const price = parseFloat(stockPriceElement.textContent.replace('$', '').replace(',', ''));
 
@@ -123,7 +128,7 @@ function updateStockBalances(userStocks) {
         totalStockBalanceValue += quantity * (stockPrices[stock.toLowerCase()] || 0);
     }
 
-    stockBalanceElement.textContent = `$${totalStockBalanceValue.toFixed(2)}`;
+    stockBalanceElement.textContent = `${totalStockBalanceValue.toFixed(2)}`;
 
     if (totalStockBalanceValue === 0) {
         stockBalanceElement.textContent = '0.00';
@@ -135,7 +140,8 @@ function updateTotalBalance() {
     const accountBalance = parseFloat(localStorage.getItem('accountBalance') || '10000');
     const stockBalance = parseFloat(document.getElementById('stock-balance').textContent.replace('$', '').replace(',', ''));
 
-    document.getElementById('total').textContent = `$${(accountBalance + stockBalance).toFixed(2)}`;
+    const totalBalance = accountBalance + stockBalance;
+    document.getElementById('total').textContent = `${totalBalance.toFixed(2)}`;
 }
 
 // Initialize event listeners
