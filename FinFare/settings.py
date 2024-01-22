@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 API_KEY = os.environ.get("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('LOCALHOST'), 'finflare-9057c20c8176.herokuapp.com', '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io']
 
