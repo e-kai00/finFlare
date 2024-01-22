@@ -43,6 +43,17 @@ i {
     font-size: 30px !important;
     margin-right: 20px;
 }
+
+a {
+    color: var(--accent-color-1);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a:active {
+    color: var(--primary-color);
+}
+
 /* Global Styles Ends */
 
 body {
@@ -65,12 +76,33 @@ nav .nav-link {
     align-items: center;
 }
 
+.navbar-toggler, .navbar-toggler:active {
+    border: none;
+    width: auto;
+}
+
+#container-drop-down {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) grayscale(1) brightness(20);
+}
+
 .navbar-text .dropdown-toggle::after {
     content: none;  /* This removes the arrow */
 }
 
 .navbar-text .dropdown-toggle .fa-user-circle {
     margin-right: 0;  /* Adjust as needed */
+}
+
+.navbar .dropdown-menu {
+    background-color: var(--primary-color) !important; 
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--background-color) !important; /* Change to your desired color */
 }
 
 .main-container {
@@ -158,8 +190,21 @@ nav .nav-link {
 }
 
 .btn-signup:hover {
-    background-color: var(--secondary-color);    
+    background-color: var(--background-color);    
     transform: scale(0.95);
+    color: var(--primary-color);
+}
+
+.btn-custom {
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+    transition: transform 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--secondary-color) !important;    
+    transform: scale(0.95);
+    color: var(--primary-color) !important;
 }
 
 form.login p label:not([for="id_remember"]),
@@ -183,7 +228,7 @@ form.signup p input {
     justify-content: space-between;
     align-items: center;
     margin-inline: 5em;
-    font-size: .95rem;    
+    font-size: .95rem;
 }
 
 .footer-wrapper .left-content {
@@ -255,4 +300,86 @@ form.signup p input {
     .footer-wrapper .center-content {
         padding-block: .5em;
     }
+
+    .brand {
+        font-size: 1.5rem;
+    }
+}
+
+/* ------------------- LOGIN PAGE ------------------- */
+
+.hero-image {
+    background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
+    width: 100%;
+    height: 100vh;
+    top: 125px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+#hero-login.hero-image {
+    height: 75vh;
+}
+
+/* on smaller screens */
+@media (max-width: 576px) {
+    #hero-signup {
+        height: 110vh;
+    }
+}
+
+.hero-image::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.account-container {
+    background-color: var(--secondary-color);
+    opacity: 0.9;
+    position: relative;
+    max-width: 600px;
+    top: 50px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+#signup-container{
+    top: 35px;
+    height: 795px !important;
+}
+
+.login-btn {
+    width: 100%;
+}
+
+.account-h3 {
+    margin-top: 30px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+input, textarea, select {
+    background-color: var(--background-color)!important;
+    padding: 10px;
+    border-color: var(--secondary-color) !important;
+}
+
+#outer-login {
+    height: 554px;
+    position: relative;
+    top: -173px;
+}
+
+#outer-signup {
+    height: 800px;
+    position: relative;
+    top: -173px;
 }

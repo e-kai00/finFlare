@@ -15,7 +15,7 @@
 .hero {
   position: absolute;
   top: 25px;
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
   background-image: url("../images/bg-image.jpg");
   background-position: center;
@@ -25,8 +25,10 @@
 
 .welcome-section {
   position: absolute;
-  top: 40%;
-  left: 70%;
+  top: 323px;
+  width: 90%;
+  left: 50%;
+  margin: auto;
   transform: translate(-50%, -50%);
   background-color: #8cbfd3c7;
   padding: 20px;
@@ -46,4 +48,21 @@ button {
     width: 100%;
     border-radius: 5px;
     letter-spacing: 1.5px;
+}
+
+.row.welcome-section.d-flex.welcome-text p:first-of-type span:first-child {
+  font-size: 21px;
+  font-weight: 900;
+}
+.row.welcome-section.d-flex.welcome-text p:nth-of-type(2) span {
+  font-size: 21px;
+  font-weight: 900;
+}
+
+/* on smaller screens */
+@media screen and (max-width: 1025px) { /* Adjust breakpoint as needed */
+
+  #home-container button {
+      margin-bottom: 10px;
+  }
 }

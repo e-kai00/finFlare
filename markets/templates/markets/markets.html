@@ -29,7 +29,7 @@
                 <h1>{{ category }} Market</h1>
               </div>
               <div class="col-md-8">
-                <p>1 Hour update frequency</p>
+                <p class="text-bold muted">1 Hour update frequency</p>
               </div>
           </div>
           <hr id="market-hr">
@@ -68,49 +68,21 @@
 
                         <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
                           {% csrf_token %}
-
                           <input type="hidden" name="name" value="{{ data.name }}">
                           <input type="hidden" name="price" value="{{ data.price }}">
-                          <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">                    
+                          <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="quantitySelector">
                           <button type="submit" name="transaction_type" value="SELL" id="btn-btn-sell" class="btn me-2 btn-sell">Sell</button>
                           <button type="submit" name="transaction_type" value="BUY" id="btn-btn-buy" class="btn btn-buy">Buy</button>
-
-                        </form>
+                      </form>
                       </div>
                     </div>
-
                   </div>
                   {% endfor %} 
                 {% endfor %}
               </div>
           </div>
 
-          <!-- test -->
-          <!-- <h1>FORM TEST</h1>
-          <div class="col-12 col-md-4">
-            <div class="d-flex align-items-center">
-
-              <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
-                {% csrf_token %}
-
-                <input type="hidden" name="name" value="DOW JOW">
-                <input type="hidden" name="price" value="89">
-                <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="stockSelector">                    
-                <button type="submit" name="transaction_type" value="SELL" class="btn me-2">Sell</button>
-                <button type="submit" name="transaction_type" value="BUY" class="btn">Buy</button>
-
-              </form>
-            </div>
-          </div>
-
-          <h1>All Transactions</h1>
-            <ul>
-                {% for transaction in transactions %}
-                    <li>{{ transaction.name }} - {{ transaction.quantity }} at ${{ transaction.price }} ({{ transaction.transaction_type }})</li>
-                {% endfor %}
-            </ul> -->
-          <!-- end test -->
-
+          <!-- List Selection Category -->
           <form action="" method="post">
             {% csrf_token %}
             <label for="stockSelector">Select List Category:</label>
@@ -121,7 +93,7 @@
             </select>
             <br>
             <div class="d-grid gap-2 mt-2">
-                <input class="btn btn-signup mb-3" type="submit" value="Submit">
+                <input class="btn btn-custom mb-3" type="submit" value="Submit">
             </div>
           </form>
         </div>

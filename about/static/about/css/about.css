@@ -1,3 +1,48 @@
-h1 {
-    font-size: 24px;
+.sky-blue-bg {
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 50px 20px 20px;
+}
+
+.social-btns {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.social-btns a {
+    margin-bottom: 15px;
+}
+
+.social-btns a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-row-about-us {
+    margin-bottom: 15px;
+}
+
+.fixed-sized{
+    width:  175px;
+}
+
+.form-check-input{
+    width: 12px !important;
+    height: 12px !important;
+    border: 1px solid rgb(32, 32, 32) !important;
+}
+
+.form-check-input:checked {
+    background-color: #00ff00 !important;
+    border-color: #00ff00 !important;
+    color: black !important; 
+}
+
+@media (max-width: 576px) {
+    /* Adjust styles for smaller screens */
+    .modal-footer {
+        justify-content: center !important;
+    }
 }
