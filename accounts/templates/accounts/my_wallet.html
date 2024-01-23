@@ -88,14 +88,18 @@
         <div class="row stock-row">
           <!-- If user has stocks show stock list, else show message "Buy some stocks" -->
           <div class="row">
-            {% if stock_names %}    
 
-              {% for stock in stock_names %}
-              <p>Name: {{ stock }}</p>
-              
-              {% endfor %}         
-
-            {% else %}
+              {% if stock_names %}    
+                <div class="col-12 text-center">
+                    <ul style="list-style-type: none; padding: 0;">
+                        {% for stock in stock_names %}
+                            <li style="display: flex; margin-right: 10px;">
+                                <p class="text-bold">Name: {{ stock }}</p>
+                            </li>
+                        {% endfor %}         
+                    </ul>
+                </div>
+              {% else %}
             <div class="col-12">
               <!-- Display a message if the list is empty -->
               <p id="stock-message">Zero stocks, all potential.<br> - Let's kickstart your portfolio adventure!</p>
