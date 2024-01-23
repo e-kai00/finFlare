@@ -311,12 +311,23 @@ form.signup p input {
 .hero-image {
     background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     top: 125px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
+}
+
+#hero-login.hero-image {
+    height: 75vh;
+}
+
+/* on smaller screens */
+@media (max-width: 576px) {
+    #hero-signup {
+        height: 110vh;
+    }
 }
 
 .hero-image::before {

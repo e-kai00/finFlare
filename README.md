@@ -6,7 +6,7 @@
 
 <!-- The website picture here -->
 
-<img src="readme.docs/Broker-Buddy.jpg" alt="Broker Buddy Markets photo" width="1200"/>
+<img src="readme.docs/home.jpg" alt="Broker Buddy Markets photo" width="1200"/>
 
 ## Table of Contents
 <details><summary>Click to go to Contents here </summary>
@@ -96,8 +96,11 @@
 
 ### Wireframes
 
+  - <img src="readme.docs/wirefram-1.png" width="700" alt="image of wireframe 1">
 
+***
 
+  - <img src="readme.docs/wireframe-2.png" width="700" alt="image of wireframe 1">
 
 ***
 
