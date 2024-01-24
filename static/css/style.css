@@ -319,9 +319,9 @@ form.signup p input {
     position: absolute;
 }
 
-#hero-login.hero-image {
+/* #hero-login.hero-image {
     height: 75vh;
-}
+} */
 
 /* on smaller screens */
 @media (max-width: 576px) {
