@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .error_handlers import handler404, handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,3 +12,6 @@ urlpatterns = [
     path('contact/', include('contact.urls'), name='contact'), 
     path('markets/', include('markets.urls'), name='markets'),  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = handler404
+handler500 = handler500
