@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 API_KEY = os.environ.get("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'fin-flare-8f9d374a56d6.herokuapp.com',
@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 
     # Other
     'django_summernote',
-    'storages',
 
     # Project apps
     'accounts',
@@ -59,6 +58,7 @@ INSTALLED_APPS = [
     'about',
     'markets',
     'contact',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -162,7 +162,7 @@ if 'USE_AWS' in os.environ:
     }
 
     # Bucket Config
-    AWS_STORAGE_BUCKET_NAME = 'gungnir-shop'
+    AWS_STORAGE_BUCKET_NAME = 'fin-flare'
     AWS_S3_REGION_NAME = 'eu-central-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
