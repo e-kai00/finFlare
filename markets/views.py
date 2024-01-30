@@ -135,7 +135,7 @@ def trade_stock(request):
                 total_cost = quantity * price
                 if user_profile.balance < total_cost:
                     messages.error(request, "Insufficient funds to complete the purchase. Please try again.")
-                    return redirect('trade_stock')  # Redirect to the same view on error
+                    return redirect('trade_stock')  
 
                 transaction = Transaction.objects.create(
                     user_profile=user_profile,
