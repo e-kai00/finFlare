@@ -244,9 +244,10 @@ The chosen fonts for the website were imported using Google Fonts.
 
 ## Members of finFlare Team
 
-[Sandra](https://github.com/SandraBergstrom) <br>
-[Kim](https://github.com/KimBergstroem)<br>
-[Emmanuel](https://github.com/Emmy-Dare274)<br>
-[Vernell](https://github.com/VCGithubCode)<br>
-[Darren](https://github.com/ProfessorJames)<br>
-[Katerina](https://github.com/e-kai00)<br>
+[Sandra Bergstrom](https://github.com/SandraBergstrom) - frontend and design<br>
+[Kim Bergstrom](https://github.com/KimBergstroem) - backend and API<br>
+[Emmanue Oluwadarel](https://github.com/Emmy-Dare274) - frontend and documentation<br>
+[Vernell Clark](https://github.com/VCGithubCode) - frontend and project presentation<br>
+[Darren Tuohy](https://github.com/ProfessorJames) - frontend and content<br>
+[Katerina Elistratova](https://github.com/e-kai00) - backend and scrum master<br>
+
