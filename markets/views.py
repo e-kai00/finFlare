@@ -157,7 +157,7 @@ def trade_stock(request):
                     is_buy_position=True,
                 ).first()
 
-                # if not Buy position found, create one
+                # If not Buy position found, create one
                 if buy_position is None:
                     buy_position = StockBalance.objects.create(
                         user=user_profile,
@@ -174,7 +174,6 @@ def trade_stock(request):
                 else:
                     messages.success(request, f"You have partially sold {quantity} shares of {name}.")
 
-                # Redirect to the "thank you" page upon a successful sale
                 return render(request, 'markets/thank_you.html')
 
             elif transaction_type == 'SELL':                    
@@ -204,7 +203,6 @@ def trade_stock(request):
                 else:
                     messages.error(request, f"No open buy position found for {name}.")
                     
-                # Redirect to the "thank you" page upon a successful sale
                 return render(request, 'markets/thank_you.html')
 
             # Update the context with the latest data
@@ -218,7 +216,6 @@ def trade_stock(request):
             for position in open_positions:
                 stock_names.append(position.stock)
                 stock_quantities.append(position.quantity)
-
 
             context = {
                 'balance': balance,
