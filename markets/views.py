@@ -146,53 +146,66 @@ def trade_stock(request):
                 )
 
                 # Update the user's account balance and update the buy position
-                if transaction_type == 'BUY':
-                    user_profile.balance -= total_cost
-                    user_profile.save()
+            if transaction_type == 'BUY':                    
+                user_profile.balance -= total_cost
+                user_profile.save()
 
-                    # Find the matching buy position to update
-                    buy_position = StockBalance.objects.filter(
+                # Find the matching buy position to update
+                buy_position = StockBalance.objects.filter(
+                    user=user_profile,
+                    stock=name,
+                    is_buy_position=True,
+                ).first()
+
+                # if not Buy position found, create one
+                if buy_position is None:
+                    buy_position = StockBalance.objects.create(
                         user=user_profile,
                         stock=name,
-                        is_buy_position=True,
-                    ).first()
-
-                    if buy_position is None:
-                        buy_position = StockBalance.objects.create(
-                            user=user_profile,
-                            stock=name,
-                            quantity=quantity,
-                            purchase_price=price,
-                            is_buy_position=True,
-                        )
-
-                    buy_position.save()
-
-                    if buy_position.quantity == 0:
-                        messages.success(request, f"You have successfully bought and sold {quantity} shares of {name}.")
-                    else:
-                        messages.success(request, f"You have partially sold {quantity} shares of {name}.")
-
-                    # Redirect to the "thank you" page upon a successful sale
-                    return render(request, 'markets/thank_you.html')
-
-                elif transaction_type == 'SELL':
-                    total_cost = quantity * price
-                    sell_position = StockBalance.objects.get(
-                        user=user_profile,
-                        stock=name,
+                        quantity=quantity,
+                        purchase_price=price,
                         is_buy_position=True,
                     )
-                    
-                    user_profile.balance += quantity * price
+
+                buy_position.save()
+
+                if buy_position.quantity == 0:
+                    messages.success(request, f"You have successfully bought and sold {quantity} shares of {name}.")
+                else:
+                    messages.success(request, f"You have partially sold {quantity} shares of {name}.")
+
+                # Redirect to the "thank you" page upon a successful sale
+                return render(request, 'markets/thank_you.html')
+
+            elif transaction_type == 'SELL':                    
+                close_position = StockBalance.objects.get(
+                    user=user_profile,
+                    stock=name,
+                    is_buy_position=True,
+                )
+                
+                if close_position:
+                    earnings_for_position = min(close_position.quantity, quantity) * price
+
+                    # Update user's account balance
+                    user_profile.balance += earnings_for_position
                     user_profile.save()
 
-                    sell_position.delete()
+                    # Update the quantity of the current close position
+                    close_position.quantity -= min(close_position.quantity, quantity)
 
-                    messages.success(request, f"You have successfully sold the position of {name}.")
+                    # If the entire position is closed, delete the buy position
+                    if close_position.quantity == 0:
+                        close_position.delete()
+                    else:
+                        close_position.save()
+
+                    messages.success(request, f"You have successfully sold {quantity} shares of {name}. Total earnings: {earnings_for_position}.")
+                else:
+                    messages.error(request, f"No open buy position found for {name}.")
                     
-                    # Redirect to the "thank you" page upon a successful sale
-                    return render(request, 'markets/thank_you.html')
+                # Redirect to the "thank you" page upon a successful sale
+                return render(request, 'markets/thank_you.html')
 
             # Update the context with the latest data
             user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
@@ -205,6 +218,7 @@ def trade_stock(request):
             for position in open_positions:
                 stock_names.append(position.stock)
                 stock_quantities.append(position.quantity)
+
 
             context = {
                 'balance': balance,

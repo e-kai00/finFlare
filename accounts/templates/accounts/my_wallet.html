@@ -92,9 +92,9 @@
               {% if stock_names %}    
                 <div class="col-12 text-center">
                     <ul style="list-style-type: none; padding: 0;">
-                        {% for stock in stock_names %}
+                        {% for stock_name in stock_names %}
                             <li style="display: flex; margin-right: 10px;">
-                                <p class="text-bold">Name: {{ stock }}</p>
+                                <p class="text-bold">Name: {{ stock_name }}</p>
                             </li>
                         {% endfor %}         
                     </ul>
