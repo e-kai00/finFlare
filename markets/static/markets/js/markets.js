@@ -21,6 +21,12 @@ function updateWalletBalances() {
         });
 }
 
+function getCsrfToken() {
+    const csrfTokenElement = document.getElementsByName('csrfmiddlewaretoken')[0];
+    return csrfTokenElement.value;
+}
+
+
 // Fetch stock prices from Django
 fetch('/get_stock_prices/')
     .then(response => response.json())
@@ -45,12 +51,15 @@ fetch('/get_user_stock_balances/')
 function handleBuyClick(event) {
     const buttonText = event.target.textContent.trim();
     if (buttonText !== "Buy") return;
+
+    const li = event.target.closest('li');
     const stockName = li.childNodes[0].textContent.trim().toLowerCase();
     const input = li.querySelector('input[type="text"]');
     const quantityString = input.value.replace(/,/g, '');
     const quantity = parseFloat(quantityString);
 
-    // Update the fetch URL to match your Django view for buying stocks
+    const csrfToken = getCsrfToken();
+
     fetch('/buy_stock/', {
         method: 'POST',
         headers: {
@@ -104,12 +113,14 @@ function handleSellClick(event) {
     const buttonText = event.target.textContent.trim();
     if (buttonText !== "Sell") return;
 
+    const li = event.target.closest('li');
     const stockName = li.childNodes[0].textContent.trim().toLowerCase();
     const input = li.querySelector('input[type="text"]');
     const quantityToSellString = input.value.replace(/,/g, '');
     const quantityToSell = parseFloat(quantityToSellString);
 
-    // Update the fetch URL to match your Django view for selling stocks
+    const csrfToken = getCsrfToken();
+
     fetch('/sell_stock/', {
         method: 'POST',
         headers: {

@@ -234,4 +234,3 @@ def trade_stock(request):
         **context,
     })
 
-
