@@ -63,12 +63,21 @@ def stock_data(request):
 
     selected_category = 'Stocks US'  # Default category
 
-    if request.method == 'POST':
-        selected_category = request.POST.get('stockSelector', selected_category)
-
+    # if request.method == 'POST':
+    #     selected_category = request.POST.get('stockSelector', selected_category)
+    
+    # combined_data = {
+    #     selected_category: get_market_data(api_key, selected_category),
+    # }    
     combined_data = {
-        selected_category: get_market_data(api_key, selected_category),
-    }    
+    'category1': [
+        {'name': 'Item 1', 'other_attribute': 'value'},
+        {'name': 'Item 2', 'other_attribute': 'value'},
+        {'name': 'Item 3', 'other_attribute': 'value'},
+        {'name': 'Item 4', 'other_attribute': 'value'},
+    ],
+    
+}
 
     # wallet display values
     user = request.user    
