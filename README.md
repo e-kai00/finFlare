@@ -137,45 +137,46 @@
 
 <img src="readme.docs/color.jpg" width="500" alt="image of color palette">
 
-The colors are: Navy Blue, Sky Blue, Teal, Crimson, Dark Grey,  and Off-White.
-These colors are all reflected in the background image.
+Our color palette has been carefully selected to reflect the professional yet approachable nature of Broker Buddy. Each color has been chosen to ensure accessibility and to enhance the user experience.<br>
+
+Navy Blue (#003366): Symbolizes trust, responsibility, and professionalism. Used predominantly in our logo and headers to convey reliability.<br>
+
+Sky Blue (#8CBFD3): Evokes a sense of clarity and calmness. It's used for accents and to highlight important features within the app.<br>
+
+Off-White (#F8F8F8): Provides a clean, minimalistic background that enhances readability and ensures content stands out.<br>
+
+Teal (#008068): Represents growth and balance. Applied to elements indicating positive trends or actions, like successful transactions.<br>
+
+Crimson (#DB143C): Grabs attention and signals importance. It is used sparingly for alerts and critical action items, such as error messages or urgent notifications.<br>
 
 
 ### Typography
 
-- #### Background
+#### Background
   A background image with stock candles theme was added to the webpage to give a 3D effect and make the heading area look more interactive.
   As users might expect, they want to feel immersed in the trading market atmosphere, so the team opted for a background that is visually appealing and gives the right impression.
 
 
 
-- #### Fonts
+#### Fonts
 
- - <img src="readme.docs/montserrat.jpg" width="500" alt="image of google fonts">
+After careful consideration, the team decided to use the fonts Roboto, Montserrat, and Sans-serif as a fallback font for the text on screens of all sizes. We believe that these fonts offer a great combination of aesthetic appeal and readability, and will help to enhance the overall user experience. Our typography choices aim to balance readability with personality, ensuring a seamless reading experience across all devices and platforms.
 
-***
+Primary Font: Roboto – A modern sans-serif typeface that is clear and easy to read. Used for body text and data presentation.
 
+ <img src="readme.docs/Roboto.jpg" width="500" alt="image of google fonts"> <br>
 
- - <img src="readme.docs/Roboto.jpg" width="500" alt="image of google fonts">
+Secondary Font: Montserrat – A geometric sans-serif typeface with a contemporary feel. Used for headings and titles to add character to the page layouts.
 
-The chosen fonts for the website were imported using Google Fonts.
-  
-  After careful consideration, the team decided to use the fonts Roboto, Montserrat, and Sans-serif as a fallback font for the text on screens of all sizes. We believe that these fonts offer a great combination of aesthetic appeal and readability, and will help to enhance the overall user experience.
+ <img src="readme.docs/montserrat.jpg" width="500" alt="image of google fonts">
 
-
-***
-
-
+ Both fonts are available through Google Fonts, ensuring they are easily accessible and web-safe. <br>
 
 ## Features
 
 ### Composition of the Website
 
   The website is organized into three distinct web pages such as the Landing page, the About Page, Contact page and the Login page. The website has a landing page where users can log in and access the market stocks. It also has an About page that provides users with insight into Brokers Buddy and its team. There is a Contact page that users can use to get in touch with the company representative for further services. Additionally, there is a Login page for user access.
-
-
-***
-
 
 
 ## Technologies Used
