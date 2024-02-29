@@ -13,5 +13,13 @@ urlpatterns = [
     path('markets/', include('markets.urls'), name='markets'),  
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('404/', handler404, name='not_found'),
+
+        path('500/', handler500, name='server_error'),
+    ]
+    
 handler404 = handler404
 handler500 = handler500
