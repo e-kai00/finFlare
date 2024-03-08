@@ -71,10 +71,10 @@ def stock_data(request):
     # }    
     combined_data = {
     'category1': [
-        {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 10}},
-        {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 10}},
-        {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 20}},
-        {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 20}},
+        {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
+        {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 1}},
+        {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 2.5}},
+        {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 2}},
     ],    
     }
 
@@ -120,7 +120,7 @@ def stock_data(request):
 def thank_you(request):
     return render(request, 'markets/thank_you.html')
 
-def trade_stock(request):
+def trade_stock_old_version(request):
     selected_category = 'Stocks US'
     context = {}
 
@@ -255,3 +255,82 @@ def trade_stock(request):
     })
 
 
+def trade_stock(request):
+    context = {}
+
+    try:
+        if request.method == 'POST':
+            handle_transaction_data(request)
+        
+            # redirect()
+        
+        update_portfolio()
+
+    except:
+        pass
+
+    return render(request, 'markets/markets.html', context)
+
+
+def handle_transaction_data(request):    
+    user_profile = UserAccountPortfolio.objects.get(user = request.user)
+    transaction_type = request.POST.get('transaction_type')
+    stock = request.POST.get('name')
+    quantity = validate_quantity(request.POST.get('quantitySelector'))
+    price = Decimal(request.POST.get('price'))
+
+    if transaction_type == 'BUY':
+        handle_buy_stock(user_profile, stock, quantity, price)
+    elif transaction_type == 'SELL':
+        handle_sell_stock(user_profile, stock, quantity, price)
+
+
+def validate_quantity(quantity_str):
+    if not quantity_str or not quantity_str.isdigit():
+        raise ValueError(f"Invalid quantity: {quantity_str}")
+    return int(quantity_str)
+
+
+def handle_buy_stock(request, user_profile, stock, quantity, price):
+    total_position_cost = quantity * price
+    if total_position_cost > user_profile.balance:
+        raise ValueError('Insufficient funds to complete the purchase. Please try again.')
+    
+    transaction = create_transaction(user_profile, 'BUY', stock, quantity, price)
+    update_user_balance(user_profile, total_position_cost, 'BUY')
+    update_open_position(user_profile, stock,quantity, price, is_buy_position=True)
+
+    messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    return transaction
+
+
+def handle_sell_stock(user_profile, stock, quantity, price):
+    pass
+
+
+def create_transaction(user_profile, transaction_type, stock, quantity, price):
+    transaction = Transaction.objects.create(
+        user_profile=user_profile,
+        transaction_type=transaction_type,
+        stock=stock,
+        quantity=quantity,
+        price=price
+    )
+    transaction.save()
+
+
+def update_user_balance(user_profile, position_cost, transaction_type):
+    if transaction_type == 'BUY':
+        user_profile.balance -= position_cost
+    elif transaction_type == 'SELL':
+        user_profile.balance += position_cost
+        
+    user_profile.save()
+
+
+def update_open_position(user_profile, stock,quantity, price, is_buy_position):
+    pass
+
+
+def update_portfolio(request, context):
+    pass
