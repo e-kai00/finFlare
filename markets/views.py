@@ -46,10 +46,10 @@ def get_market_data(api_key, category, max_items=5):
                     'movement': market_info.get('price_movement', {}).get('movement', ''),
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
-            })
+            })       
 
         if len(market_info_list) >= max_items:
-            break
+            break        
 
     return market_data_list
 
@@ -63,21 +63,20 @@ def stock_data(request):
 
     selected_category = 'Stocks US'  # Default category
 
-    # if request.method == 'POST':
-    #     selected_category = request.POST.get('stockSelector', selected_category)
+    if request.method == 'POST':
+        selected_category = request.POST.get('stockSelector', selected_category)
     
     # combined_data = {
     #     selected_category: get_market_data(api_key, selected_category),
     # }    
     combined_data = {
     'category1': [
-        {'name': 'Item 1', 'other_attribute': 'value'},
-        {'name': 'Item 2', 'other_attribute': 'value'},
-        {'name': 'Item 3', 'other_attribute': 'value'},
-        {'name': 'Item 4', 'other_attribute': 'value'},
-    ],
-    
-}
+        {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 10}},
+        {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 10}},
+        {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 20}},
+        {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 20}},
+    ],    
+    }
 
     # wallet display values
     user = request.user    
@@ -85,8 +84,9 @@ def stock_data(request):
         user_portfolio = UserAccountPortfolio.objects.get(user=user)
         balance = user_portfolio.balance
         
-        user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
-        open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+        # user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
+        # open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+        open_positions = StockBalance.objects.filter(user=user_portfolio)
     
         stock_names = []
         stock_quantities = []
@@ -154,7 +154,7 @@ def trade_stock(request):
                     transaction_type=transaction_type,
                 )
 
-                # Update the user's account balance and update the buy position
+                #  date the user's account balance and update the buy position
             if transaction_type == 'BUY':                    
                 user_profile.balance -= total_cost
                 user_profile.save()
