@@ -264,10 +264,10 @@ def trade_stock(request):
         
             # redirect()
         
-        update_portfolio()
+        # update_portfolio()
 
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
     return render(request, 'markets/markets.html', context)
 
@@ -291,16 +291,16 @@ def validate_quantity(quantity_str):
     return int(quantity_str)
 
 
-def handle_buy_stock(request, user_profile, stock, quantity, price):
+def handle_buy_stock(user_profile, stock, quantity, price):
     total_position_cost = quantity * price
     if total_position_cost > user_profile.balance:
         raise ValueError('Insufficient funds to complete the purchase. Please try again.')
     
     transaction = create_transaction(user_profile, 'BUY', stock, quantity, price)
     update_user_balance(user_profile, total_position_cost, 'BUY')
-    update_open_position(user_profile, stock,quantity, price, is_buy_position=True)
+    update_position(user_profile, stock, quantity, price, is_buy_position=True)
 
-    messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    # messages.success(request, f"You have bought {quantity} shares of {stock}.")
     return transaction
 
 
@@ -328,8 +328,30 @@ def update_user_balance(user_profile, position_cost, transaction_type):
     user_profile.save()
 
 
-def update_open_position(user_profile, stock,quantity, price, is_buy_position):
-    pass
+def update_position(user_profile, stock, quantity, price, is_buy_position):
+    #if is_buy_position:
+    position_buy = StockBalance.objects.filter(
+        user=user_profile,
+        stock=stock,
+        is_buy_position=True
+    ).first()        
+
+    if position_buy is None:
+        position_buy = StockBalance.objects.create(
+            user=user_profile,
+            stock=stock,
+            quantity=quantity,
+            price=price,
+            is_buy_position=True
+        )
+    else:
+        position_buy.quantity += quantity
+        # average position price (?)
+
+    position_buy.save()
+
+    return position_buy
+
 
 
 def update_portfolio(request, context):

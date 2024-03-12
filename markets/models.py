@@ -6,24 +6,11 @@ from accounts.models import UserAccountPortfolio
 class Stock(models.Model):
     """
     Saving stock values to DB (coming from API)
-    Saving stock values to DB (coming from API)
     """
     symbol = models.CharField(max_length=10)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=4) 
     price_movement = models.CharField(max_length=10) 
-
-
-class Transaction(models.Model):
-    """
-    Allows to keep record of all transactions
-    """
-    user_profile = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
-    transaction_type = models.CharField(max_length=4, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
-    stock = models.ForeignKey(Stock, on_delete=models.PROTECT) 
-    quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Transaction(models.Model):
