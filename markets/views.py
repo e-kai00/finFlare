@@ -68,7 +68,9 @@ def stock_data(request):
     
     # combined_data = {
     #     selected_category: get_market_data(api_key, selected_category),
-    # }    
+    # }   
+
+    # test data 
     combined_data = {
     'category1': [
         {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
@@ -78,12 +80,13 @@ def stock_data(request):
     ],    
     }
 
+    # write code save to DB Stock model
+
     # wallet display values
     user = request.user    
     try: 
         user_portfolio = UserAccountPortfolio.objects.get(user=user)
-        balance = user_portfolio.balance
-        
+        balance = user_portfolio.balance        
         # user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
         # open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
         open_positions = StockBalance.objects.filter(user=user_portfolio)
@@ -275,9 +278,11 @@ def trade_stock(request):
 def handle_transaction_data(request):    
     user_profile = UserAccountPortfolio.objects.get(user = request.user)
     transaction_type = request.POST.get('transaction_type')
-    stock = request.POST.get('name')
+    stock_name = request.POST.get('name')
     quantity = validate_quantity(request.POST.get('quantitySelector'))
     price = Decimal(request.POST.get('price'))
+
+    stock = get_object_or_404(Stock, name=stock_name)
 
     if transaction_type == 'BUY':
         handle_buy_stock(user_profile, stock, quantity, price)
@@ -310,7 +315,7 @@ def handle_sell_stock(user_profile, stock, quantity, price):
 
 def create_transaction(user_profile, transaction_type, stock, quantity, price):
     transaction = Transaction.objects.create(
-        user_profile=user_profile,
+        user=user_profile,
         transaction_type=transaction_type,
         stock=stock,
         quantity=quantity,

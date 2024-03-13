@@ -17,7 +17,7 @@ class Transaction(models.Model):
     """
     Allows to keep record of all transactions
     """
-    user_profile = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=4, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
     stock = models.ForeignKey(Stock, on_delete=models.PROTECT) 
     quantity = models.PositiveIntegerField()
