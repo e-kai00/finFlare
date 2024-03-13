@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 import requests
 from django.contrib import messages
-from .models import UserAccountPortfolio, StockBalance, Transaction
+from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
 
 ####################################################
@@ -278,9 +278,11 @@ def trade_stock(request):
 def handle_transaction_data(request):    
     user_profile = UserAccountPortfolio.objects.get(user = request.user)
     transaction_type = request.POST.get('transaction_type')
-    stock = request.POST.get('name')
+    stock_name = request.POST.get('name')
     quantity = validate_quantity(request.POST.get('quantitySelector'))
     price = Decimal(request.POST.get('price'))
+
+    stock = get_object_or_404(Stock, name=stock_name)
 
     if transaction_type == 'BUY':
         handle_buy_stock(user_profile, stock, quantity, price)
