@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 import requests
 from django.contrib import messages
-from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
+from .models import UserAccountPortfolio, StockBalance, Transaction
 from decimal import Decimal
 
 ####################################################
@@ -68,7 +68,9 @@ def stock_data(request):
     
     # combined_data = {
     #     selected_category: get_market_data(api_key, selected_category),
-    # }    
+    # }   
+
+    # test data 
     combined_data = {
     'category1': [
         {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
@@ -78,12 +80,13 @@ def stock_data(request):
     ],    
     }
 
+    # write code save to DB Stock model
+
     # wallet display values
     user = request.user    
     try: 
         user_portfolio = UserAccountPortfolio.objects.get(user=user)
-        balance = user_portfolio.balance
-        
+        balance = user_portfolio.balance        
         # user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
         # open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
         open_positions = StockBalance.objects.filter(user=user_portfolio)
