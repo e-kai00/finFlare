@@ -310,7 +310,7 @@ def handle_sell_stock(user_profile, stock, quantity, price):
 
 def create_transaction(user_profile, transaction_type, stock, quantity, price):
     transaction = Transaction.objects.create(
-        user_profile=user_profile,
+        user=user_profile,
         transaction_type=transaction_type,
         stock=stock,
         quantity=quantity,

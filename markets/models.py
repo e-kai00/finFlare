@@ -17,7 +17,7 @@ class Transaction(models.Model):
     """
     Allows to keep record of all transactions
     """
-    user_profile = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
     transaction_type = models.CharField(max_length=4, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
     stock = models.ForeignKey(Stock, on_delete=models.PROTECT) 
     quantity = models.PositiveIntegerField()
@@ -31,9 +31,7 @@ class StockBalance(models.Model):
     """
     user = models.ForeignKey(UserAccountPortfolio, on_delete=models.CASCADE)
     stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
-    stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField()
-    price = models.ForeignKey(Transaction, on_delete=models.CASCADE) 
     price = models.ForeignKey(Transaction, on_delete=models.CASCADE) 
     is_buy_position = models.BooleanField(default=True)
 
