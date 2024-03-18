@@ -69,8 +69,8 @@
                         <form id="tradeForm" action="{% url 'trade_stock' %}" method="POST">
                           {% csrf_token %}
                           <input type="hidden" name="name" value="{{ data.name }}">
-                          <!-- <input type="hidden" name="price" value="{{ data.price }}"> -->
-                          <input type="hidden" name="price" value="101">
+                          <input type="hidden" name="price" value="{{ data.price }}">
+                          <!-- <input type="hidden" name="price" value="101"> -->
                           <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="quantitySelector">
                           <button type="submit" name="transaction_type" value="SELL" id="btn-btn-sell" class="btn me-2 btn-sell">Sell</button>
                           <button type="submit" name="transaction_type" value="BUY" id="btn-btn-buy" class="btn btn-buy">Buy</button>
