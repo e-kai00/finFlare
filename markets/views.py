@@ -5,6 +5,7 @@ import requests
 from django.contrib import messages
 from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
+import sys
 
 ####################################################
 #### API serpapi view functions - Fetching Data ####
@@ -263,11 +264,9 @@ def trade_stock(request):
 
     try:
         if request.method == 'POST':
-            handle_transaction_data(request)
-        
-            # redirect()
-        
+            handle_transaction_data(request)       
         # update_portfolio()
+        return redirect('markets')
 
     except Exception as e:
         print(e)
@@ -289,6 +288,9 @@ def handle_transaction_data(request):
     elif transaction_type == 'SELL':
         handle_sell_stock(user_profile, stock, quantity, price)
 
+    print('handeled transaction data success')
+    
+
 
 def validate_quantity(quantity_str):
     if not quantity_str or not quantity_str.isdigit():
@@ -306,6 +308,7 @@ def handle_buy_stock(user_profile, stock, quantity, price):
     update_position(user_profile, stock, quantity, price, is_buy_position=True)
 
     # messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    print('handeled buy position success')
     return transaction
 
 
@@ -321,7 +324,9 @@ def create_transaction(user_profile, transaction_type, stock, quantity, price):
         quantity=quantity,
         price=price
     )
+
     transaction.save()
+    print('create buy transaction success')
 
 
 def update_user_balance(user_profile, position_cost, transaction_type):
@@ -331,6 +336,8 @@ def update_user_balance(user_profile, position_cost, transaction_type):
         user_profile.balance += position_cost
         
     user_profile.save()
+    print('update user balance success')
+
 
 
 def update_position(user_profile, stock, quantity, price, is_buy_position):
@@ -354,6 +361,7 @@ def update_position(user_profile, stock, quantity, price, is_buy_position):
         # average position price (?)
 
     position_buy.save()
+    print('update position success')
 
     return position_buy
 
