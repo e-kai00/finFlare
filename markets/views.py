@@ -312,8 +312,25 @@ def handle_buy_stock(user_profile, stock, quantity, price):
     return transaction
 
 
-def handle_sell_stock(user_profile, stock, quantity, price):
-    pass
+def handle_sell_stock(user_profile, stock, quantity, price):    
+    position = StockBalance.objects.get(
+        user=user_profile,
+        stock=stock,
+        is_buy_position=True
+    )
+    if position:        
+        transaction = Transaction.objects.filter(
+            user=user_profile,
+            stockbalance__stock=stock
+        ).first()
+
+        if transaction:
+            profit_or_loss = (quantity * price) - (transaction.price * quantity)
+            position_cost = (transaction.price * quantity) + profit_or_loss
+            update_user_balance(user_profile, position_cost, 'SELL')        
+
+            position.quantity -= min(position.quantity, quantity)
+            pass
 
 
 def create_transaction(user_profile, transaction_type, stock, quantity, price):
