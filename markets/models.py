@@ -48,6 +48,7 @@ class StockBalance(models.Model):
     
     @property
     def calculate_average_open_price(self):
+        """ calculate the average open price """
         transactions = Transaction.objects.filter(user=self.user, stock=self.stock)
         total_invested = sum(trans.quantity * trans.price for trans in transactions)
         total_quantity = sum(trans.quantity for trans in transactions)
