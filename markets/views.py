@@ -312,25 +312,30 @@ def handle_buy_stock(user_profile, stock, quantity, price):
     return transaction
 
 
-def handle_sell_stock(user_profile, stock, quantity, price):    
-    position = StockBalance.objects.get(
-        user=user_profile,
-        stock=stock,
-        is_buy_position=True
-    )
-    if position:        
-        transaction = Transaction.objects.filter(
+def handle_sell_stock(user_profile, stock, quantity, price):
+    try:   
+        position = StockBalance.objects.get(
             user=user_profile,
-            stockbalance__stock=stock
-        ).first()
+            stock=stock,
+            is_buy_position=True
+        )
+    except StockBalance.DoesNotExist:
+        # add message for the user
+        return "No position found for selling"
 
-        if transaction:
-            profit_or_loss = (quantity * price) - (transaction.price * quantity)
-            position_cost = (transaction.price * quantity) + profit_or_loss
-            update_user_balance(user_profile, position_cost, 'SELL')        
+    if position:        
+        # average_open_price = position.calculate_average_open_price
+        # profit_or_loss = position.claculate_profit_loss
+         
+        position.quantity -= min(position.quantity, quantity)
+        if position.quantity == 0:
+            position.is_buy_position = False
+            position.save()
+        else:
+            position.save()   
 
-            position.quantity -= min(position.quantity, quantity)
-            pass
+        position_cost = (price * quantity) 
+        update_user_balance(user_profile, position_cost, 'SELL')
 
 
 def create_transaction(user_profile, transaction_type, stock, quantity, price):
@@ -350,11 +355,9 @@ def update_user_balance(user_profile, position_cost, transaction_type):
     if transaction_type == 'BUY':
         user_profile.balance -= position_cost
     elif transaction_type == 'SELL':
-        user_profile.balance += position_cost
-        
+        user_profile.balance += position_cost        
     user_profile.save()
     print('update user balance success')
-
 
 
 def update_position(user_profile, stock, quantity, price, is_buy_position):
