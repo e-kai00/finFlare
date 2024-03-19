@@ -40,16 +40,24 @@ class StockBalance(models.Model):
         """ retrieve current price from the associated Stock """
         return self.stock.price
     
-
+    # to update this method later
     @property
     def calculate_stock_value(self):
         """ calculate current stock balance """
         return self.quantity * self.price.price
+    
+    @property
+    def calculate_average_open_price(self):
+        transactions = Transaction.objects.filter(user=self.user, stock=self.stock)
+        total_invested = sum(trans.quantity * trans.price for trans in transactions)
+        total_quantity = sum(trans.quantity for trans in transactions)
+        return total_invested / total_quantity if total_quantity > 0 else 0
 
     @property
-    def claculate_total(self):
+    def claculate_profit_loss(self):
         """ calculate profit or loss """
-        return (self.curren_price - self.price) * self.quantity
+        average_open_price = self.calculate_average_open_price
+        return (self.curren_price - average_open_price) * self.quantity
     
 
 
