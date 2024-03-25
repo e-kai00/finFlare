@@ -7,7 +7,6 @@ from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
 
 
-
 def get_market_data(api_key, category, max_items=5):
     """
     Fetch market data using SerpApi for a specified category
@@ -85,7 +84,7 @@ def stock_data(request):
         'categories': categories, 
     }
     return stock_context
-    
+
 
 def display_data(request):
     user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
@@ -99,7 +98,7 @@ def display_data(request):
     }
 
     stock_context = stock_data(request)
-    update_context(request, portfolio_context)
+    update_context(request, portfolio_context) # ??
 
     context = {
         **portfolio_context,
@@ -109,141 +108,6 @@ def display_data(request):
     return render(request, 'markets/markets.html', context)
 
 
-def trade_stock_old_version(request):
-    selected_category = 'Stocks US'
-    context = {}
-
-    try:
-        if request.method == 'POST':
-            user_profile = UserAccountPortfolio.objects.get(user=request.user)
-            name = request.POST.get('name')
-
-            quantity_str = request.POST.get('quantitySelector')
-            if not quantity_str or not quantity_str.isdigit():
-                messages.error(request, f"Invalid quantity: {quantity_str}")
-                return render(request, 'markets/markets.html')         
-
-            quantity = int(quantity_str)
-
-            price = Decimal(request.POST.get('price'))
-            transaction_type = request.POST.get('transaction_type')
-
-            # Check if enough balance 
-            if transaction_type == 'BUY':
-                total_cost = quantity * price
-                if user_profile.balance < total_cost:
-                    messages.error(request, "Insufficient funds to complete the purchase. Please try again.")
-                    return redirect('trade_stock')  
-
-                transaction = Transaction.objects.create(
-                    user_profile=user_profile,
-                    name=name,
-                    quantity=quantity,
-                    price=price,
-                    transaction_type=transaction_type,
-                )
-
-                #  date the user's account balance and update the buy position
-            if transaction_type == 'BUY':                    
-                user_profile.balance -= total_cost
-                user_profile.save()
-
-                # Find the matching buy position to update
-                buy_position = StockBalance.objects.filter(
-                    user=user_profile,
-                    stock=name,
-                    is_buy_position=True,
-                ).first()
-
-                # If not Buy position found, create one
-                if buy_position is None:
-                    buy_position = StockBalance.objects.create(
-                        user=user_profile,
-                        stock=name,
-                        quantity=quantity,
-                        purchase_price=price,
-                        is_buy_position=True,
-                    )
-
-                buy_position.save()
-
-                if buy_position.quantity == 0:
-                    messages.success(request, f"You have successfully bought and sold {quantity} shares of {name}.")
-                else:
-                    messages.success(request, f"You have partially sold {quantity} shares of {name}.")
-
-                return render(request, 'markets/thank_you.html')
-
-            elif transaction_type == 'SELL':                    
-                close_position = StockBalance.objects.get(
-                    user=user_profile,
-                    stock=name,
-                    is_buy_position=True,
-                )
-                
-                if close_position:
-                    earnings_for_position = min(close_position.quantity, quantity) * price
-
-                    # Update user's account balance
-                    user_profile.balance += earnings_for_position
-                    user_profile.save()
-
-                    # Update the quantity of the current close position
-                    close_position.quantity -= min(close_position.quantity, quantity)
-
-                    # If the entire position is closed, delete the buy position
-                    if close_position.quantity == 0:
-                        close_position.delete()
-                    else:
-                        close_position.save()
-
-                    messages.success(request, f"You have successfully sold {quantity} shares of {name}. Total earnings: {earnings_for_position}.")
-                else:
-                    messages.error(request, f"No open buy position found for {name}.")
-                    
-                return render(request, 'markets/thank_you.html')
-
-            # Update the context with the latest data
-            user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
-            balance = user_portfolio.balance
-            open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
-
-            stock_names = []
-            stock_quantities = []
-
-            for position in open_positions:
-                stock_names.append(position.stock)
-                stock_quantities.append(position.quantity)
-
-            context = {
-                'balance': balance,
-                'stock_names': stock_names,
-                'stock_quantities': stock_quantities,
-            }
-
-            # Pass the updated context when rendering the template
-            return render(request, 'markets/markets.html', {
-                'combined_data': get_market_data(settings.API_KEY, 'Stocks US'),
-                'selected_category': 'Stocks US',
-                'categories': ['Stocks US', 'Crypto', 'Currencies', 'Futures'],
-                **context,
-            })
-
-    except: 
-        context = {
-            'balance': 10000.0,
-            'stock_names': [],
-            'stock_quantities': [],
-        }
-
-    # return render(request, 'markets/markets.html', {
-    #     'combined_data': get_market_data(settings.API_KEY, selected_category),
-    #     'selected_category': selected_category,
-    #     'categories': ['Stocks US', 'Crypto', 'Currencies', 'Futures'],
-    #     **context,
-    # })
-
-
 def trade_stock(request):
     portfolio_context = {}
    
@@ -251,14 +115,12 @@ def trade_stock(request):
         if request.method == 'POST':
             handle_transaction_data(request)       
         update_context(request, portfolio_context)  
-        print("Before redirect after POST request: ", portfolio_context)                 
         return redirect('markets')
 
     except Exception as e:
         print(e)
 
-    return render(request, 'markets/markets.html', portfolio_context)
-   
+    return render(request, 'markets/markets.html', portfolio_context)   
 
 
 def handle_transaction_data(request):    
@@ -275,8 +137,7 @@ def handle_transaction_data(request):
     elif transaction_type == 'SELL':
         handle_sell_stock(user_profile, stock, quantity, price)
 
-    print('handeled transaction data success')
-    
+    print('handeled transaction data success')    
 
 
 def validate_quantity(quantity_str):
@@ -383,9 +244,8 @@ def update_context(request, context):
     except Exception as e:
         print(e)
         context = {
-            'balance': 10000.0,
+            'balance': 50000.0,
             'stock_names': [],
             'stock_quantities': [],
         }
     print('update context success')
-    
