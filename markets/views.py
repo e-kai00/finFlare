@@ -5,11 +5,9 @@ import requests
 from django.contrib import messages
 from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
-import sys
 
-####################################################
-#### API serpapi view functions - Fetching Data ####
-####################################################
+
+
 def get_market_data(api_key, category, max_items=5):
     """
     Fetch market data using SerpApi for a specified category
@@ -61,9 +59,7 @@ def stock_data(request):
     """
     api_key = settings.API_KEY
     categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
-
     selected_category = 'Stocks US'  # Default category
-
     if request.method == 'POST':
         selected_category = request.POST.get('stockSelector', selected_category)
     
@@ -81,48 +77,37 @@ def stock_data(request):
     ],    
     }
 
-    # write code save to DB Stock model
+    # write code save to DB Stock model  
 
-    # wallet display values
-    user = request.user    
-    try: 
-        user_portfolio = UserAccountPortfolio.objects.get(user=user)
-        balance = user_portfolio.balance        
-        # user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
-        # open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
-        open_positions = StockBalance.objects.filter(user=user_portfolio)
-    
-        stock_names = []
-        stock_quantities = []
-
-        for position in open_positions:
-            stock_names.append(position.stock)
-            stock_quantities.append(position.quantity)   
-
-        context = {
-            'balance': balance,
-            'stock_names': stock_names,
-            'stock_quantities': stock_quantities,
-        } 
-
-    except: 
-        context = {
-            'balance': 10000.0,
-            'stock_names': [],
-            'stock_quantities': [],
-        }
-    
-    return render(request, 'markets/markets.html', {
+    stock_context = {
         'combined_data': combined_data, 
         'selected_category': selected_category, 
         'categories': categories, 
-        **context })
-###################################################
-#### API serpapi view functions - ENDS HERE #######
-###################################################
+    }
+    return stock_context
+    
 
-def thank_you(request):
-    return render(request, 'markets/thank_you.html')
+def display_data(request):
+    user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
+    balance = user_portfolio.balance
+    open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+    
+    portfolio_context = {
+        'balance': balance,
+        'stock_names': [position.stock for position in open_positions],
+        'stock_quantities': [position.quantity for position in open_positions],
+    }
+
+    stock_context = stock_data(request)
+    update_context(request, portfolio_context)
+
+    context = {
+        **portfolio_context,
+        **stock_context,
+    }
+
+    return render(request, 'markets/markets.html', context)
+
 
 def trade_stock_old_version(request):
     selected_category = 'Stocks US'
@@ -251,27 +236,29 @@ def trade_stock_old_version(request):
             'stock_quantities': [],
         }
 
-    return render(request, 'markets/markets.html', {
-        'combined_data': get_market_data(settings.API_KEY, selected_category),
-        'selected_category': selected_category,
-        'categories': ['Stocks US', 'Crypto', 'Currencies', 'Futures'],
-        **context,
-    })
+    # return render(request, 'markets/markets.html', {
+    #     'combined_data': get_market_data(settings.API_KEY, selected_category),
+    #     'selected_category': selected_category,
+    #     'categories': ['Stocks US', 'Crypto', 'Currencies', 'Futures'],
+    #     **context,
+    # })
 
 
 def trade_stock(request):
-    context = {}
-
+    portfolio_context = {}
+   
     try:
         if request.method == 'POST':
             handle_transaction_data(request)       
-        # update_portfolio()
+        update_context(request, portfolio_context)  
+        print("Before redirect after POST request: ", portfolio_context)                 
         return redirect('markets')
 
     except Exception as e:
         print(e)
 
-    return render(request, 'markets/markets.html', context)
+    return render(request, 'markets/markets.html', portfolio_context)
+   
 
 
 def handle_transaction_data(request):    
@@ -311,7 +298,7 @@ def handle_buy_stock(user_profile, stock, quantity, price):
     print('handeled buy position success')
     return transaction
 
-
+# refactor further
 def handle_sell_stock(user_profile, stock, quantity, price):
     try:   
         position = StockBalance.objects.get(
@@ -323,10 +310,7 @@ def handle_sell_stock(user_profile, stock, quantity, price):
         # add message for the user
         return "No position found for selling"
 
-    if position:        
-        # average_open_price = position.calculate_average_open_price
-        # profit_or_loss = position.claculate_profit_loss
-         
+    if position:         
         position.quantity -= min(position.quantity, quantity)
         if position.quantity == 0:
             position.is_buy_position = False
@@ -334,8 +318,8 @@ def handle_sell_stock(user_profile, stock, quantity, price):
         else:
             position.save()   
 
-        position_cost = (price * quantity) 
-        update_user_balance(user_profile, position_cost, 'SELL')
+        sale_value = (price * quantity) 
+        update_user_balance(user_profile, sale_value, 'SELL')
 
 
 def create_transaction(user_profile, transaction_type, stock, quantity, price):
@@ -386,6 +370,22 @@ def update_position(user_profile, stock, quantity, price, is_buy_position):
     return position_buy
 
 
-
-def update_portfolio(request, context):
-    pass
+def update_context(request, context):
+    try: 
+        user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
+        balance = user_portfolio.balance
+        open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+        context.update({
+            'balance': balance,
+            'stock_names': [position.stock for position in open_positions],
+            'stock_quantities': [position.quantity for position in open_positions],
+        })
+    except Exception as e:
+        print(e)
+        context = {
+            'balance': 10000.0,
+            'stock_names': [],
+            'stock_quantities': [],
+        }
+    print('update context success')
+    
