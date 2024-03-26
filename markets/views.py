@@ -98,7 +98,6 @@ def display_data(request):
     }
 
     stock_context = stock_data(request)
-    update_context(request, portfolio_context) # ??
 
     context = {
         **portfolio_context,
@@ -114,8 +113,8 @@ def trade_stock(request):
     try:
         if request.method == 'POST':
             handle_transaction_data(request)       
-        update_context(request, portfolio_context)  
-        return redirect('markets')
+            update_context(request, portfolio_context)  
+            return redirect('markets')
 
     except Exception as e:
         print(e)
@@ -206,7 +205,6 @@ def update_user_balance(user_profile, position_cost, transaction_type):
 
 
 def update_position(user_profile, stock, quantity, price, is_buy_position):
-    #if is_buy_position:
     position_buy = StockBalance.objects.filter(
         user=user_profile,
         stock=stock,
@@ -223,7 +221,6 @@ def update_position(user_profile, stock, quantity, price, is_buy_position):
         )
     else:
         position_buy.quantity += quantity
-        # average position price (?)
 
     position_buy.save()
     print('update position success')
