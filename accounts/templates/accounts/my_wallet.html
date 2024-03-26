@@ -34,9 +34,11 @@
                     </div>
             <div>
               <h4 class="logo-font">Stock Balance</h4>
+              {% for value in stock_value %}
               <p class="logo-font">
-                $ <span class="balance-numbers" id="stock-balance">0.00</span>
+                $ <span class="balance-numbers" id="stock-balance">{{value}}</span>
               </p>
+              {% endfor %}
             </div>
           </div>
           <div class="text-center balance">
@@ -45,9 +47,11 @@
             </div>
             <div>
               <h4 class="logo-font">Total</h4>
+              {% for profit_loss in stock_profit_loss %}
               <p class="logo-font">
-                $ <span class="balance-numbers" id="total">0.00</span>
+                $ <span class="balance-numbers" id="total">{{profit_loss}}</span>
               </p>
+              {% endfor %}
             </div>
           </div>
         </div>
