@@ -199,17 +199,20 @@ def handle_sell_stock(request, user_profile, stock, quantity, price):
         is_buy_position=True
     )   
     
-    if position:         
-        position.quantity -= min(position.quantity, quantity)
+    if position:   
+        sold_position_quantity = min(position.quantity, quantity)      
+        position.quantity -= sold_position_quantity
+        print("position quant.: ", position.quantity)
         if position.quantity == 0:
             position.is_buy_position = False
             position.save()
+            messages.success(request, f"You have closed your position of {stock}.")
         else:
             position.save()
+            messages.success(request, f"You have sold {quantity} share(s) of {stock}.")
 
-        messages.success(request, f"You have sold {quantity} shares of {stock}.")        
-
-        sale_value = (price * quantity) 
+        sale_value = (price * sold_position_quantity) 
+        print("sale value: ", sale_value)
         update_user_balance(user_profile, sale_value, 'SELL')
 
 
@@ -282,7 +285,7 @@ def update_context(request, context):
             'stock_quantities': [position.quantity for position in open_positions],
         })
     except Exception as e:
-        print(e)
+        print("An unexpected error occurred:", e)
         context = {
             'balance': 50000.0,
             'stock_names': [],
