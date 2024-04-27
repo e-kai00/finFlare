@@ -3,6 +3,7 @@ from django.conf import settings
 import requests
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
 
@@ -104,6 +105,7 @@ def display_data(request):
             'stock_value': [position.calculate_stock_value for position in open_positions],
             'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
+
     except UserAccountPortfolio.DoesNotExist:
         messages.error(request, 'User portfolio not found.')
         return render(request, 'markets/markets.html')        
@@ -151,9 +153,9 @@ def handle_transaction_data(request):
         stock = get_object_or_404(Stock, name=stock_name)
 
         if transaction_type == 'BUY':
-            handle_buy_stock(user_profile, stock, quantity, price)
+            handle_buy_stock(request, user_profile, stock, quantity, price)
         elif transaction_type == 'SELL':
-            handle_sell_stock(user_profile, stock, quantity, price)
+            handle_sell_stock(request, user_profile, stock, quantity, price)
     
     except ObjectDoesNotExist:
         messages.error(request, "No position found for selling.")
@@ -171,7 +173,7 @@ def validate_quantity(quantity_str):
     return int(quantity_str)
 
 
-def handle_buy_stock(user_profile, stock, quantity, price):
+def handle_buy_stock(request, user_profile, stock, quantity, price):
     """
     Handles buy stock transaction.
     """
@@ -179,47 +181,56 @@ def handle_buy_stock(user_profile, stock, quantity, price):
     if total_position_cost > user_profile.balance:
         raise ValueError('Insufficient funds to complete the purchase. Please try again.')
     
-    transaction = create_transaction(user_profile, 'BUY', stock, quantity, price)
+    transaction = create_transaction(request, user_profile, 'BUY', stock, quantity, price)
     update_user_balance(user_profile, total_position_cost, 'BUY')
     update_position(user_profile, stock, quantity, price, is_buy_position=True)
 
-    # messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    messages.success(request, f"You have bought {quantity} shares of {stock}.")
     return transaction
 
-# refactor further
-def handle_sell_stock(user_profile, stock, quantity, price):
+
+def handle_sell_stock(request, user_profile, stock, quantity, price):
     """
-    Handles sell stock transaction (close buy position).
+    Handles sell stock transaction (closes buy position).
     """
     position = StockBalance.objects.get(
         user=user_profile,
         stock=stock,
         is_buy_position=True
     )   
-
-    if position:         
-        position.quantity -= min(position.quantity, quantity)
+    
+    if position:   
+        sold_position_quantity = min(position.quantity, quantity)      
+        position.quantity -= sold_position_quantity
+        print("position quant.: ", position.quantity)
         if position.quantity == 0:
             position.is_buy_position = False
             position.save()
+            messages.success(request, f"You have closed your position of {stock}.")
         else:
-            position.save()   
+            position.save()
+            messages.success(request, f"You have sold {quantity} share(s) of {stock}.")
 
-        sale_value = (price * quantity) 
+        sale_value = (price * sold_position_quantity) 
+        print("sale value: ", sale_value)
         update_user_balance(user_profile, sale_value, 'SELL')
 
 
-def create_transaction(user_profile, transaction_type, stock, quantity, price):
+def create_transaction(request, user_profile, transaction_type, stock, quantity, price):
     """
     Creates a transaction record for a user.
     """
-    transaction = Transaction.objects.create(
-        user=user_profile,
-        transaction_type=transaction_type,
-        stock=stock,
-        quantity=quantity,
-        price=price
-    )
+    try:
+        transaction = Transaction.objects.create(
+            user=user_profile,
+            transaction_type=transaction_type,
+            stock=stock,
+            quantity=quantity,
+            price=price
+        )
+    except IntegrityError as e:
+        print("Database integrity error occurred while creating transaction:", e)
+        messages.error(request, "An error occurred while creating transaction. Please try again later.")
 
     transaction.save()
 
@@ -274,7 +285,7 @@ def update_context(request, context):
             'stock_quantities': [position.quantity for position in open_positions],
         })
     except Exception as e:
-        print(e)
+        print("An unexpected error occurred:", e)
         context = {
             'balance': 50000.0,
             'stock_names': [],
