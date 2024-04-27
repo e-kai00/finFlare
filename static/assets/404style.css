@@ -170,7 +170,7 @@ main a {
 
 
 main a:last-child {
-  margin-bottom: 1.5rem; 
+  margin: 1.5rem; 
 }
 
 /* Styles for the CTA "Go To Homepage" button adjusted to blend more harmoniously with the rest of the app */
