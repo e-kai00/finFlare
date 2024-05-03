@@ -308,36 +308,21 @@ form.signup p input {
 
 /* ------------------- LOGIN PAGE ------------------- */
 
-.hero-image {
+#outer-login, #outer-signup {
     background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
-    width: 100%;
-    height: 100vh;
-    top: 125px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: absolute;
+    min-height: max-content;
+    min-width: 100dvw;
+    overflow: auto;
 }
-
-/* #hero-login.hero-image {
-    height: 75vh;
-} */
 
 /* on smaller screens */
 @media (max-width: 576px) {
     #hero-signup {
         height: 110vh;
     }
-}
-
-.hero-image::before {
-    content: "";
-    background-color: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
 }
 
 .account-container {
@@ -370,16 +355,4 @@ input, textarea, select {
     background-color: var(--background-color)!important;
     padding: 10px;
     border-color: var(--secondary-color) !important;
-}
-
-#outer-login {
-    height: 554px;
-    position: relative;
-    top: -173px;
-}
-
-#outer-signup {
-    height: 800px;
-    position: relative;
-    top: -173px;
 }
