@@ -33,12 +33,10 @@
               <i class="fas fa-folder"></i>
                     </div>
             <div>
-              <h4 class="logo-font">Stock Balance</h4>
-              {% for value in stock_value %}
-              <p class="logo-font">
-                $ <span class="balance-numbers" id="stock-balance">{{value|floatformat:2 }}</span>
-              </p>
-              {% endfor %}
+              <h4 class="logo-font">Stock Balance</h4>             
+                <p class="logo-font">
+                  $ <span class="balance-numbers" id="stock-balance">{{total_stock_value|floatformat:2}}</span>
+                </p>
             </div>
           </div>
           <div class="text-center balance">
@@ -48,7 +46,7 @@
             <div>
               <h4 class="logo-font">Total</h4>
               <p class="logo-font">
-                $ <span class="balance-numbers" id="total">{{ stock_profit_loss|floatformat:2 }}</span>
+                $ <span class="balance-numbers" id="total">{{ total_balance|floatformat:2 }}</span>
               </p>
             </div>
           </div>

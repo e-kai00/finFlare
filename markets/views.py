@@ -97,13 +97,19 @@ def display_data(request):
         user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
         balance = user_portfolio.balance
         open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+
+        stock_value = [position.calculate_stock_value for position in open_positions]
+        total_stock_value = sum(stock_value)
+        total_balance = balance + total_stock_value
         
         portfolio_context = {
             'balance': balance,
             'stock_names': [position.stock for position in open_positions],
             'stock_quantities': [position.quantity for position in open_positions],
-            'stock_value': [position.calculate_stock_value for position in open_positions],
-            'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
+            'stock_value': stock_value,
+            'total_stock_value': total_stock_value,
+            'total_balance': total_balance,
+            # 'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
 
     except UserAccountPortfolio.DoesNotExist:

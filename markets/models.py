@@ -56,7 +56,7 @@ class StockBalance(models.Model):
 
     @property
     def calculate_profit_loss(self):
-        """ calculate profit or loss """
+        """ calculate profit or loss per stock """
         average_open_price = self.calculate_average_open_price
         return (self.current_price - average_open_price) * self.quantity
     
