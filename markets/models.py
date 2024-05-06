@@ -11,6 +11,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=4) 
     price_movement = models.CharField(max_length=10) 
+    movement_percent = models.DecimalField(max_digits=10, decimal_places=4, default=0)
 
 
 class Transaction(models.Model):
@@ -56,7 +57,7 @@ class StockBalance(models.Model):
 
     @property
     def calculate_profit_loss(self):
-        """ calculate profit or loss """
+        """ calculate profit or loss per stock """
         average_open_price = self.calculate_average_open_price
         return (self.current_price - average_open_price) * self.quantity
     

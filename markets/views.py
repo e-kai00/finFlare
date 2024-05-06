@@ -8,6 +8,25 @@ from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
 
 
+def create_or_update_stock(symbol, name, price, price_movement):
+    """
+    Create or update stock information in the database
+    """
+    movement = price_movement.get('movement', '')
+    percentage = price_movement.get('percentage', 0)
+
+    stock, created = Stock.objects.update_or_create(
+        symbol=symbol,
+        name=name,
+        defaults={
+            'price': price,
+            'price_movement': movement,
+            'movement_percent': percentage,
+        }
+    )
+    return stock, created
+
+
 def get_market_data(api_key, category, max_items=5):
     """
     Fetch market data using SerpApi for a specified category
@@ -45,7 +64,12 @@ def get_market_data(api_key, category, max_items=5):
                     'movement': market_info.get('price_movement', {}).get('movement', ''),
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
-            })       
+            }) 
+            # symbol = symbol.split(':')[0]
+            # name = market_info.get('name', '')
+            # price = market_info.get('price', '')
+            # price_movement = market_info.get('price_movement', {}).get('movement', '')
+            # create_or_update_stock(symbol, name, price, price_movement)      
 
         if len(market_info_list) >= max_items:
             break        
@@ -62,26 +86,33 @@ def stock_data(request):
     categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
     selected_category = 'Stocks US'  # default category
     if request.method == 'POST':
-        selected_category = request.POST.get('stockSelector', selected_category)
+        selected_category = request.POST.get('stockSelector', selected_category)   
+
+    market_data = get_market_data(api_key, selected_category)
+    for item in market_data:
+        create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
+    
+    stocks = Stock.objects.all()
     
     # combined_data = {
     #     selected_category: get_market_data(api_key, selected_category),
-    # }   
+    # } 
 
     # test data 
-    combined_data = {
-    'category1': [
-        {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
-        {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 1}},
-        {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 2.5}},
-        {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 2}},
-    ],    
-    }
+    # combined_data = {
+    # 'category1': [
+    #     {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
+    #     {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 1}},
+    #     {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 2.5}},
+    #     {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 2}},
+    # ],    
+    # }
 
     # write code save to DB Stock model  
 
     stock_context = {
-        'combined_data': combined_data, 
+        'stocks': stocks,
+        # 'combined_data': combined_data, 
         'selected_category': selected_category, 
         'categories': categories, 
     }
@@ -97,13 +128,19 @@ def display_data(request):
         user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
         balance = user_portfolio.balance
         open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
+
+        stock_value = [position.calculate_stock_value for position in open_positions]
+        total_stock_value = sum(stock_value)
+        total_balance = balance + total_stock_value
         
         portfolio_context = {
             'balance': balance,
             'stock_names': [position.stock for position in open_positions],
             'stock_quantities': [position.quantity for position in open_positions],
-            'stock_value': [position.calculate_stock_value for position in open_positions],
-            'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
+            'stock_value': stock_value,
+            'total_stock_value': total_stock_value,
+            'total_balance': total_balance,
+            # 'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
 
     except UserAccountPortfolio.DoesNotExist:

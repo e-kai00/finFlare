@@ -35,8 +35,8 @@
           <hr id="market-hr">
                     <div class="table mb-4">
               <div class="container market-container">
-                {% for category, data_list in combined_data.items %}
-                  {% for data in data_list %}
+                <!-- for category, data_list in combined_data.items  -->
+                  {% for data in stocks %}
                   <div class="row border-bottom pb-3 mb-3 stock-row">
                     <div class="col-1">
                       <div>{{forloop.counter}}.</div>
@@ -53,12 +53,12 @@
                     </div>
                     <div class="col-6 col-xl-2">
                       <div id="percentage" class="sm-icons">
-                        {% if data.price_movement.movement == "Up" %}
+                        {% if data.price_movement == "Up" %}
                             <i class="fa-solid fa-arrow-trend-up" style="color: #008068;"></i>
-                        {% elif data.price_movement.movement == "Down" %}
+                        {% elif data.price_movement == "Down" %}
                             <i class="fa-solid fa-arrow-trend-down" style="color: #db143c;"></i>
                         {% endif %}
-                        {{ data.price_movement.percentage|floatformat:2 }} %
+                        {{ data.movement_percent|floatformat:2 }} %
                       </div>
                     </div>
 
@@ -79,7 +79,7 @@
                     </div>
                   </div>
                   {% endfor %} 
-                {% endfor %}
+                 <!-- endfor  -->
               </div>
           </div>
                     
