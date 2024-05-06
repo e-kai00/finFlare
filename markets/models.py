@@ -11,6 +11,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=4) 
     price_movement = models.CharField(max_length=10) 
+    movement_percent = models.DecimalField(max_digits=10, decimal_places=4, default=0)
 
 
 class Transaction(models.Model):
