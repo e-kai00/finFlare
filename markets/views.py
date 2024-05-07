@@ -40,7 +40,7 @@ def get_market_data(api_key, category, max_items=5):
         'futures': ['YMW00:CBOT', 'ESW00:CME_EMINIS', 'NQW00:CME_EMINIS', 'GCW00:COMEX', 'CLW00:NYMEX'],
     }
 
-    symbols_list = symbols.get(category, [])
+    symbols_list = symbols.get(category, [])    # retrieve the list of symbols associated with a given category 
     market_data_list = []
 
     for symbol in symbols_list:
@@ -57,7 +57,8 @@ def get_market_data(api_key, category, max_items=5):
 
         for market_info in market_info_list:
             market_data_list.append({
-                'symbol': symbol.split(':')[0],
+                # 'symbol': symbol.split(':')[0],
+                'symbol': market_info.get('stock', ''),
                 'name': market_info.get('name', ''),
                 'price': market_info.get('price', ''),
                 'price_movement': {
@@ -89,10 +90,6 @@ def stock_data(request):
         create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
     
     stocks = Stock.objects.all()
-    
-    # combined_data = {
-    #     selected_category: get_market_data(api_key, selected_category),
-    # } 
 
     # test data 
     # combined_data = {
@@ -104,11 +101,8 @@ def stock_data(request):
     # ],    
     # }
 
-    # write code save to DB Stock model  
-
     stock_context = {
         'stocks': stocks,
-        # 'combined_data': combined_data, 
         'selected_category': selected_category, 
         'categories': categories, 
     }
@@ -219,7 +213,7 @@ def handle_buy_stock(request, user_profile, stock, quantity, price):
     update_user_balance(user_profile, total_position_cost, 'BUY')
     update_position(user_profile, stock, quantity, price, is_buy_position=True)
 
-    messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    messages.success(request, f"You have bought {quantity} shares of {stock.name}.")
     return transaction
 
 
