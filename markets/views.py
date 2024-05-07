@@ -234,10 +234,10 @@ def handle_sell_stock(request, user_profile, stock, quantity, price):
         if position.quantity == 0:
             position.is_buy_position = False
             position.save()
-            messages.success(request, f"You have closed your position of {stock}.")
+            messages.success(request, f"You have closed your position of {stock.name}.")
         else:
             position.save()
-            messages.success(request, f"You have sold {quantity} share(s) of {stock}.")
+            messages.success(request, f"You have sold {quantity} share(s) of {stock.name}.")
 
         sale_value = (price * sold_position_quantity) 
         print("sale value: ", sale_value)
