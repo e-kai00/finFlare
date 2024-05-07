@@ -64,12 +64,7 @@ def get_market_data(api_key, category, max_items=5):
                     'movement': market_info.get('price_movement', {}).get('movement', ''),
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
-            }) 
-            # symbol = symbol.split(':')[0]
-            # name = market_info.get('name', '')
-            # price = market_info.get('price', '')
-            # price_movement = market_info.get('price_movement', {}).get('movement', '')
-            # create_or_update_stock(symbol, name, price, price_movement)      
+            })                
 
         if len(market_info_list) >= max_items:
             break        
@@ -86,7 +81,8 @@ def stock_data(request):
     categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
     selected_category = 'Stocks US'  # default category
     if request.method == 'POST':
-        selected_category = request.POST.get('stockSelector', selected_category)   
+        selected_category = request.POST.get('stockSelector', selected_category)  
+        # print("POST data received:", request.POST) 
 
     market_data = get_market_data(api_key, selected_category)
     for item in market_data:
@@ -139,6 +135,7 @@ def display_data(request):
             'stock_quantities': [position.quantity for position in open_positions],
             'stock_value': stock_value,
             'total_stock_value': total_stock_value,
+            'stock_percentage_move': [position.stock.movement_percent for position in open_positions],
             'total_balance': total_balance,
             # 'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
