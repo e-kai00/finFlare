@@ -90,7 +90,7 @@
           <div class="row">
 
             {% if stock_names %}    
-              <div class="col-6 text-center">
+              <div class="col-4 text-center">
                 <p class="text-bold text-center">Name:</p>
                 <ul style="list-style-type: none; padding: 0;">
                     {% for stock_name in stock_names %}
@@ -105,9 +105,27 @@
                 <p id="stock-message">Zero stocks, all potential.<br> - Let's kickstart your portfolio adventure!</p>
               </div>     
             {% endif %}  
-        
+            
+            {% if stock_percentage_move %}    
+              <div class="col-4 text-center">
+                <p class="text-bold text-center">Change %:</p>
+                <ul style="list-style-type: none; padding: 0;">
+                    {% for percentage_move in stock_percentage_move %}
+                        <li style="display: flex; justify-content: center;">
+                            <p class="">{{ percentage_move|floatformat:2 }}</p>
+                        </li>
+                    {% endfor %}         
+                </ul>
+              </div>
+            {% else %}
+              <div class="col-12">
+                <!-- Display a message if the list is empty -->
+                <p id="stock-price-message"></p>
+              </div>     
+            {% endif %} 
+
             {% if stock_quantities %}    
-              <div class="col-6 text-center">
+              <div class="col-4 text-center">
                 <p class="text-bold text-center">Quantity:</p>
                 <ul style="list-style-type: none; padding: 0;">
                     {% for stock_quantity in stock_quantities %}

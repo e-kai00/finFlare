@@ -40,7 +40,7 @@ def get_market_data(api_key, category, max_items=5):
         'futures': ['YMW00:CBOT', 'ESW00:CME_EMINIS', 'NQW00:CME_EMINIS', 'GCW00:COMEX', 'CLW00:NYMEX'],
     }
 
-    symbols_list = symbols.get(category, [])
+    symbols_list = symbols.get(category, [])    # retrieve the list of symbols associated with a given category 
     market_data_list = []
 
     for symbol in symbols_list:
@@ -57,19 +57,15 @@ def get_market_data(api_key, category, max_items=5):
 
         for market_info in market_info_list:
             market_data_list.append({
-                'symbol': symbol.split(':')[0],
+                # 'symbol': symbol.split(':')[0],
+                'symbol': market_info.get('stock', ''),
                 'name': market_info.get('name', ''),
                 'price': market_info.get('price', ''),
                 'price_movement': {
                     'movement': market_info.get('price_movement', {}).get('movement', ''),
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
-            }) 
-            # symbol = symbol.split(':')[0]
-            # name = market_info.get('name', '')
-            # price = market_info.get('price', '')
-            # price_movement = market_info.get('price_movement', {}).get('movement', '')
-            # create_or_update_stock(symbol, name, price, price_movement)      
+            })                
 
         if len(market_info_list) >= max_items:
             break        
@@ -86,17 +82,14 @@ def stock_data(request):
     categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
     selected_category = 'Stocks US'  # default category
     if request.method == 'POST':
-        selected_category = request.POST.get('stockSelector', selected_category)   
+        selected_category = request.POST.get('stockSelector', selected_category)  
+        # print("POST data received:", request.POST) 
 
     market_data = get_market_data(api_key, selected_category)
     for item in market_data:
         create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
     
     stocks = Stock.objects.all()
-    
-    # combined_data = {
-    #     selected_category: get_market_data(api_key, selected_category),
-    # } 
 
     # test data 
     # combined_data = {
@@ -108,11 +101,8 @@ def stock_data(request):
     # ],    
     # }
 
-    # write code save to DB Stock model  
-
     stock_context = {
         'stocks': stocks,
-        # 'combined_data': combined_data, 
         'selected_category': selected_category, 
         'categories': categories, 
     }
@@ -139,6 +129,7 @@ def display_data(request):
             'stock_quantities': [position.quantity for position in open_positions],
             'stock_value': stock_value,
             'total_stock_value': total_stock_value,
+            'stock_percentage_move': [position.stock.movement_percent for position in open_positions],
             'total_balance': total_balance,
             # 'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
@@ -222,7 +213,7 @@ def handle_buy_stock(request, user_profile, stock, quantity, price):
     update_user_balance(user_profile, total_position_cost, 'BUY')
     update_position(user_profile, stock, quantity, price, is_buy_position=True)
 
-    messages.success(request, f"You have bought {quantity} shares of {stock}.")
+    messages.success(request, f"You have bought {quantity} shares of {stock.name}.")
     return transaction
 
 
@@ -243,10 +234,10 @@ def handle_sell_stock(request, user_profile, stock, quantity, price):
         if position.quantity == 0:
             position.is_buy_position = False
             position.save()
-            messages.success(request, f"You have closed your position of {stock}.")
+            messages.success(request, f"You have closed your position of {stock.name}.")
         else:
             position.save()
-            messages.success(request, f"You have sold {quantity} share(s) of {stock}.")
+            messages.success(request, f"You have sold {quantity} share(s) of {stock.name}.")
 
         sale_value = (price * sold_position_quantity) 
         print("sale value: ", sale_value)
