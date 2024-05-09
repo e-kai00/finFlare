@@ -57,6 +57,10 @@ def get_market_data(api_key, category, max_items=5):
 
         for market_info in market_info_list:
             market_data_list.append({
+<<<<<<< HEAD
+=======
+                # 'symbol': symbol.split(':')[0],
+>>>>>>> 530895f84ef77f887312dd3d34b74cc687613896
                 'symbol': market_info.get('stock', ''),
                 'name': market_info.get('name', ''),
                 'price': market_info.get('price', ''),
