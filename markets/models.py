@@ -10,7 +10,7 @@ class Stock(models.Model):
     symbol = models.CharField(max_length=10)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=4) 
-    price_movement = models.CharField(max_length=10) 
+    price_movement = models.CharField(max_length=10) # "Up" or "Down"
     movement_percent = models.DecimalField(max_digits=10, decimal_places=4, default=0)
 
 
