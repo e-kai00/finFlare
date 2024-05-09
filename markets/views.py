@@ -57,7 +57,6 @@ def get_market_data(api_key, category, max_items=5):
 
         for market_info in market_info_list:
             market_data_list.append({
-                # 'symbol': symbol.split(':')[0],
                 'symbol': market_info.get('stock', ''),
                 'name': market_info.get('name', ''),
                 'price': market_info.get('price', ''),
@@ -75,8 +74,7 @@ def get_market_data(api_key, category, max_items=5):
 
 def stock_data(request):
     """
-    Fetches market data based on the selected category 
-    and returns it as a dictionary.
+    Fetches market data based on the selected category     
     """
     api_key = settings.API_KEY
     categories = ['Stocks US', 'Crypto', 'Currencies', 'Futures']
@@ -89,7 +87,8 @@ def stock_data(request):
     for item in market_data:
         create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
     
-    stocks = Stock.objects.all()
+    stocks = market_data
+    # stocks = Stock.objects.all()
 
     # test data 
     # combined_data = {
