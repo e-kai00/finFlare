@@ -47,10 +47,7 @@
                     
                     <div class="col-5 col-xl-2">
                       <div class="right-align">$ {{ data.price|floatformat:2|intcomma }}</div>
-                    </div>
-                    <div class="col-6 col-xl-1 pr-0 sm-icons">
-                      <div><i class="fas fa-wallet"></i>{% if stockBalance.quantity > 0 %}{{ stockBalance.quantity }}{% else %}0{% endif %}</div>
-                    </div>
+                    </div>                    
                     <div class="col-6 col-xl-2">
                       <div id="percentage" class="sm-icons">
                         {% if data.price_movement == "Up" %}
