@@ -8,7 +8,7 @@ from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
 from decimal import Decimal
 
 
-def create_or_update_stock(symbol, name, price, price_movement):
+def create_or_update_stock(symbol, name, price, price_movement, category):
     """
     Create or update stock information in the database
     """
@@ -22,7 +22,8 @@ def create_or_update_stock(symbol, name, price, price_movement):
             'price': price,
             'price_movement': movement,
             'movement_percent': percentage,
-        }
+        }, 
+        category=category
     )
     return stock, created
 
@@ -56,7 +57,7 @@ def get_market_data(api_key, category, max_items=5):
         # print("data: ", data)
 
         market_info_list = data.get('markets', {}).get(category.lower(), [])
-        print("market_info_list: ", market_info_list)
+        # print("market_info_list: ", market_info_list)
 
         for market_info in market_info_list:
             market_data_list.append({
@@ -68,7 +69,7 @@ def get_market_data(api_key, category, max_items=5):
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
             })
-        print("market_data_list", market_data_list)       
+        # print("market_data_list", market_data_list)   
 
         if len(market_info_list) >= max_items:
             break        
@@ -90,9 +91,9 @@ def stock_data(request):
     market_data = get_market_data(api_key, selected_category)
     stocks = []
     for item in market_data:
-        create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
+        create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'], selected_category)
 
-    stocks = Stock.objects.all()
+    stocks = Stock.objects.filter(category=selected_category)
 
     # test data 
     # combined_data = {
