@@ -34,13 +34,14 @@ def get_market_data(api_key, category, max_items=5):
     base_url = "https://serpapi.com/search.json"
     category = 'us' if category == 'Stocks US' else category.lower()
     symbols = {
-        'us': ['DJI:INDEXDJX', 'SPX:INDEXSP', 'COMP:INDEXNASDAQ', 'RUT:INDEXRUS', 'VIX:INDEXCBOE'],
-        'crypto': ['BTC:USD', 'ETH:USD', 'ADA:USD', 'XRP:USD', 'DOGE:USD'],
-        'currencies': ['EUR:USD', 'USD:JPY', 'GBP:USD', 'USD:CAD', 'AUD:USD'],
+        'us': ['.DJI:INDEXDJX', '.INX:INDEXSP', '.IXIC:INDEXNASDAQ', 'RUT:INDEXRUSSELL', 'VIX:INDEXCBOE'],
+        'crypto': ['BTC-USD', 'ETH-USD', 'ADA-USD', 'XRP-USD', 'DOGE-USD'],
+        'currencies': ['EUR-USD', 'USD-JPY', 'GBP-USD', 'USD-CAD', 'AUD-USD'],
         'futures': ['YMW00:CBOT', 'ESW00:CME_EMINIS', 'NQW00:CME_EMINIS', 'GCW00:COMEX', 'CLW00:NYMEX'],
     }
 
     symbols_list = symbols.get(category, [])    # retrieve the list of symbols associated with a given category 
+    print("symbols_list: ", symbols_list)
     market_data_list = []
 
     for symbol in symbols_list:
@@ -49,11 +50,13 @@ def get_market_data(api_key, category, max_items=5):
             'q': symbol,
             'api_key': api_key
         }
-
+        # print(params)
         response = requests.get(base_url, params=params)
         data = response.json()
+        # print("data: ", data)
 
         market_info_list = data.get('markets', {}).get(category.lower(), [])
+        print("market_info_list: ", market_info_list)
 
         for market_info in market_info_list:
             market_data_list.append({
@@ -64,7 +67,8 @@ def get_market_data(api_key, category, max_items=5):
                     'movement': market_info.get('price_movement', {}).get('movement', ''),
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
-            })                
+            })
+        print("market_data_list", market_data_list)       
 
         if len(market_info_list) >= max_items:
             break        
@@ -84,11 +88,11 @@ def stock_data(request):
         # print("POST data received:", request.POST) 
 
     market_data = get_market_data(api_key, selected_category)
+    stocks = []
     for item in market_data:
         create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'])
-    
-    stocks = market_data
-    # stocks = Stock.objects.all()
+
+    stocks = Stock.objects.all()
 
     # test data 
     # combined_data = {
