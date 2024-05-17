@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 import requests
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from .models import UserAccountPortfolio, StockBalance, Transaction, Stock
@@ -112,7 +113,7 @@ def stock_data(request):
     }
     return stock_context
 
-
+@login_required
 def display_data(request):
     """
     Retrieves user portfolio data and market data, 
@@ -156,7 +157,7 @@ def display_data(request):
 
     return render(request, 'markets/markets.html', context)
 
-
+@login_required
 def trade_stock(request):
     """
     Handles stock trading transactions.
@@ -244,7 +245,6 @@ def handle_sell_stock(request, user_profile, stock, quantity, price):
             messages.success(request, f"You have sold {quantity} share(s) of {stock.name}.")
 
         sale_value = (price * sold_position_quantity) 
-        print("sale value: ", sale_value)
         update_user_balance(user_profile, sale_value, 'SELL')
 
 
