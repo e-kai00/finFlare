@@ -43,7 +43,6 @@ def get_market_data(api_key, category, max_items=5):
     }
 
     symbols_list = symbols.get(category, [])    # retrieve the list of symbols associated with a given category 
-    print("symbols_list: ", symbols_list)
     market_data_list = []
 
     for symbol in symbols_list:
@@ -52,13 +51,10 @@ def get_market_data(api_key, category, max_items=5):
             'q': symbol,
             'api_key': api_key
         }
-        # print(params)
         response = requests.get(base_url, params=params)
         data = response.json()
-        # print("data: ", data)
 
         market_info_list = data.get('markets', {}).get(category.lower(), [])
-        # print("market_info_list: ", market_info_list)
 
         for market_info in market_info_list:
             market_data_list.append({
@@ -70,8 +66,6 @@ def get_market_data(api_key, category, max_items=5):
                     'percentage': market_info.get('price_movement', {}).get('percentage', 0),
                 },
             })
-        # print("market_data_list", market_data_list)   
-
         if len(market_info_list) >= max_items:
             break        
 
@@ -87,7 +81,6 @@ def stock_data(request):
     selected_category = 'Stocks US'  # default category
     if request.method == 'POST':
         selected_category = request.POST.get('stockSelector', selected_category)  
-        # print("POST data received:", request.POST) 
 
     market_data = get_market_data(api_key, selected_category)
     stocks = []
@@ -95,16 +88,6 @@ def stock_data(request):
         create_or_update_stock(item['symbol'], item['name'], item['price'], item['price_movement'], selected_category)
 
     stocks = Stock.objects.filter(category=selected_category)
-
-    # test data 
-    # combined_data = {
-    # 'category1': [
-    #     {'name': 'Item 1', 'price': 100, 'price_movement': {'movement': 'Up', 'percentage': 1.5}},
-    #     {'name': 'Item 2', 'price': 200, 'price_movement': {'movement': 'Down', 'percentage': 1}},
-    #     {'name': 'Item 3', 'price': 300, 'price_movement': {'movement': 'Up', 'percentage': 2.5}},
-    #     {'name': 'Item 4', 'price': 400, 'price_movement': {'movement': 'Down', 'percentage': 2}},
-    # ],    
-    # }
 
     stock_context = {
         'stocks': stocks,
@@ -136,7 +119,6 @@ def display_data(request):
             'total_stock_value': total_stock_value,
             'stock_percentage_move': [position.stock.movement_percent for position in open_positions],
             'total_balance': total_balance,
-            # 'stock_profit_loss': sum(position.calculate_profit_loss for position in open_positions),
         }
 
     except UserAccountPortfolio.DoesNotExist:
@@ -166,10 +148,9 @@ def trade_stock(request):
    
     if request.method == 'POST':
         handle_transaction_data(request)       
-        update_context(request, portfolio_context)  # ??
         return redirect('markets')
 
-    return render(request, 'markets/markets.html', portfolio_context)   
+    return render(request, 'markets/markets.html', portfolio_context)
 
 
 def handle_transaction_data(request):    
@@ -235,7 +216,6 @@ def handle_sell_stock(request, user_profile, stock, quantity, price):
     if position:   
         sold_position_quantity = min(position.quantity, quantity)      
         position.quantity -= sold_position_quantity
-        print("position quant.: ", position.quantity)
         if position.quantity == 0:
             position.is_buy_position = False
             position.save()
@@ -303,23 +283,3 @@ def update_position(user_profile, stock, quantity, price, is_buy_position):
     return position_buy
 
 
-def update_context(request, context):
-    """
-    Updates the context with user portfolio data.
-    """
-    try: 
-        user_portfolio = UserAccountPortfolio.objects.get(user=request.user)
-        balance = user_portfolio.balance
-        open_positions = StockBalance.objects.filter(user=user_portfolio, is_buy_position=True)
-        context.update({
-            'balance': balance,
-            'stock_names': [position.stock for position in open_positions],
-            'stock_quantities': [position.quantity for position in open_positions],
-        })
-    except Exception as e:
-        print("An unexpected error occurred:", e)
-        context = {
-            'balance': 50000.0,
-            'stock_names': [],
-            'stock_quantities': [],
-        }
