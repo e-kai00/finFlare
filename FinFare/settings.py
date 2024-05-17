@@ -22,8 +22,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'fin-flare-8f9d374a56d6.herokuapp.com',
-    '8000-kimbergstroem-finflare-v62zu29kngw.ws-eu107.gitpod.io', 
-    '8000-sandrabergstro-finflare-fk8ms16p7zy.ws-eu107.gitpod.io', 
     '127.0.0.1'
     ]
 
@@ -40,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'cloudinary_storage',
     'django.contrib.sites',
-    'cloudinary',
 
     # Account auth
     'allauth',
