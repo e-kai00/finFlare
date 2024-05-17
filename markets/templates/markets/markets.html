@@ -35,7 +35,6 @@
           <hr id="market-hr">
                     <div class="table mb-4">
               <div class="container market-container">
-                <!-- for category, data_list in combined_data.items  -->
                   {% for data in stocks %}
                   <div class="row border-bottom pb-3 mb-3 stock-row">
                     <div class="col-1">
@@ -67,7 +66,6 @@
                           {% csrf_token %}
                           <input type="hidden" name="name" value="{{ data.name }}">
                           <input type="hidden" name="price" value="{{ data.price }}">
-                          <!-- <input type="hidden" name="price" value="101"> -->
                           <input type="text" class="form-control me-2" placeholder="Amount" aria-label="multiple select example" name="quantitySelector">
                           <button type="submit" name="transaction_type" value="SELL" id="btn-btn-sell" class="btn me-2 btn-sell">Sell</button>
                           <button type="submit" name="transaction_type" value="BUY" id="btn-btn-buy" class="btn btn-buy">Buy</button>
@@ -76,7 +74,6 @@
                     </div>
                   </div>
                   {% endfor %} 
-                 <!-- endfor  -->
               </div>
           </div>
                     
@@ -100,5 +97,4 @@
 {% endblock %} 
 
 {% block postloadjs %}
-  <!-- <script src="{% static 'markets/js/markets.js' %}"></script> -->
 {% endblock %}
