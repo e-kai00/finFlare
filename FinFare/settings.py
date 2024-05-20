@@ -18,10 +18,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 API_KEY = os.environ.get("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    'fin-flare-8f9d374a56d6.herokuapp.com',
+ALLOWED_HOSTS = [    
+    'fin-flare-v2-b57fbabfe021.herokuapp.com',
     '127.0.0.1'
     ]
 
