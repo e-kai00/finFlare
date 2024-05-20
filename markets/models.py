@@ -7,7 +7,7 @@ class Stock(models.Model):
     """
     Saving stock values to DB (coming from API)
     """
-    symbol = models.CharField(max_length=10)
+    symbol = models.CharField(max_length=25)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=4) 
     price_movement = models.CharField(max_length=10) # "Up" or "Down"
