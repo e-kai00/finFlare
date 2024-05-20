@@ -21,7 +21,7 @@ API_KEY = os.environ.get("API_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = [    
-    'fin-flare-v2-b57fbabfe021.herokuapp.com'
+    'fin-flare-v2-b57fbabfe021.herokuapp.com',
     '127.0.0.1'
     ]
 
