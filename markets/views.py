@@ -147,7 +147,7 @@ def trade_stock(request):
     portfolio_context = {}
    
     if request.method == 'POST':
-        handle_transaction_data(request)       
+        handle_transaction_data(request)
         return redirect('markets')
 
     return render(request, 'markets/markets.html', portfolio_context)
@@ -281,5 +281,4 @@ def update_position(user_profile, stock, quantity, price, is_buy_position):
 
     position_buy.save()
     return position_buy
-
 
