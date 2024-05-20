@@ -105,6 +105,18 @@ nav .nav-link {
     color: var(--background-color) !important; /* Change to your desired color */
 }
 
+.navbar-light .navbar-text a:hover {
+    display: flex;
+    justify-content: center;
+    color: rgba(0, 0, 0, .9);
+}
+
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    right: -65px;
+}
+
 .main-container {
     padding-right: 0.75rem;
     padding-left: 0.75rem;
@@ -309,36 +321,19 @@ form.signup p input {
 /* ------------------- LOGIN PAGE ------------------- */
 
 #outer-login, #outer-signup {
-    background-image: url('/static/images/pexels-david-mcbee-730547.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     min-height: max-content;
-    min-width: 100dvw;
-    overflow: auto;
 }
 
 /* on smaller screens */
-@media (max-width: 576px) {
-    #hero-signup {
-        height: 110vh;
-    }
-}
 
 .account-container {
     background-color: var(--secondary-color);
     opacity: 0.9;
     position: relative;
     max-width: 600px;
-    top: 50px;
     width: 90%;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-#signup-container{
-    top: 35px;
-    height: 795px !important;
 }
 
 .login-btn {
