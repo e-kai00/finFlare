@@ -1,12 +1,14 @@
 
 <h1 align= "center"><strong>💲💲💲 Broker Buddy |  New Year, January Hackathon 2024, 💲💲💲</strong></h1>
 
-[Click for live view](https://finflare-9057c20c8176.herokuapp.com/)
-
-
 <!-- The website picture here -->
 
 <img src="readme.docs/home.jpg" alt="Broker Buddy Markets photo" width="1200"/>
+
+<br>
+
+Check out the live version of the website: [Broker Buddy](https://fin-flare-v2-b57fbabfe021.herokuapp.com/)
+
 
 ## Table of Contents
 <details><summary>Click to go to Contents here </summary>
@@ -48,7 +50,9 @@
  - [Test on browsers](#test-on-browsers)
  
 [Deployment](#deployment)
- 
+
+[Versions](#versions)
+
 [Fixed Bugs](#fixed-bugs)
 
 [Credits](#credits)
@@ -236,11 +240,17 @@ The chosen fonts for the website were imported using Google Fonts.
 6. Use command '$ git remote add upstream [main-repository-url]'
 7. To sync, use commands '$ git fetch upstream' and '$ git merge upstream/main'
 
-#### Deploy
+## Versions
+
+### Live Demo
+The live version of the website: [Broker Buddy](https://fin-flare-v2-b57fbabfe021.herokuapp.com/)
+
+### Previous Versions
+- Version 0.0 (branch: *main*): [Broker Buddy v0.0](https://finflare-9057c20c8176.herokuapp.com/)
+- Version 1.0 (branch: *e-kai00-production*): [Broker Buddy v1.0](https://fin-flare-8f9d374a56d6.herokuapp.com/)
+
 
 ## Credits
-
-
 
 ## Members of finFlare Team
 
