@@ -1,5 +1,11 @@
 h2 {
+    font-size: 28px;
+}
+
+@media screen and (min-width: 960px) {
+   h2 {
     font-size: 32px;
+   }
 }
 
 h3 {
