@@ -11,10 +11,10 @@
 {% block content %}
 <!-- Background Image content section here-->
 <div class="hero">
-    <section>
-        <div class="container" id="home-container">
+    <section class="welcome-wrapper">
+        <div class="container custom_container" id="home-container">
             {% if user.is_authenticated %}
-                <div class="row welcome-section d-flex welcome-text">
+                <div class="row welcome-section welcome-text">
                     <h1>Welcome back, <h1>{{ user.username }}!</h1>
                     <p class="pt-2 pb-1 sm"><span>Congratulations,</span> you are now the master of your financial destiny! Your journey into the world of trading begins here.</p>
                     <p class="pt-2 pb-1 sm">Explore <span>live updating charts</span>, fine-tune your strategies, and watch your <span>portfolio</span> thrive!</p>
@@ -23,16 +23,16 @@
                     </a>
                 </div>
             {% else %}
-                <div class="row welcome-section d-flex welcome-text">
+                <div class="row welcome-section welcome-text text-center">
                     <h1>Welcome to Broker Buddy!</h1>
                     <p class="pt-2 pb-1 sm">Step into the world of trading with Broker Buddy. 
                         Experience the thrill of the stock market through 
                         our risk-free simulator. Hone your skills and strategies 
                         – where practice makes profit.</p>
-                    <a class="col-md-4" href="{% url 'account_login' %}">
+                    <a class="col-sm-4 mb-2" href="{% url 'account_login' %}">
                         <button class="btn-signup">Login</button>
                     </a>
-                    <a class="col-md-4" href="{% url 'account_signup' %}">
+                    <a class="col-sm-4" href="{% url 'account_signup' %}">
                         <button class="btn-signup">Signup</button>
                     </a>
                 </div>
@@ -44,4 +44,18 @@
 
 {% block postloadjs %}
     <script src="{% static 'home/js/home.js' %}"></script>
+
+    <script>
+        function adjustBackgroundImgHeight() {
+            const backgroundImg = document.querySelector(".hero");
+            const navbarHeight = document.querySelector(".navbar").offsetHeight;
+            const footerHeight = document.querySelector(".footer").offsetHeight;
+
+            const backgroundImgHeight = window.innerHeight - navbarHeight - footerHeight;
+            backgroundImg.style.height = backgroundImgHeight + "px"
+        }
+
+        window.addEventListener('resize', adjustBackgroundImgHeight);
+        window.addEventListener('load', adjustBackgroundImgHeight);
+    </script>
 {% endblock %}
