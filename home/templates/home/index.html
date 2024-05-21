@@ -51,11 +51,16 @@
             const navbarHeight = document.querySelector(".navbar").offsetHeight;
             const footerHeight = document.querySelector(".footer").offsetHeight;
 
-            const backgroundImgHeight = window.innerHeight - navbarHeight - footerHeight;
+            const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            const backgroundImgHeight = viewportHeight - navbarHeight - footerHeight;
             backgroundImg.style.height = backgroundImgHeight + "px"
         }
 
-        window.addEventListener('resize', adjustBackgroundImgHeight);
         window.addEventListener('load', adjustBackgroundImgHeight);
+        window.addEventListener('resize', adjustBackgroundImgHeight);
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', adjustBackgroundImgHeight);
+        }
+
     </script>
 {% endblock %}
